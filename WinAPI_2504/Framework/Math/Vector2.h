@@ -84,6 +84,6 @@ struct Vector2
 		   
 	static const Vector2 Right() { return Vector2(1, 0); }
 	static const Vector2 Left() { return Vector2(-1, 0); }
-	static const Vector2 Down() { return Vector2(0, 1); }
-	static const Vector2 Up() { return Vector2(0, -1); }
+	static const Vector2 Down() { return Vector2(0, -1); }
+	static const Vector2 Up() { return Vector2(0, 1); }
 };

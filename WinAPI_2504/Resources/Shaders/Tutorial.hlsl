@@ -16,16 +16,36 @@ cbuffer ProjectionBuffer : register(b2)
     matrix projection;
 }
 
-float4 VS( float4 pos : POSITION ) : SV_POSITION
+struct Input
 {
-    float4 output = mul(pos, world);
-    output = mul(output, view);
-    output = mul(output, projection);
+    float4 pos : POSITION;
+    float4 color : COLOR;
+};
+
+struct Output
+{
+    float4 pos : SV_POSITION;
+    float4 color : COLOR;
+};
+
+Output VS( Input input )
+{
+    Output output;
+    output.pos = mul(input.pos, world);
+    output.pos = mul(output.pos, view);
+    output.pos = mul(output.pos, projection);
+    
+    output.color = input.color;
     
 	return output;
 }
 
-float4 PS() : SV_TARGET
+cbuffer ColorBuffer : register(b0)
 {
-    return float4(1, 1, 0, 1);
+    float4 color;
+}
+
+float4 PS( Output output ) : SV_TARGET
+{
+    return output.color * color;
 }

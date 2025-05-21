@@ -1,23 +1,35 @@
 #pragma once
 
-class GameObject
+class GameObject : public Transform
 {
 public:
-	GameObject() = default;
-	GameObject(Vector2 center) : center(center) {}
-	~GameObject() = default;
+	GameObject();
+	~GameObject();	
+
+	void Render();
 	
-	void Translate(Vector2 translation) { center += translation; }
-
-	void SetCenter(float x, float y) { center = { x, y }; }
-	void SetCenter(Vector2 center) { this->center = center; }
-	Vector2 GetCenter() { return center; }
-
 	void SetActive(bool isActive) { this->isActive = isActive; }
 	bool IsActive() { return isActive; }	
 
 protected:
+	void Init();
+
+private:
+	virtual void MakeMesh() = 0;
+
+protected:
 	bool isActive = true;
 
-	Vector2 center = {};	
+	vector<VertexColor> vertices;
+	vector<UINT> indices;
+
+	VertexShader* vertexShader;
+	PixelShader* pixelShader;
+
+	VertexBuffer* vertexBuffer;
+	IndexBuffer* indexBuffer;
+
+	MatrixBuffer* worldBuffer;
+
+	ColorBuffer* colorBuffer;
 };

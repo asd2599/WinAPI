@@ -184,7 +184,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_MOUSEMOVE:
 	{
 		mousePos.x = (float)LOWORD(lParam);
-		mousePos.y = (float)HIWORD(lParam);
+		mousePos.y = SCREEN_HEIGHT - (float)HIWORD(lParam);
 	}
         break;
     case WM_PAINT:

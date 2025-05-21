@@ -10,7 +10,7 @@ public:
 	void Render() override;
 
 private:
-	vector<Vertex> vertices;
+	vector<VertexColor> vertices;
 	vector<UINT> indices;
 		
 	VertexShader* vertexShader;
@@ -19,9 +19,9 @@ private:
 	VertexBuffer* vertexBuffer;
 	IndexBuffer* indexBuffer;
 
-	MatrixBuffer* worldBuffer;
-	MatrixBuffer* viewBuffer;
-	MatrixBuffer* projectionBuffer;
+	MatrixBuffer* worldBuffer;	
+
+	ColorBuffer* colorBuffer;
 
 	Matrix world;
 	Float4x4 matWorld;

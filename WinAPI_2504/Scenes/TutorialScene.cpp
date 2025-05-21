@@ -11,7 +11,7 @@ TutorialScene::TutorialScene()
     float stepAngle = PI * 2 / n;
     float radius = 100.0f;
 
-    vertices.emplace_back(0, 0);
+    vertices.emplace_back(0, 0, 1, 0, 0);
 
     for (int i = 0; i < n; i++)
     {
@@ -35,32 +35,28 @@ TutorialScene::TutorialScene()
 
 
     //VertexBuffer
-    vertexBuffer = new VertexBuffer(vertices.data(), sizeof(Vertex), vertices.size());
+    vertexBuffer = new VertexBuffer(vertices.data(), sizeof(VertexColor), vertices.size());
     //IndexBuffer
     indexBuffer = new IndexBuffer(indices.data(), indices.size());
 
     worldBuffer = new MatrixBuffer();
-    viewBuffer = new MatrixBuffer();
-    projectionBuffer = new MatrixBuffer();
-
-    //Orthographic : 원근감이 없는 직육면체의 절두체를 형성하는 투영변환
-    Matrix projection = XMMatrixOrthographicOffCenterLH(0.0f, SCREEN_WIDTH, 0.0f, SCREEN_HEIGHT, -1.0f, 1.0f);
-
-    viewBuffer->SetVS(1);
-
-    projectionBuffer->Set(projection);
-    projectionBuffer->SetVS(2);
+    
 
     matWorld._11 = 1;
     matWorld._22 = 1;
     matWorld._33 = 1;
     matWorld._44 = 1;
+
+    colorBuffer = new ColorBuffer();
+    colorBuffer->Set(1, 0, 0);
 }
 
 TutorialScene::~TutorialScene()
 {
     delete vertexBuffer;
     delete indexBuffer;
+
+    delete colorBuffer;
 }
 
 void TutorialScene::Update()
@@ -77,6 +73,15 @@ void TutorialScene::Update()
         pos.y += 100.0f * DELTA;
     }    
 
+    if (Input::Get()->IsKeyDown('1'))
+        colorBuffer->Set(1, 0, 0);
+
+    if (Input::Get()->IsKeyDown('2'))
+        colorBuffer->Set(0, 1, 0);
+
+    if (Input::Get()->IsKeyDown('3'))
+        colorBuffer->Set(0, 0, 1);
+
     //world = XMLoadFloat4x4(&matWorld);
     world = XMMatrixTranslation(pos.x, pos.y, 0.0f);
 }
@@ -85,6 +90,8 @@ void TutorialScene::Render()
 {   
     worldBuffer->Set(world);
     worldBuffer->SetVS(0);    
+
+    colorBuffer->SetPS(0);
 
     vertexBuffer->Set();
     indexBuffer->Set();

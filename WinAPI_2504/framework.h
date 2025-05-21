@@ -52,6 +52,7 @@ typedef XMFLOAT4X4 Float4x4;
 #include "Framework/Utilities/Input.h"
 
 #include "Framework/Math/Vector2.h"
+#include "Framework/Math/Transform.h"
 
 #include "Framework/Device/Device.h"
 
@@ -65,13 +66,15 @@ typedef XMFLOAT4X4 Float4x4;
 #include "Framework/Buffer/ConstBuffer.h"
 #include "Framework/Buffer/GlobalBffer.h"
 
-#include "Objects/Basic/GameObject.h"
-#include "Objects/Basic/Circle.h"
-#include "Objects/Basic/Rect.h"
+#include "Framework/Environment/Environment.h"
 
-#include "Objects/UI/Button.h"
+#include "Objects/Basic/GameObject.h"
+
 #include "Objects/Manger/DataManager.h"
 #include "Objects/Manger/EventManager.h"
+
+#include "Objects/Shooting/Plane.h"
+#include "Objects/Shooting/Bullet.h"
 
 #include "Scenes/Scene.h"
 #include "Framework/Manager/SceneManager.h"

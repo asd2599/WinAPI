@@ -1,12 +1,14 @@
 #include "Framework.h"
 
 #include "Scenes/TutorialScene.h"
+#include "Scenes/ShootingScene.h"
 
 GameManager::GameManager()
 {
 	Create();
 		
-	SCENE->AddScene("Game", new TutorialScene());	
+	//SCENE->AddScene("Game", new TutorialScene());	
+	SCENE->AddScene("Game", new ShootingScene());
 
 	SCENE->ChangeScene("Game");
 }
@@ -43,6 +45,8 @@ void GameManager::Create()
 	Device::Get();
 
 	SceneManager::Get();
+
+	Environment::Get();
 }
 
 void GameManager::Release()
@@ -54,4 +58,6 @@ void GameManager::Release()
 	Shader::Delete();
 
 	SceneManager::Delete();
+
+	Environment::Delete();
 }
