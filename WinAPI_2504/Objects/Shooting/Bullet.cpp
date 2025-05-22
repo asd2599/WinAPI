@@ -2,7 +2,7 @@
 
 Bullet::Bullet()
 {
-	pos = CENTER;
+	localPosition = CENTER;
 
 	Init();
 }
@@ -17,9 +17,9 @@ void Bullet::Update()
 
 	//Translate(direction * SPEED * DELTA);
 
-	pos = mousePos;
+	localPosition = mousePos;
 
-	if (pos.y > SCREEN_HEIGHT)
+	if (localPosition.y > SCREEN_HEIGHT)
 		isActive = false;
 
 	UpdateWorld();

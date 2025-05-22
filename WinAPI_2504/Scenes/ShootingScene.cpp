@@ -4,6 +4,8 @@
 ShootingScene::ShootingScene()
 {
 	plane = new Plane();
+	//plane->SetPivot(0, +50);
+
 	bullet = new Bullet();
 }
 

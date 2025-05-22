@@ -1,13 +1,10 @@
 #pragma once
 
-struct Vector2
+struct Vector2 : public Float2
 {
-	float x;
-	float y;
-
-	Vector2() : x(0), y(0) 
+	Vector2() : Float2(0, 0)
 	{}
-	Vector2(float x, float y) : x(x), y(y)
+	Vector2(float x, float y) : Float2(x, y)
 	{}
 
 	Vector2 operator+(const Vector2& other) const
@@ -77,7 +74,7 @@ struct Vector2
 		float length = Magnitude();
 
 		return Vector2(x / length, y / length);
-	}
+	}	
 
 	static const Vector2 Zero() { return Vector2(0, 0); }
 	static const Vector2 One() { return Vector2(1, 1); }
@@ -86,4 +83,12 @@ struct Vector2
 	static const Vector2 Left() { return Vector2(-1, 0); }
 	static const Vector2 Down() { return Vector2(0, -1); }
 	static const Vector2 Up() { return Vector2(0, 1); }
+
+	static float Distance(const Vector2& v1, const Vector2& v2)
+	{
+		return (v1 - v2).Magnitude();
+	}
+
+	static float Cross(const Vector2& v1, const Vector2& v2)
+	{ return v1.x * v2.y - v1.y * v2.x; }
 };

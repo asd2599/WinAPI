@@ -4,10 +4,13 @@ class GameObject : public Transform
 {
 public:
 	GameObject();
+	GameObject(wstring shaderFile);
 	~GameObject();	
 
-	void Render();
+	virtual void Render();
 	
+	void SetColor(float r, float g, float b, float a = 1.0f);
+
 	void SetActive(bool isActive) { this->isActive = isActive; }
 	bool IsActive() { return isActive; }	
 
@@ -27,7 +30,7 @@ protected:
 	PixelShader* pixelShader;
 
 	VertexBuffer* vertexBuffer;
-	IndexBuffer* indexBuffer;
+	IndexBuffer* indexBuffer = nullptr;
 
 	MatrixBuffer* worldBuffer;
 

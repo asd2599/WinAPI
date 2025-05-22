@@ -10,7 +10,15 @@ public:
 	~Plane();
 
 	void Update();
+	void Render();
+
+private:
+	void ControlKeyboard();
+	void ControlMouse();
 
 private:
 	void MakeMesh() override;
+
+private:
+	Collider* collider;
 };

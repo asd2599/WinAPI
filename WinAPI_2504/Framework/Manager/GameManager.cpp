@@ -2,13 +2,15 @@
 
 #include "Scenes/TutorialScene.h"
 #include "Scenes/ShootingScene.h"
+#include "Scenes/CollisionScene.h"
 
 GameManager::GameManager()
 {
 	Create();
 		
 	//SCENE->AddScene("Game", new TutorialScene());	
-	SCENE->AddScene("Game", new ShootingScene());
+	//SCENE->AddScene("Game", new ShootingScene());
+	SCENE->AddScene("Game", new CollisionScene());
 
 	SCENE->ChangeScene("Game");
 }

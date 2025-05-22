@@ -156,11 +156,15 @@
     <ClInclude Include="Framework\Utilities\Timer.h" />
     <ClInclude Include="Framework\Utilities\Utility.h" />
     <ClInclude Include="Objects\Basic\GameObject.h" />
+    <ClInclude Include="Objects\Collider\CircleCollider.h" />
+    <ClInclude Include="Objects\Collider\Collider.h" />
+    <ClInclude Include="Objects\Collider\RectCollider.h" />
     <ClInclude Include="Objects\Manger\DataManager.h" />
     <ClInclude Include="Objects\Manger\EventManager.h" />
     <ClInclude Include="Objects\Shooting\Bullet.h" />
     <ClInclude Include="Objects\Shooting\Plane.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Scenes\CollisionScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\ShootingScene.h" />
     <ClInclude Include="Scenes\TutorialScene.h" />
@@ -186,10 +190,14 @@
     <ClCompile Include="Framework\Utilities\Timer.cpp" />
     <ClCompile Include="Framework\Utilities\Utility.cpp" />
     <ClCompile Include="Objects\Basic\GameObject.cpp" />
+    <ClCompile Include="Objects\Collider\CircleCollider.cpp" />
+    <ClCompile Include="Objects\Collider\Collider.cpp" />
+    <ClCompile Include="Objects\Collider\RectCollider.cpp" />
     <ClCompile Include="Objects\Manger\DataManager.cpp" />
     <ClCompile Include="Objects\Manger\EventManager.cpp" />
     <ClCompile Include="Objects\Shooting\Bullet.cpp" />
     <ClCompile Include="Objects\Shooting\Plane.cpp" />
+    <ClCompile Include="Scenes\CollisionScene.cpp" />
     <ClCompile Include="Scenes\ShootingScene.cpp" />
     <ClCompile Include="Scenes\TutorialScene.cpp" />
     <ClCompile Include="WinAPI_2504.cpp" />
@@ -202,6 +210,12 @@
     <Image Include="WinAPI_2504.ico" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="Resources\Shaders\Collider.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
     <FxCompile Include="Resources\Shaders\Tutorial.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
