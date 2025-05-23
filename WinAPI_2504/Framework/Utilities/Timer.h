@@ -10,6 +10,7 @@ public:
 	void Update();
 	
 	float GetElapsedTime() { return elapsedTime; }
+	int GetFPS() { return frameRate; }
 
 private:
 	int frameRate = 0;

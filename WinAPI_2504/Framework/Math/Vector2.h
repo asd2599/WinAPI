@@ -55,6 +55,18 @@ struct Vector2 : public Float2
 		y *= scala;
 	}
 
+	Vector2 operator*(const Matrix& mat) const
+	{
+		Vector4 coord = XMLoadFloat2(this);
+
+		coord = XMVector2TransformCoord(coord, mat);
+
+		Vector2 result;
+		XMStoreFloat2(&result, coord);
+
+		return result;
+	}
+
 	float Magnitude() const	{ return sqrt(x * x + y * y); }
 	float SqrMagnitude() const { return x * x + y * y; }
 

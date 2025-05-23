@@ -8,6 +8,7 @@ public:
 
 	void Update();
 	void Render();
+	void GUIRender();
 
 	void AddScene(string key, Scene* scene);
 	void ChangeScene(string key);

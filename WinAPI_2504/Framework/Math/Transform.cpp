@@ -34,3 +34,26 @@ void Transform::UpdateWorld()
     XMStoreFloat2(&globalPosition, outT);
     XMStoreFloat2(&globalScale, outS);
 }
+
+void Transform::Edit()
+{
+	if (ImGui::TreeNode((tag + "_Transform").c_str()))
+	{
+		ImGui::DragFloat2("Pos", (float*)&localPosition, 1.0f);
+
+		Float3 rot;
+		rot.x = XMConvertToDegrees(localRotation.x);
+		rot.y = XMConvertToDegrees(localRotation.y);
+		rot.z = XMConvertToDegrees(localRotation.z);
+
+		ImGui::DragFloat3("Rot", (float*)&rot, 0.1f, -180.0f, 180.0f);
+
+		localRotation.x = XMConvertToRadians(rot.x);
+		localRotation.y = XMConvertToRadians(rot.y);
+		localRotation.z = XMConvertToRadians(rot.z);
+
+		ImGui::DragFloat2("Scale", (float*)&localScale, 0.1f);
+
+		ImGui::TreePop();
+	}
+}

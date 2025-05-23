@@ -32,9 +32,21 @@ void GameManager::Update()
 
 void GameManager::Render()
 {
-	Device::Get()->Clear();
+	Device::Get()->Clear();	
 
 	SCENE->Render();	
+
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+
+	string fps = "FPS : " + to_string(Timer::Get()->GetFPS());
+	ImGui::Text(fps.c_str());
+
+	SCENE->GUIRender();	
+
+	ImGui::Render();
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
 	Device::Get()->Present();
 }
@@ -49,6 +61,12 @@ void GameManager::Create()
 	SceneManager::Get();
 
 	Environment::Get();
+
+	ImGui::CreateContext();
+	ImGui::StyleColorsDark();
+
+	ImGui_ImplWin32_Init(hWnd);
+	ImGui_ImplDX11_Init(DEVICE, DC);
 }
 
 void GameManager::Release()
@@ -62,4 +80,9 @@ void GameManager::Release()
 	SceneManager::Delete();
 
 	Environment::Delete();
+
+	ImGui_ImplDX11_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+
+	ImGui::DestroyContext();
 }

@@ -8,6 +8,7 @@ public:
 
 	void Update() override;
 	void Render() override;
+	void GUIRender() override;
 
 private:
 	vector<Collider*> colliders;

@@ -13,6 +13,8 @@ public:
 
 	void UpdateWorld();
 
+	void Edit();
+
 	Vector2 GetRight() { return right.GetNormalized(); }
 	Vector2 GetUp() { return up.GetNormalized(); }
 
@@ -27,7 +29,12 @@ public:
 
 	void SetParent(Transform* transform) { parent = transform; }
 
+	string GetTag() { return tag; }
+	void SetTag(string tag) { this->tag = tag; }
+
 protected:
+	string tag;
+
 	Vector2 localPosition;
 	Float3 localRotation;
 	Vector2 localScale = { 1, 1 };	

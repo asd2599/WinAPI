@@ -22,6 +22,11 @@ void SceneManager::Render()
 	currentScene->Render();
 }
 
+void SceneManager::GUIRender()
+{
+	currentScene->GUIRender();
+}
+
 void SceneManager::AddScene(string key, Scene* scene)
 {
 	if (scenes.count(key) > 0)
