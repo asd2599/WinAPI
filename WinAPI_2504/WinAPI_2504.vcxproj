@@ -150,6 +150,7 @@
     <ClInclude Include="Framework\Environment\Environment.h" />
     <ClInclude Include="Framework\Manager\GameManager.h" />
     <ClInclude Include="Framework\Manager\SceneManager.h" />
+    <ClInclude Include="Framework\Math\GameMath.h" />
     <ClInclude Include="Framework\Math\Transform.h" />
     <ClInclude Include="Framework\Math\Vector2.h" />
     <ClInclude Include="Framework\Shader\PixelShader.h" />
@@ -186,6 +187,7 @@
     <ClCompile Include="Framework\Environment\Environment.cpp" />
     <ClCompile Include="Framework\Manager\GameManager.cpp" />
     <ClCompile Include="Framework\Manager\SceneManager.cpp" />
+    <ClCompile Include="Framework\Math\GameMath.cpp" />
     <ClCompile Include="Framework\Math\Transform.cpp" />
     <ClCompile Include="Framework\Shader\PixelShader.cpp" />
     <ClCompile Include="Framework\Shader\Shader.cpp" />

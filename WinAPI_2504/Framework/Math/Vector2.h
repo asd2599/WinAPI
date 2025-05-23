@@ -103,4 +103,9 @@ struct Vector2 : public Float2
 
 	static float Cross(const Vector2& v1, const Vector2& v2)
 	{ return v1.x * v2.y - v1.y * v2.x; }
+
+	static float Dot(const Vector2& v1, const Vector2& v2)
+	{
+		return v1.x * v2.x + v1.y * v2.y;
+	}
 };

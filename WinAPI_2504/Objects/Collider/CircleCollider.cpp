@@ -42,5 +42,5 @@ bool CircleCollider::IsCircleCollision(CircleCollider* circle)
 {
 	float distance = Vector2::Distance(circle->GetGlobalPosition(), GetGlobalPosition());
 
-	return distance < (Radius() + circle->Radius());
+	return distance <= (Radius() + circle->Radius());
 }
