@@ -2,7 +2,7 @@
 
 Bullet::Bullet()
 {
-	localPosition = CENTER;
+	localPosition = plane->GetLocalPosition();
 
 	Init();
 }
@@ -17,7 +17,6 @@ void Bullet::Update()
 
 	//Translate(direction * SPEED * DELTA);
 
-	localPosition = mousePos;
 
 	if (localPosition.y > SCREEN_HEIGHT)
 		isActive = false;

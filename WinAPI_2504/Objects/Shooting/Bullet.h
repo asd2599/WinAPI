@@ -16,4 +16,5 @@ private:
 
 private:
 	Vector2 direction = { 0, 1 };	
+	Plane* plane;
 };

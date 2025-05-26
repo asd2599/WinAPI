@@ -11,7 +11,6 @@ public:
 
 	void Update();
 	void Render();
-
 private:
 	void ControlKeyboard();
 	void ControlMouse();

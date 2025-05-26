@@ -50,7 +50,16 @@ bool RectCollider::IsRectCollision(RectCollider* rect, Vector2* overlap)
 
 bool RectCollider::IsCircleCollision(CircleCollider* circle)
 {
-    return false;
+    Vector2 halfSize = size * 0.5f * GetGlobalScale();
+    Vector2 min = GetGlobalPosition() - halfSize;
+    Vector2 max = GetGlobalPosition() + halfSize;
+    Vector2 closestPoint = circle->GetGlobalPosition();
+    if (closestPoint.x < min.x) closestPoint.x = min.x; // 사각형의 좌측보다 왼쪽에 있으면 좌측으로 고정
+    if (closestPoint.x > max.x) closestPoint.x = max.x; // 사각형의 우측보다 오른쪽에 있으면 우측으로 고정
+    if (closestPoint.y < min.y) closestPoint.y = min.y; // 사각형의 하단보다 아래에 있으면 하단으로 고정
+    if (closestPoint.y > max.y) closestPoint.y = max.y; // 사각형의 상단보다 위에 있으면 상단으로 고정
+    float distance = (circle->GetGlobalPosition() - closestPoint).Magnitude();// 원의 중심과 가장 가까운 사각형 점 사이 거리
+    return distance <= circle->Radius();// 거리 <= 반지름이면 충돌 (겹침)
 }
 
 Vector2 RectCollider::LeftTop()

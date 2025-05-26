@@ -2,7 +2,7 @@
 
 Plane::Plane()
 {
-    localPosition = CENTER;
+    localPosition = { CENTER_X / 2, CENTER_Y };
 
     Init();
 
@@ -137,10 +137,10 @@ void Plane::ControlMouse()
 
 void Plane::MakeMesh()
 {
-    vertices.emplace_back(50, 0, 1, 0, 0);
-    vertices.emplace_back(-20, 0, 1, 1, 0);
-    vertices.emplace_back(-50, +50, 0, 1, 0);
-    vertices.emplace_back(-50, -50, 0, 1, 0);
+    vertices.emplace_back(0, 0, 1, 0, 0);
+    vertices.emplace_back(0, 30, 1, 1, 0);
+    vertices.emplace_back(70, 30, 0, 1, 0);
+    vertices.emplace_back(70, 0, 0, 1, 0);
 
-    indices = { 0, 1, 2, 1, 0, 3};
+    indices = { 0, 1, 2, 0, 2, 3};
 }
