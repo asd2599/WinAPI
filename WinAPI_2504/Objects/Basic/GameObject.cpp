@@ -31,6 +31,8 @@ GameObject::~GameObject()
 
 void GameObject::Render()
 {
+    if (!isActive) return;
+
     worldBuffer->Set(world);
     worldBuffer->SetVS(0);
 
