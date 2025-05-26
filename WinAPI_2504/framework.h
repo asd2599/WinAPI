@@ -27,6 +27,7 @@
 #include <functional>
 #include <fstream>
 #include <assert.h>
+#include <algorithm>
 
 #include <d3d11.h>
 #include <d3dcompiler.h>

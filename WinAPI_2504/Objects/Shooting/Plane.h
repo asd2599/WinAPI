@@ -3,7 +3,7 @@
 class Plane : public GameObject
 {
 private:
-	const float SPEED = 100.0f;
+	const float SPEED = 200.0f;
 
 public:
 	Plane();
@@ -11,6 +11,7 @@ public:
 
 	void Update();
 	void Render();
+	Vector2 GetHalfSize();
 private:
 	void ControlKeyboard();
 	void ControlMouse();

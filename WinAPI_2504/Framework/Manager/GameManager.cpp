@@ -37,7 +37,7 @@ void GameManager::Render()
 	SCENE->Render();	
 
 	ImGui_ImplDX11_NewFrame();
-	ImGui_ImplWin32_NewFrame();
+	ImGui_ImplWin32_NewFrame(); 
 	ImGui::NewFrame();
 
 	string fps = "FPS : " + to_string(Timer::Get()->GetFPS());

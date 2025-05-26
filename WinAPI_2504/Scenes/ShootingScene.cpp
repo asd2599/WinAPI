@@ -7,6 +7,7 @@ ShootingScene::ShootingScene()
 	//plane->SetPivot(0, +50);
 
 	bullet = new Bullet();
+	bullet->SetPaddle(plane);
 }
 
 ShootingScene::~ShootingScene()
