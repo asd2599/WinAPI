@@ -2,31 +2,26 @@
 
 GameObject::GameObject()
 {
-    vertexShader = Shader::AddVS(L"Tutorial.hlsl");
-    pixelShader = Shader::AddPS(L"Tutorial.hlsl");    
+    mesh = new Mesh();
+	material = new Material();
 
     worldBuffer = new MatrixBuffer();
-    colorBuffer = new ColorBuffer();
+    
 }
 
 GameObject::GameObject(wstring shaderFile)
 {
-    vertexShader = Shader::AddVS(shaderFile);
-    pixelShader = Shader::AddPS(shaderFile);
+    mesh = new Mesh();
+    material = new Material(shaderFile);
 
     worldBuffer = new MatrixBuffer();
-    colorBuffer = new ColorBuffer();
 }
 
 GameObject::~GameObject()
 {
-    delete vertexBuffer;
-
-    if(indexBuffer)
-        delete indexBuffer;
-
     delete worldBuffer;
-    delete colorBuffer;
+	delete material;
+    delete mesh;
 }
 
 void GameObject::Render()
@@ -34,31 +29,21 @@ void GameObject::Render()
     if (!isActive) return;
 
     worldBuffer->Set(world);
-    worldBuffer->SetVS(0);
+    worldBuffer->SetVS(0);        
 
-    colorBuffer->SetPS(0);
+	material->Set();
 
-    vertexBuffer->Set();
-    if(indexBuffer)
-        indexBuffer->Set();
-
-    vertexShader->Set();
-    pixelShader->Set();
-
-    DC->DrawIndexed(indices.size(), 0, 0);
+    mesh->Draw();
 }
 
 void GameObject::SetColor(float r, float g, float b, float a)
 {
-    colorBuffer->Set(r, g, b, a);
+	material->SetColor(r, g, b, a);
 }
 
 void GameObject::Init()
 {
     MakeMesh();
         
-    vertexBuffer = new VertexBuffer(vertices.data(), sizeof(VertexColor), vertices.size());    
-
-    if(!indices.empty())
-        indexBuffer = new IndexBuffer(indices.data(), indices.size());
+	mesh->CreateMesh();
 }

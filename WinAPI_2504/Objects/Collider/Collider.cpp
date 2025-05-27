@@ -1,8 +1,8 @@
 #include "Framework.h"
 
-Collider::Collider()
-{
-    colorBuffer->Set(0, 1, 0);
+Collider::Collider() : GameObject(L"Collider.hlsl")
+{    
+    SetColor(0, 1, 0);
 }
 
 bool Collider::IsCollision(Collider* collider, Vector2* overlap)
@@ -26,16 +26,11 @@ void Collider::Render()
     if (!isActive) return;
 
     worldBuffer->Set(world);
-    worldBuffer->SetVS(0);
+    worldBuffer->SetVS(0);    
 
-    colorBuffer->SetPS(0);
+    material->Set();
 
-    vertexBuffer->Set(D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);    
-
-    vertexShader->Set();
-    pixelShader->Set();
-
-    DC->Draw(vertices.size(), 0);
+    mesh->Draw(D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);
 }
 
 void Collider::MakeMesh()

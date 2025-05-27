@@ -1,8 +1,9 @@
 #include "Framework.h"
 
-#include "Scenes/TutorialScene.h"
+//#include "Scenes/TutorialScene.h"
 #include "Scenes/ShootingScene.h"
 #include "Scenes/CollisionScene.h"
+#include "Scenes/TextureScene.h"
 
 GameManager::GameManager()
 {
@@ -10,7 +11,8 @@ GameManager::GameManager()
 		
 	//SCENE->AddScene("Game", new TutorialScene());	
 	//SCENE->AddScene("Game", new ShootingScene());
-	SCENE->AddScene("Game", new CollisionScene());
+	//SCENE->AddScene("Game", new CollisionScene());
+	SCENE->AddScene("Game", new TextureScene());
 
 	SCENE->ChangeScene("Game");
 }
@@ -76,6 +78,7 @@ void GameManager::Release()
 
 	Device::Delete();
 	Shader::Delete();
+	Texture::Delete();
 
 	SceneManager::Delete();
 

@@ -27,9 +27,9 @@ void Bullet::Update()
 
 void Bullet::MakeMesh()
 {
-	vertices.emplace_back(0, 20, 1, 0, 0);
-	vertices.emplace_back(20, -20, 1, 0, 0);
-	vertices.emplace_back(-20, -20, 1, 0, 0);
+	//vertices.emplace_back(0, 20, 1, 0, 0);
+	//vertices.emplace_back(20, -20, 1, 0, 0);
+	//vertices.emplace_back(-20, -20, 1, 0, 0);
 
-	indices = { 0, 1, 2 };
+	//indices = { 0, 1, 2 };
 }

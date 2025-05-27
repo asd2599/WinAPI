@@ -50,7 +50,22 @@ bool RectCollider::IsRectCollision(RectCollider* rect, Vector2* overlap)
 
 bool RectCollider::IsCircleCollision(CircleCollider* circle)
 {
-    return false;
+    ObbDesc obb = GetObb();
+
+    Vector2 direction = obb.pos - circle->GetGlobalPosition();
+
+    float x = abs(Vector2::Dot(direction, obb.axis[0]));
+    float y = abs(Vector2::Dot(direction, obb.axis[1]));
+
+    if (x > obb.halfSize.x + circle->Radius()) return false;
+    if (y > obb.halfSize.y + circle->Radius()) return false;
+
+    if (x < obb.halfSize.x) return true;
+    if (y < obb.halfSize.y) return true;
+
+    Vector2 temp = Vector2(x, y) - obb.halfSize;
+
+    return circle->Radius() > temp.Magnitude();
 }
 
 Vector2 RectCollider::LeftTop()
@@ -127,6 +142,8 @@ RectCollider::ObbDesc RectCollider::GetObb()
 void RectCollider::MakeMesh()
 {
     Vector2 halfSize = size * 0.5f;
+
+	vector<Vertex>& vertices = mesh->GetVertices();
 
     vertices.emplace_back(-halfSize.x, +halfSize.y);
     vertices.emplace_back(+halfSize.x, +halfSize.y);

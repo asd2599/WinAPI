@@ -106,14 +106,14 @@ void Plane::ControlKeyboard()
     //matWorld._21 = -sin(angle);
     //matWorld._22 = cos(angle);
 
-    if (Input::Get()->IsKeyDown('1'))
-        colorBuffer->Set(1, 0, 0);
-
-    if (Input::Get()->IsKeyDown('2'))
-        colorBuffer->Set(0, 1, 0);
-
-    if (Input::Get()->IsKeyDown('3'))
-        colorBuffer->Set(0, 0, 1);
+    //if (Input::Get()->IsKeyDown('1'))
+    //    colorBuffer->Set(1, 0, 0);
+    //
+    //if (Input::Get()->IsKeyDown('2'))
+    //    colorBuffer->Set(0, 1, 0);
+    //
+    //if (Input::Get()->IsKeyDown('3'))
+    //    colorBuffer->Set(0, 0, 1);
 }
 
 void Plane::ControlMouse()
@@ -137,10 +137,10 @@ void Plane::ControlMouse()
 
 void Plane::MakeMesh()
 {
-    vertices.emplace_back(50, 0, 1, 0, 0);
-    vertices.emplace_back(-20, 0, 1, 1, 0);
-    vertices.emplace_back(-50, +50, 0, 1, 0);
-    vertices.emplace_back(-50, -50, 0, 1, 0);
+    //vertices.emplace_back(50, 0, 1, 0, 0);
+    //vertices.emplace_back(-20, 0, 1, 1, 0);
+    //vertices.emplace_back(-50, +50, 0, 1, 0);
+    //vertices.emplace_back(-50, -50, 0, 1, 0);
 
-    indices = { 0, 1, 2, 1, 0, 3};
+    //indices = { 0, 1, 2, 1, 0, 3};
 }

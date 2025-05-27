@@ -9,6 +9,8 @@ public:
 
 	virtual void Render();
 	
+	Material* GetMaterial() { return material; }
+
 	void SetColor(float r, float g, float b, float a = 1.0f);
 
 	void SetActive(bool isActive) { this->isActive = isActive; }
@@ -23,16 +25,9 @@ private:
 protected:
 	bool isActive = true;
 
-	vector<VertexColor> vertices;
-	vector<UINT> indices;
-
-	VertexShader* vertexShader;
-	PixelShader* pixelShader;
-
-	VertexBuffer* vertexBuffer;
-	IndexBuffer* indexBuffer = nullptr;
+	Mesh* mesh;
+	Material* material;
 
 	MatrixBuffer* worldBuffer;
-
-	ColorBuffer* colorBuffer;
+	
 };

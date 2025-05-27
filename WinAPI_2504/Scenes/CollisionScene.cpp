@@ -3,8 +3,9 @@
 
 CollisionScene::CollisionScene()
 {
-	//colliders.push_back(new CircleCollider());
-	//colliders.back()->SetLocalPosition(CENTER);
+	colliders.push_back(new CircleCollider());
+	colliders.back()->SetLocalPosition(CENTER);
+	colliders.back()->SetTag("Circle1");
 	//
 	//colliders.push_back(new CircleCollider());
 	//colliders.back()->SetLocalPosition(CENTER);
@@ -13,9 +14,9 @@ CollisionScene::CollisionScene()
 	colliders.back()->SetLocalPosition(CENTER);
 	colliders.back()->SetTag("Rect1");
 	
-	colliders.push_back(new RectCollider());
-	colliders.back()->SetLocalPosition(CENTER);
-	colliders.back()->SetTag("Rect2");
+	//colliders.push_back(new RectCollider());
+	//colliders.back()->SetLocalPosition(CENTER);
+	//colliders.back()->SetTag("Rect2");
 }
 
 CollisionScene::~CollisionScene()

@@ -42,6 +42,11 @@
 
 #pragma comment(lib, "ImGui.lib")
 
+//DirectXTex
+#include <DirectXTex/DirectXTex.h>
+
+#pragma comment(lib, "DirectXTex.lib")
+
 using namespace std;
 using namespace DirectX;
 
@@ -74,9 +79,14 @@ typedef XMFLOAT4X4 Float4x4;
 #include "Framework/Buffer/ConstBuffer.h"
 #include "Framework/Buffer/GlobalBffer.h"
 
+#include "Framework/Render/Texture.h"
+#include "Framework/Render/Mesh.h"
+#include "Framework/Render/Material.h"
+
 #include "Framework/Environment/Environment.h"
 
 #include "Objects/Basic/GameObject.h"
+#include "Objects/Basic/Quad.h"
 
 #include "Objects/Collider/Collider.h"
 #include "Objects/Collider/CircleCollider.h"
@@ -87,6 +97,8 @@ typedef XMFLOAT4X4 Float4x4;
 
 #include "Objects/Shooting/Plane.h"
 #include "Objects/Shooting/Bullet.h"
+
+#include "Objects/Flappy/Bird.h"
 
 #include "Scenes/Scene.h"
 #include "Framework/Manager/SceneManager.h"
