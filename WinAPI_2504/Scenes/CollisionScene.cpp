@@ -13,9 +13,9 @@ CollisionScene::CollisionScene()
 	colliders.back()->SetLocalPosition(CENTER);
 	colliders.back()->SetTag("Rect1");
 	
-	colliders.push_back(new RectCollider());
-	colliders.back()->SetLocalPosition(CENTER);
-	colliders.back()->SetTag("Rect2");
+	//colliders.push_back(new CircleCollider());
+	//colliders.back()->SetLocalPosition(CENTER);
+	//colliders.back()->SetTag("Circle1");
 }
 
 CollisionScene::~CollisionScene()
@@ -26,9 +26,8 @@ CollisionScene::~CollisionScene()
 
 void CollisionScene::Update()
 {
-	//if (colliders[0]->IsCollision(colliders[1], &overlap))
-	if (colliders[0]->IsCollision(colliders[1]))
-	//if(colliders[0]->IsPointCollision(mousePos))
+	//if (colliders[0]->IsCollision(colliders[1]))
+	if(colliders[0]->IsPointCollision(mousePos))
 	{
 		colliders[0]->SetColor(1, 0, 0);
 	}
@@ -51,6 +50,4 @@ void CollisionScene::GUIRender()
 {
 	for (Collider* collider : colliders)
 		collider->Edit();
-
-	ImGui::DragFloat2("Overlap", (float*)&overlap);
 }

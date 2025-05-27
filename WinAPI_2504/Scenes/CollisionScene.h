@@ -12,6 +12,4 @@ public:
 
 private:
 	vector<Collider*> colliders;
-
-	Vector2 overlap;
 };

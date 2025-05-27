@@ -60,7 +60,6 @@ typedef XMFLOAT4X4 Float4x4;
 
 #include "Framework/Math/Vector2.h"
 #include "Framework/Math/Transform.h"
-#include "Framework/Math/GameMath.h"
 
 #include "Framework/Device/Device.h"
 

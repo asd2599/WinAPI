@@ -20,32 +20,19 @@ RectCollider::RectCollider(Vector2 size) : size(size)
 //}
 
 //역행렬
-//bool RectCollider::IsPointCollision(const Vector2& point)
-//{
-//    Vector2 coord = point * XMMatrixInverse(nullptr, world);
-//
-//    if (abs(coord.x) < size.x * 0.5f && abs(coord.y) < size.y * 0.5f)
-//        return true;
-//
-//    return false;
-//}
-
-//외적
 bool RectCollider::IsPointCollision(const Vector2& point)
-{    
-    bool isLeftTop = GameMath::IsPointBetweenVectors(LeftTop(), RightTop(), LeftBottom(), point);
-    bool isRightTop = GameMath::IsPointBetweenVectors(RightTop(), LeftTop(), RightBottom(), point);
-    bool isRightBottom = GameMath::IsPointBetweenVectors(RightBottom(), RightTop(), LeftBottom(), point);
+{
+    Vector2 coord = point * XMMatrixInverse(nullptr, world);
 
-    return isLeftTop && isRightTop && isRightBottom;
+    if (abs(coord.x) < size.x * 0.5f && abs(coord.y) < size.y * 0.5f)
+        return true;
+
+    return false;
 }
 
 bool RectCollider::IsRectCollision(RectCollider* rect, Vector2* overlap)
 {
-    if (overlap)
-        return IsAABB(rect, overlap);
-
-    return IsOBB(rect);
+    return false;
 }
 
 bool RectCollider::IsCircleCollision(CircleCollider* circle)
@@ -113,17 +100,6 @@ float RectCollider::Bottom()
     return min(minTop, minBottom);
 }
 
-RectCollider::ObbDesc RectCollider::GetObb()
-{
-    obbDesc.pos = GetGlobalPosition();
-    obbDesc.halfSize = Half();
-
-    obbDesc.axis[0] = GetRight();
-    obbDesc.axis[1] = GetUp();
-
-    return obbDesc;
-}
-
 void RectCollider::MakeMesh()
 {
     Vector2 halfSize = size * 0.5f;
@@ -133,47 +109,4 @@ void RectCollider::MakeMesh()
     vertices.emplace_back(+halfSize.x, -halfSize.y);
     vertices.emplace_back(-halfSize.x, -halfSize.y);
     vertices.emplace_back(-halfSize.x, +halfSize.y);
-}
-
-bool RectCollider::IsAABB(RectCollider* rect, Vector2* overlap)
-{
-    float left = max(Left(), rect->Left());
-    float right = min(Right(), rect->Right());
-    float bottom = max(Bottom(), rect->Bottom());
-    float top = min(Top(), rect->Top());
-
-    overlap->x = right - left;
-    overlap->y = top - bottom;
-
-    return overlap->x >= 0 && overlap->y >= 0;
-}
-
-bool RectCollider::IsOBB(RectCollider* rect)
-{
-    ObbDesc obbA = GetObb();
-    ObbDesc obbB = rect->GetObb();
-
-    if (IsSeperateAxis(obbA.axis[0], obbA, obbB)) return false;
-    if (IsSeperateAxis(obbA.axis[1], obbA, obbB)) return false;
-    if (IsSeperateAxis(obbB.axis[0], obbA, obbB)) return false;
-    if (IsSeperateAxis(obbB.axis[1], obbA, obbB)) return false;
-
-    return true;
-}
-
-bool RectCollider::IsSeperateAxis(const Vector2& seperateAxis, const ObbDesc& box1, const ObbDesc& box2)
-{
-    float d = abs(Vector2::Dot(seperateAxis, box1.pos - box2.pos));
-
-    Vector2 right = box1.axis[0] * box1.halfSize.x;
-    Vector2 up = box1.axis[1] * box1.halfSize.y;
-
-    float a = abs(Vector2::Dot(seperateAxis, right)) + abs(Vector2::Dot(seperateAxis, up));
-
-    right = box2.axis[0] * box2.halfSize.x;
-    up = box2.axis[1] * box2.halfSize.y;
-
-    float b = abs(Vector2::Dot(seperateAxis, right)) + abs(Vector2::Dot(seperateAxis, up));
-
-    return d > (a + b);
 }
