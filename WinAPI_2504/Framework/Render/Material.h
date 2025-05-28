@@ -8,6 +8,7 @@ public:
 
 	void SetColor(float r, float g, float b, float a = 1.0f);
 
+	void SetShader(wstring file);
 	void SetVertexShader(wstring file);
 	void SetPixelShader(wstring file);
 
@@ -22,5 +23,5 @@ private:
 
 	ColorBuffer* colorBuffer;
 
-	Texture* baseMap;
+	Texture* baseMap = nullptr;
 };

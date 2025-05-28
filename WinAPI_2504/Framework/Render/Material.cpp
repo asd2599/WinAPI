@@ -18,6 +18,12 @@ void Material::SetColor(float r, float g, float b, float a)
 	colorBuffer->Set(r, g, b, a);
 }
 
+void Material::SetShader(wstring file)
+{
+	vertexShader = Shader::AddVS(file);
+	pixelShader = Shader::AddPS(file);
+}
+
 void Material::SetVertexShader(wstring file)
 {
 	vertexShader = Shader::AddVS(file);

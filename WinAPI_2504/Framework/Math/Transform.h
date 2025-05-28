@@ -27,7 +27,8 @@ public:
 
 	void SetPivot(float x, float y) { pivot = { x, y }; }
 
-	void SetParent(Transform* transform) { parent = transform; }
+	Matrix GetWorld() { return world; }
+	void SetParent(Transform* transform) { parent = transform; }	
 
 	string GetTag() { return tag; }
 	void SetTag(string tag) { this->tag = tag; }

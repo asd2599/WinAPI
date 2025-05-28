@@ -3,8 +3,8 @@
 #include "targetver.h"
 #define WIN32_LEAN_AND_MEAN
 
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
+#define SCREEN_WIDTH 600
+#define SCREEN_HEIGHT 800
 
 #define CENTER_X (SCREEN_WIDTH >> 1)
 #define CENTER_Y (SCREEN_HEIGHT >> 1)
@@ -62,6 +62,7 @@ typedef XMFLOAT4X4 Float4x4;
 #include "Framework/Utilities/Singleton.h"
 #include "Framework/Utilities/Timer.h"
 #include "Framework/Utilities/Input.h"
+#include "Framework/Utilities/tinyxml2.h"
 
 #include "Framework/Math/Vector2.h"
 #include "Framework/Math/Transform.h"
@@ -82,6 +83,8 @@ typedef XMFLOAT4X4 Float4x4;
 #include "Framework/Render/Texture.h"
 #include "Framework/Render/Mesh.h"
 #include "Framework/Render/Material.h"
+#include "Framework/Render/Frame.h"
+#include "Framework/Render/Clip.h"
 
 #include "Framework/Environment/Environment.h"
 
@@ -99,6 +102,8 @@ typedef XMFLOAT4X4 Float4x4;
 #include "Objects/Shooting/Bullet.h"
 
 #include "Objects/Flappy/Bird.h"
+
+#include "Objects/Character/Cookie.h"
 
 #include "Scenes/Scene.h"
 #include "Framework/Manager/SceneManager.h"

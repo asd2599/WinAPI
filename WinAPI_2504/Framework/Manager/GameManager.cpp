@@ -4,6 +4,7 @@
 #include "Scenes/ShootingScene.h"
 #include "Scenes/CollisionScene.h"
 #include "Scenes/TextureScene.h"
+#include "Scenes/AnimationScene.h"
 
 GameManager::GameManager()
 {
@@ -12,7 +13,8 @@ GameManager::GameManager()
 	//SCENE->AddScene("Game", new TutorialScene());	
 	//SCENE->AddScene("Game", new ShootingScene());
 	//SCENE->AddScene("Game", new CollisionScene());
-	SCENE->AddScene("Game", new TextureScene());
+	//SCENE->AddScene("Game", new TextureScene());
+	SCENE->AddScene("Game", new AnimationScene());
 
 	SCENE->ChangeScene("Game");
 }

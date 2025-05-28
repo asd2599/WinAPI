@@ -2,6 +2,9 @@
 
 class TextureScene : public Scene
 {
+private:
+	const float BG_SPEED = 200.0f;
+
 public:
 	TextureScene();
 	~TextureScene();
@@ -11,4 +14,5 @@ public:
 
 private:
 	Bird* bird;
+	Quad* quad;
 };
