@@ -8,14 +8,22 @@ private:
 	Environment();
 	~Environment();
 
+public:
+	void Update();
+
+	void SetUIViewBuffer();
+
+	Camera* GetMainCamera() { return mainCamera; }
+private:
 	void CreateProjection();
 	void CreateSamplerState();
 	void CreateBlendState();
 
 private:
-	MatrixBuffer* viewBuffer;
+	Camera* mainCamera;
 	MatrixBuffer* projectionBuffer;
+	MatrixBuffer* uiViewBuffer;
 
 	ID3D11SamplerState* samplerState;
-	ID3D11BlendState* alphaBlendState;
+	ID3D11BlendState* alphaBlendState;	
 };

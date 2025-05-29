@@ -19,6 +19,8 @@
 #define DEVICE Device::Get()->GetDevice()
 #define DC Device::Get()->GetDeviceContext()
 
+#define CAM Environment::Get()->GetMainCamera()
+
 #include <windows.h>
 #include <string>
 #include <unordered_map>
@@ -86,6 +88,7 @@ typedef XMFLOAT4X4 Float4x4;
 #include "Framework/Render/Frame.h"
 #include "Framework/Render/Clip.h"
 
+#include "Framework/Environment/Camera.h"
 #include "Framework/Environment/Environment.h"
 
 #include "Objects/Basic/GameObject.h"

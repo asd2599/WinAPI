@@ -3,6 +3,9 @@
 
 Environment::Environment()
 {
+	mainCamera = new Camera();
+	uiViewBuffer = new MatrixBuffer();
+
 	CreateProjection();
     CreateSamplerState();
 	CreateBlendState();
@@ -10,22 +13,30 @@ Environment::Environment()
 
 Environment::~Environment()
 {
-	delete viewBuffer;
+	delete mainCamera;
 	delete projectionBuffer;
+	delete uiViewBuffer;
 
     samplerState->Release();
 	alphaBlendState->Release();
 }
 
-void Environment::CreateProjection()
+void Environment::Update()
 {
-    viewBuffer = new MatrixBuffer();
+	mainCamera->Update();
+}
+
+void Environment::SetUIViewBuffer()
+{
+	uiViewBuffer->SetVS(1);
+}
+
+void Environment::CreateProjection()
+{   
     projectionBuffer = new MatrixBuffer();
 
     //Orthographic : 원근감이 없는 직육면체의 절두체를 형성하는 투영변환
     Matrix projection = XMMatrixOrthographicOffCenterLH(0.0f, SCREEN_WIDTH, 0.0f, SCREEN_HEIGHT, -1.0f, 1.0f);
-
-    viewBuffer->SetVS(1);
 
     projectionBuffer->Set(projection);
     projectionBuffer->SetVS(2);

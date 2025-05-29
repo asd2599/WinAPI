@@ -19,7 +19,12 @@ void SceneManager::Update()
 
 void SceneManager::Render()
 {
-	currentScene->Render();
+	currentScene->Render();	
+}
+
+void SceneManager::PostRender()
+{
+	currentScene->PostRender();
 }
 
 void SceneManager::GUIRender()

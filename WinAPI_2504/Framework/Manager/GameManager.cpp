@@ -13,8 +13,8 @@ GameManager::GameManager()
 	//SCENE->AddScene("Game", new TutorialScene());	
 	//SCENE->AddScene("Game", new ShootingScene());
 	//SCENE->AddScene("Game", new CollisionScene());
-	//SCENE->AddScene("Game", new TextureScene());
-	SCENE->AddScene("Game", new AnimationScene());
+	SCENE->AddScene("Game", new TextureScene());
+	//SCENE->AddScene("Game", new AnimationScene());
 
 	SCENE->ChangeScene("Game");
 }
@@ -29,6 +29,8 @@ void GameManager::Update()
 	Timer::Get()->Update();
 	Input::Get()->Update();
 
+	Environment::Get()->Update();
+
 	SCENE->Update();
 
 	InvalidateRect(hWnd, nullptr, false);
@@ -38,7 +40,10 @@ void GameManager::Render()
 {
 	Device::Get()->Clear();	
 
-	SCENE->Render();	
+	SCENE->Render();
+
+	Environment::Get()->SetUIViewBuffer();
+	SCENE->PostRender();
 
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();

@@ -2,7 +2,7 @@
 
 Bird::Bird() : RectCollider(Vector2(50, 50))
 {	
-	CreateFrames();
+	CreateFrames();	
 }
 
 Bird::~Bird()
@@ -15,7 +15,7 @@ Bird::~Bird()
 
 void Bird::Update()
 {
-	Gravity();
+	//Gravity();
 	FrameUpdate();	
 
 	UpdateWorld();

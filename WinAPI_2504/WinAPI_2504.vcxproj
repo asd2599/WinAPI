@@ -147,6 +147,7 @@
     <ClInclude Include="Framework\Buffer\VertexBuffer.h" />
     <ClInclude Include="Framework\Buffer\VertexLayouts.h" />
     <ClInclude Include="Framework\Device\Device.h" />
+    <ClInclude Include="Framework\Environment\Camera.h" />
     <ClInclude Include="Framework\Environment\Environment.h" />
     <ClInclude Include="Framework\Manager\GameManager.h" />
     <ClInclude Include="Framework\Manager\SceneManager.h" />
@@ -197,6 +198,7 @@
     <ClCompile Include="Framework\Buffer\IndexBuffer.cpp" />
     <ClCompile Include="Framework\Buffer\VertexBuffer.cpp" />
     <ClCompile Include="Framework\Device\Device.cpp" />
+    <ClCompile Include="Framework\Environment\Camera.cpp" />
     <ClCompile Include="Framework\Environment\Environment.cpp" />
     <ClCompile Include="Framework\Manager\GameManager.cpp" />
     <ClCompile Include="Framework\Manager\SceneManager.cpp" />

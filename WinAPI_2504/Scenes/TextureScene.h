@@ -11,8 +11,11 @@ public:
 
 	void Update() override;
 	void Render() override;
+	void PostRender() override;
 
 private:
 	Bird* bird;
 	Quad* quad;
+
+	Quad* ui;
 };
