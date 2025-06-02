@@ -156,6 +156,9 @@
     <ClInclude Include="Framework\Environment\Camera.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\PixelShaderScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI_2504.cpp">
@@ -278,6 +281,9 @@
     <ClCompile Include="Framework\Environment\Camera.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\PixelShaderScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI_2504.rc">
@@ -296,5 +302,6 @@
     <FxCompile Include="Resources\Shaders\Tutorial.hlsl" />
     <FxCompile Include="Resources\Shaders\Collider.hlsl" />
     <FxCompile Include="Resources\Shaders\Texture.hlsl" />
+    <FxCompile Include="Resources\Shaders\ProgressBar.hlsl" />
   </ItemGroup>
 </Project>
