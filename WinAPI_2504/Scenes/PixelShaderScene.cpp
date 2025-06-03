@@ -11,6 +11,9 @@ PixelShaderScene::PixelShaderScene()
 	addColorBuffer = new ColorBuffer();
 
 	secondMap = Texture::Add(L"Resources/Textures/Background.png");
+
+	valueBuffer->GetValues()[2] = quad->GetSize().x;
+	valueBuffer->GetValues()[3] = quad->GetSize().y;
 }
 
 PixelShaderScene::~PixelShaderScene()
@@ -38,5 +41,6 @@ void PixelShaderScene::GUIRender()
 	quad->Edit();
 	//ImGui::SliderFloat("Value 1", &valueBuffer->GetValues()[0], -PI, PI);
 	ImGui::DragFloat("Value 1", &valueBuffer->GetValues()[0]);
+	ImGui::DragFloat("Value 2", &valueBuffer->GetValues()[1]);
 	ImGui::ColorEdit4("Add Color", (float*)addColorBuffer->GetColor());
 }
