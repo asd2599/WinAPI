@@ -59,6 +59,7 @@ typedef XMMATRIX Matrix;
 typedef XMVECTOR Vector4;
 typedef XMFLOAT4X4 Float4x4;
 
+typedef function<void()> Event;
 
 #include "Framework/Utilities/Utility.h"
 #include "Framework/Utilities/Singleton.h"

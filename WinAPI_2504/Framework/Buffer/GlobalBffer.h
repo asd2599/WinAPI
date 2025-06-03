@@ -49,3 +49,16 @@ public:
 private:
     float values[4] = {};
 };
+
+class IntValueBuffer : public ConstBuffer
+{
+public:
+    IntValueBuffer() : ConstBuffer(values, sizeof(int) * 4)
+    {
+    }
+
+    int* GetValues() { return values; }
+
+private:
+    int values[4] = {};
+};

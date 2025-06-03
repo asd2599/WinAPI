@@ -16,6 +16,7 @@ public:
     void Stop() { isPlay = false; }
 
     void SetShader(wstring shaderFile);    
+	void SetEvent(Event event, int frameNum = -1);
 
     Frame* GetCurFrame() { return frames[curFrameNum]; }
 
@@ -30,4 +31,6 @@ private:
 
     bool isLoop;
     bool isPlay = true;
+
+	unordered_map<int, Event> events;
 };

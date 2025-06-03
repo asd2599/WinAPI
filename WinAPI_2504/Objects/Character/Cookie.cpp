@@ -8,6 +8,17 @@ Cookie::Cookie() : RectCollider(Vector2(200, 200))
 	clipTransform->SetParent(this);
 
 	worldBuffer = new MatrixBuffer();
+
+	attackCollider = new RectCollider(Vector2(200, 200));
+	attackCollider->SetParent(this);
+	attackCollider->Translate(Vector2::Right() * 100.0f);
+	attackCollider->SetActive(false);
+
+	clips[Run]->SetShader(L"MultiTexture.hlsl");
+
+	secondMap = Texture::Add(L"Resources/Textures/rainbow.png");
+
+	valueBuffer = new FloatValueBuffer();
 }
 
 Cookie::~Cookie()
@@ -17,6 +28,9 @@ Cookie::~Cookie()
 
 	delete clipTransform;
 	delete worldBuffer;
+
+	delete attackCollider;	
+	delete valueBuffer;
 }
 
 void Cookie::Update()
@@ -36,10 +50,19 @@ void Cookie::Update()
 		clips[curState]->Play();
 	}
 
+	if (Input::Get()->IsKeyDown('5'))
+	{
+		curState = Attack;
+		clips[curState]->Play();
+	}
+
+	valueBuffer->GetValues()[0] += DELTA * 2.0f;
+
 	clips[curState]->Update();
 
 	clipTransform->UpdateWorld();
 	UpdateWorld();
+	attackCollider->UpdateWorld();
 }
 
 void Cookie::Render()
@@ -48,7 +71,13 @@ void Cookie::Render()
 
 	worldBuffer->Set(clipTransform->GetWorld());
 	worldBuffer->SetVS(0);
+
+	secondMap->PSSet(1);
+	valueBuffer->SetPS(1);
+
 	clips[curState]->Render();
+
+	attackCollider->Render();
 }
 
 void Cookie::Edit()
@@ -80,6 +109,12 @@ void Cookie::CreateClips()
 
 	LoadClip("Resources/Textures/RedHat/", "RedHat_Idle.xml", true);
 	LoadClip("Resources/Textures/RedHat/", "RedHat_Dead.xml", false);
+	LoadClip("Resources/Textures/RedHat/", "RedHat_Attack.xml", false);
+
+	clips[Dead]->SetEvent(bind(&Cookie::SetIdle, this));
+	clips[Attack]->SetEvent(bind(&Cookie::StartAttack, this), 2);
+	clips[Attack]->SetEvent(bind(&Cookie::EndAttack, this), 4);
+	clips[Attack]->SetEvent(bind(&Cookie::SetIdle, this));	
 }
 
 void Cookie::LoadClip(string path, string file, bool isLoop, float speed)
@@ -110,4 +145,23 @@ void Cookie::LoadClip(string path, string file, bool isLoop, float speed)
 	clips.push_back(new Clip(frames, isLoop, speed));
 
 	delete document;
+}
+
+void Cookie::SetIdle()
+{
+	if (curState == Idle)
+		return;
+
+	curState = Idle;
+	clips[curState]->Play();
+}
+
+void Cookie::StartAttack()
+{
+	attackCollider->SetActive(true);	
+}
+
+void Cookie::EndAttack()
+{
+	attackCollider->SetActive(false);
 }

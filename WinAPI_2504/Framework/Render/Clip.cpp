@@ -36,6 +36,11 @@ void Clip::Update()
             Stop();
         }
     }
+
+	if (events.count(curFrameNum) > 0)
+	{
+		events[curFrameNum]();
+	}
 }
 
 void Clip::Render()
@@ -54,4 +59,26 @@ void Clip::SetShader(wstring shaderFile)
 {
     for (Frame* frame : frames)
         frame->GetMaterial()->SetShader(shaderFile);
+}
+
+void Clip::SetEvent(Event event, int frameNum)
+{
+	if (frameNum == -1)
+	{
+		frameNum = frames.size() - 1;
+	}
+
+    if (frameNum < 0 || frameNum >= frames.size())
+    {
+        assert(false && "Frame number out of range");
+        return;
+    }
+
+    if (events.count(frameNum) > 0)
+    {
+        assert(false && "Event already set for this frame");
+        return;
+    }
+
+    events[frameNum] = event;
 }

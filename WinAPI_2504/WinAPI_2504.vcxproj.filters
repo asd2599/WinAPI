@@ -303,5 +303,7 @@
     <FxCompile Include="Resources\Shaders\Collider.hlsl" />
     <FxCompile Include="Resources\Shaders\Texture.hlsl" />
     <FxCompile Include="Resources\Shaders\ProgressBar.hlsl" />
+    <FxCompile Include="Resources\Shaders\MultiTexture.hlsl" />
+    <FxCompile Include="Resources\Shaders\Filter.hlsl" />
   </ItemGroup>
 </Project>

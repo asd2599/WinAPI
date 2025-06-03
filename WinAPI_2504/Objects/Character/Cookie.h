@@ -5,7 +5,7 @@ class Cookie : public RectCollider
 private:
 	enum ActionState
 	{
-		Run, Roll, Idle, Dead
+		Run, Roll, Idle, Dead, Attack
 	};
 
 public:
@@ -20,6 +20,11 @@ private:
 	void CreateClips();
 	void LoadClip(string path, string file, bool isLoop, float speed = 1.0f);
 
+	void SetIdle();
+
+	void StartAttack();
+	void EndAttack();	
+
 private:
 	ActionState curState = Run;
 
@@ -27,4 +32,9 @@ private:
 	MatrixBuffer* worldBuffer;
 
 	vector<Clip*> clips;	
+
+	RectCollider* attackCollider;
+
+	Texture* secondMap;
+	FloatValueBuffer* valueBuffer;
 };

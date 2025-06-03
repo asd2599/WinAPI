@@ -5,7 +5,7 @@ PixelShaderScene::PixelShaderScene()
 {
 	quad = new Quad(L"Resources/Textures/Test.jfif");
 	quad->SetLocalPosition(CENTER);	
-	quad->GetMaterial()->SetShader(L"ProgressBar.hlsl");
+	quad->GetMaterial()->SetShader(L"Filter.hlsl");
 
 	valueBuffer = new FloatValueBuffer();
 	addColorBuffer = new ColorBuffer();
@@ -36,6 +36,7 @@ void PixelShaderScene::Render()
 void PixelShaderScene::GUIRender()
 {
 	quad->Edit();
-	ImGui::SliderFloat("Value 1", &valueBuffer->GetValues()[0], -PI, PI);
+	//ImGui::SliderFloat("Value 1", &valueBuffer->GetValues()[0], -PI, PI);
+	ImGui::DragFloat("Value 1", &valueBuffer->GetValues()[0]);
 	ImGui::ColorEdit4("Add Color", (float*)addColorBuffer->GetColor());
 }
