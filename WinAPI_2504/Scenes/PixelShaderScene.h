@@ -13,6 +13,7 @@ public:
 private:
 	Quad* quad;
 	FloatValueBuffer* valueBuffer;
+	FloatValueBuffer* radialBuffer;
 	ColorBuffer* addColorBuffer;
 
 	Texture* secondMap;

@@ -51,6 +51,11 @@ cbuffer FilterBuffer : register(b1)
     float2 imageSize;
 }
 
+cbuffer RadialBlurBuffer : register(b2)
+{
+    float3 radialScale;    
+}
+
 float4 Grayscale(float4 color)
 {
     float scale = (color.r + color.g + color.b) / 3;
@@ -92,8 +97,66 @@ float4 Mosaic(float2 uv)
 
 float4 Blur(float2 uv)
 {
+    float4 result = 0;
     
-    return baseMap.Sample(samplerState, uv);
+    for (int i = 0; i < filterValue; i++)
+    {
+        float2 div = (1 + i) / imageSize;
+        
+        result += baseMap.Sample(samplerState, float2(uv.x + div.x, uv.y));
+        result += baseMap.Sample(samplerState, float2(uv.x - div.x, uv.y));
+        result += baseMap.Sample(samplerState, float2(uv.x, uv.y + div.y));
+        result += baseMap.Sample(samplerState, float2(uv.x, uv.y - div.y));
+    }
+    
+    return result /= filterValue * 4.0f;
+}
+
+static const float2 edges[8] =
+{
+    float2(-1, -1), float2(0, -1), float2(+1, -1),
+	float2(-1, 0), float2(+1, 0),
+	float2(-1, +1), float2(0, +1), float2(+1, +1),
+};
+
+float4 Blur2(float2 uv)
+{
+    float4 result = 0;
+	
+    for (int i = 0; i < filterValue; i++)
+    {
+        float2 div = (1 + i) / (float2) imageSize;
+		
+        for (int j = 0; j < 8; j++)
+        {
+            float2 xy = edges[j] * div + uv;
+			
+            result += baseMap.Sample(samplerState, xy);
+        }
+    }
+	
+    return result /= filterValue * 8;
+}
+
+float4 RadialBlur(float2 uv)
+{
+    float2 radiusUV = uv - float2(0.5f, 0.5f);
+    float r = length(radiusUV);
+    radiusUV /= r;
+	
+    r = saturate(r / radialScale.y);
+	
+    float2 delta = -radiusUV * r * r * radialScale.z / radialScale.x;
+	
+    float4 result = 0;
+	
+    for (int i = 0; i < radialScale.x; i++)
+    {
+        uv += delta;
+        result += baseMap.Sample(samplerState, uv);
+    }
+	
+    return result /= radialScale.x;
 }
 
 float4 PS(Output output) : SV_TARGET
@@ -108,6 +171,12 @@ float4 PS(Output output) : SV_TARGET
         return Sepia(baseColor);
     else if (filterType == 4)
         return Mosaic(output.uv);
+    else if (filterType == 5)
+        return Blur(output.uv);
+    else if (filterType == 6)
+        return Blur2(output.uv);
+    else if (filterType == 7)
+        return RadialBlur(output.uv);
     
     return baseColor * color;
 }
