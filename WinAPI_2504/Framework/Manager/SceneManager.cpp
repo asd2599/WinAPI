@@ -17,6 +17,11 @@ void SceneManager::Update()
 	currentScene->Update();
 }
 
+void SceneManager::PreRender()
+{
+	currentScene->PreRender();
+}
+
 void SceneManager::Render()
 {
 	currentScene->Render();	

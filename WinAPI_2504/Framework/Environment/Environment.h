@@ -11,6 +11,7 @@ private:
 public:
 	void Update();
 
+	void SetViewport(UINT width = SCREEN_WIDTH, UINT height = SCREEN_HEIGHT);
 	void SetUIViewBuffer();
 
 	Camera* GetMainCamera() { return mainCamera; }

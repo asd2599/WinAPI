@@ -35,20 +35,7 @@ Device::Device()
 
     ID3D11Texture2D* backBuffer;
     swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&backBuffer);
-    device->CreateRenderTargetView(backBuffer, nullptr, &renderTargetView);
-
-    deviceContext->OMSetRenderTargets(1, &renderTargetView, nullptr);
-
-    ////////////////////////////////////////////////////////////
-    D3D11_VIEWPORT viewport;
-    viewport.Width = SCREEN_WIDTH;
-    viewport.Height = SCREEN_HEIGHT;
-    viewport.MinDepth = 0.0f;
-    viewport.MaxDepth = 1.0f;
-    viewport.TopLeftX = 0.0f;
-    viewport.TopLeftY = 0.0f;
-
-    deviceContext->RSSetViewports(1, &viewport);
+    device->CreateRenderTargetView(backBuffer, nullptr, &renderTargetView);        
 }
 
 Device::~Device()
@@ -62,6 +49,8 @@ Device::~Device()
 
 void Device::Clear()
 {
+    deviceContext->OMSetRenderTargets(1, &renderTargetView, nullptr);
+
     float clearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f };
     deviceContext->ClearRenderTargetView(renderTargetView, clearColor);
 }

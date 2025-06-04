@@ -150,6 +150,7 @@ float4 RadialBlur(float2 uv)
 	
     float4 result = 0;
 	
+    //[unroll(8)]
     for (int i = 0; i < radialScale.x; i++)
     {
         uv += delta;
@@ -159,10 +160,42 @@ float4 RadialBlur(float2 uv)
     return result /= radialScale.x;
 }
 
+static const float weights[13] =
+{
+    0.0561f, 0.1353f, 0.2730f, 0.4868f, 0.7261f, 0.9231f,
+	1.0f,
+	0.9231f, 0.7261f, 0.4868f, 0.2730f, 0.1353f, 0.0561f
+};
+
+float4 GaussianBlur(float2 uv)
+{
+    float2 div = 1.0f / imageSize;
+	
+    float sum = 0.0f;
+    float4 result = 0;
+	
+    for (int i = -6; i <= 6; i++)
+    {
+        float2 temp = uv + float2(div.x * i, 0);
+        result += weights[6 + i] * baseMap.Sample(samplerState, temp);
+		
+        temp = uv + float2(0, div.y * i);
+        result += weights[6 + i] * baseMap.Sample(samplerState, temp);
+
+        sum += weights[6 + i] * 2.0f;
+    }
+	
+    result /= sum;
+	
+    return result;
+}
+
 float4 PS(Output output) : SV_TARGET
 {
     float4 baseColor = baseMap.Sample(samplerState, output.uv);
     
+    //[flatten]
+    [branch]    
     if(filterType == 1)
         return Grayscale(baseColor);
     else if (filterType == 2)
@@ -177,6 +210,8 @@ float4 PS(Output output) : SV_TARGET
         return Blur2(output.uv);
     else if (filterType == 7)
         return RadialBlur(output.uv);
+    else if (filterType == 8)
+        return GaussianBlur(output.uv);
     
     return baseColor * color;
 }

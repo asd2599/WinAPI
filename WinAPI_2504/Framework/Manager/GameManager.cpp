@@ -14,8 +14,8 @@ GameManager::GameManager()
 	//SCENE->AddScene("Game", new TutorialScene());	
 	//SCENE->AddScene("Game", new ShootingScene());
 	//SCENE->AddScene("Game", new CollisionScene());
-	//SCENE->AddScene("Game", new TextureScene());
-	SCENE->AddScene("Game", new AnimationScene());
+	SCENE->AddScene("Game", new TextureScene());
+	//SCENE->AddScene("Game", new AnimationScene());
 	//SCENE->AddScene("Game", new PixelShaderScene());
 
 	SCENE->ChangeScene("Game");
@@ -40,6 +40,9 @@ void GameManager::Update()
 
 void GameManager::Render()
 {
+	SCENE->PreRender();
+	
+	Environment::Get()->SetViewport();
 	Device::Get()->Clear();	
 
 	SCENE->Render();

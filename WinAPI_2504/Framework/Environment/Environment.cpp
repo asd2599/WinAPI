@@ -26,6 +26,20 @@ void Environment::Update()
 	mainCamera->Update();
 }
 
+void Environment::SetViewport(UINT width, UINT height)
+{
+	////////////////////////////////////////////////////////////
+	D3D11_VIEWPORT viewport;
+	viewport.Width = width;
+	viewport.Height = height;
+	viewport.MinDepth = 0.0f;
+	viewport.MaxDepth = 1.0f;
+	viewport.TopLeftX = 0.0f;
+	viewport.TopLeftY = 0.0f;
+
+	DC->RSSetViewports(1, &viewport);
+}
+
 void Environment::SetUIViewBuffer()
 {
 	uiViewBuffer->SetVS(1);

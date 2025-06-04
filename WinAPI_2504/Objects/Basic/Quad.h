@@ -16,7 +16,7 @@ private:
 
 private:
 	Vector2 startUV;
-	Vector2 endUV;
+	Vector2 endUV = { 1, 1 };
 
 	Vector2 size;
 };

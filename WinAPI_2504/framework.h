@@ -88,6 +88,7 @@ typedef function<void()> Event;
 #include "Framework/Render/Material.h"
 #include "Framework/Render/Frame.h"
 #include "Framework/Render/Clip.h"
+#include "Framework/Render/RenderTarget.h"
 
 #include "Framework/Environment/Camera.h"
 #include "Framework/Environment/Environment.h"

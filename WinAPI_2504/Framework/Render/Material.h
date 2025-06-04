@@ -15,7 +15,10 @@ public:
 	void Set();
 	
 	void SetBaseMap(wstring file);
+	void SetBaseMap(Texture* texture) { baseMap = texture; }
 	Texture* GetBaseMap() { return baseMap; }
+
+	ColorBuffer* GetColorBuffer() { return colorBuffer; }
 
 private:
 	VertexShader* vertexShader;

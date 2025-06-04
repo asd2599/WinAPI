@@ -158,6 +158,7 @@
     <ClInclude Include="Framework\Render\Frame.h" />
     <ClInclude Include="Framework\Render\Material.h" />
     <ClInclude Include="Framework\Render\Mesh.h" />
+    <ClInclude Include="Framework\Render\RenderTarget.h" />
     <ClInclude Include="Framework\Render\Texture.h" />
     <ClInclude Include="Framework\Shader\PixelShader.h" />
     <ClInclude Include="Framework\Shader\Shader.h" />
@@ -209,6 +210,7 @@
     <ClCompile Include="Framework\Render\Frame.cpp" />
     <ClCompile Include="Framework\Render\Material.cpp" />
     <ClCompile Include="Framework\Render\Mesh.cpp" />
+    <ClCompile Include="Framework\Render\RenderTarget.cpp" />
     <ClCompile Include="Framework\Render\Texture.cpp" />
     <ClCompile Include="Framework\Shader\PixelShader.cpp" />
     <ClCompile Include="Framework\Shader\Shader.cpp" />
@@ -259,6 +261,12 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="Resources\Shaders\MultiTexture.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Outline.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

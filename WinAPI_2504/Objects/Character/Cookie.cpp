@@ -14,11 +14,14 @@ Cookie::Cookie() : RectCollider(Vector2(200, 200))
 	attackCollider->Translate(Vector2::Right() * 100.0f);
 	attackCollider->SetActive(false);
 
-	clips[Run]->SetShader(L"MultiTexture.hlsl");
+	for (Clip* clip : clips)
+	{
+		clip->SetShader(L"Outline.hlsl");
+	}
 
 	secondMap = Texture::Add(L"Resources/Textures/rainbow.png");
 
-	valueBuffer = new FloatValueBuffer();
+	valueBuffer = new FloatValueBuffer();	
 }
 
 Cookie::~Cookie()
@@ -59,6 +62,8 @@ void Cookie::Update()
 	valueBuffer->GetValues()[0] += DELTA * 2.0f;
 
 	clips[curState]->Update();
+	valueBuffer->GetValues()[0] = clips[curState]->GetCurFrame()->GetSize().x;
+	valueBuffer->GetValues()[1] = clips[curState]->GetCurFrame()->GetSize().y;
 
 	clipTransform->UpdateWorld();
 	UpdateWorld();
@@ -84,6 +89,9 @@ void Cookie::Edit()
 {
 	clipTransform->Edit();
 	Transform::Edit();
+
+	ImGui::DragFloat("Weight", &valueBuffer->GetValues()[2]);
+	ImGui::ColorEdit3("Color", (float*)clips[curState]->GetCurFrame()->GetMaterial()->GetColorBuffer()->GetColor());
 }
 
 void Cookie::CreateClips()
