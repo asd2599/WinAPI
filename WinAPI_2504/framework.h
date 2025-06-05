@@ -3,8 +3,8 @@
 #include "targetver.h"
 #define WIN32_LEAN_AND_MEAN
 
-#define SCREEN_WIDTH 600
-#define SCREEN_HEIGHT 800
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
 
 #define CENTER_X (SCREEN_WIDTH >> 1)
 #define CENTER_Y (SCREEN_HEIGHT >> 1)
@@ -21,6 +21,8 @@
 
 #define CAM Environment::Get()->GetMainCamera()
 
+#define DIALOG ImGuiFileDialog::Instance()
+
 #include <windows.h>
 #include <string>
 #include <unordered_map>
@@ -29,6 +31,7 @@
 #include <functional>
 #include <fstream>
 #include <assert.h>
+#include <algorithm>
 
 #include <d3d11.h>
 #include <d3dcompiler.h>
@@ -41,6 +44,7 @@
 #include <imgui.h>
 #include <imgui_impl_dx11.h>
 #include <imgui_impl_win32.h>
+#include <ImGuiFileDialog.h>
 
 #pragma comment(lib, "ImGui.lib")
 
@@ -66,6 +70,8 @@ typedef function<void()> Event;
 #include "Framework/Utilities/Timer.h"
 #include "Framework/Utilities/Input.h"
 #include "Framework/Utilities/tinyxml2.h"
+#include "Framework/Utilities/BinaryReader.h"
+#include "Framework/Utilities/BinaryWriter.h"
 
 #include "Framework/Math/Vector2.h"
 #include "Framework/Math/Transform.h"
@@ -109,6 +115,8 @@ typedef function<void()> Event;
 #include "Objects/Flappy/Bird.h"
 
 #include "Objects/Character/Cookie.h"
+
+#include "Objects/TileGame/EditTile.h"
 
 #include "Scenes/Scene.h"
 #include "Framework/Manager/SceneManager.h"

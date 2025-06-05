@@ -23,6 +23,11 @@ Environment::~Environment()
 
 void Environment::Update()
 {
+	if (Input::Get()->IsKeyDown(VK_F1))
+	{
+		Collider::SwitchDraw();
+	}
+
 	mainCamera->Update();
 }
 

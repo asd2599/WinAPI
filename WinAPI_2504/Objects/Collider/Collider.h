@@ -22,6 +22,11 @@ public:
 
 	virtual void MakeMesh() override;
 
+	static void SwitchDraw() { isDraw = !isDraw; }
+
 protected:
 	Type type;
+
+private:
+	static bool isDraw;
 };
