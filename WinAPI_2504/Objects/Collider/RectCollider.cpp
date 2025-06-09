@@ -139,6 +139,24 @@ RectCollider::ObbDesc RectCollider::GetObb()
     return obbDesc;
 }
 
+void RectCollider::SetSize(Vector2 size)
+{
+    this->size = size;
+
+	Vector2 halfSize = size * 0.5f;
+
+	vector<Vertex>& vertices = mesh->GetVertices();
+	vertices.clear();
+
+    vertices.emplace_back(-halfSize.x, +halfSize.y);
+    vertices.emplace_back(+halfSize.x, +halfSize.y);
+    vertices.emplace_back(+halfSize.x, -halfSize.y);
+    vertices.emplace_back(-halfSize.x, -halfSize.y);
+    vertices.emplace_back(-halfSize.x, +halfSize.y);
+
+    mesh->UpdateVertices();
+}
+
 void RectCollider::MakeMesh()
 {
     Vector2 halfSize = size * 0.5f;

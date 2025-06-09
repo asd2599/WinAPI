@@ -15,6 +15,9 @@ public:
 
 	void Edit();
 
+	void Save();
+	void Load();
+
 	Vector2 GetRight() { return right.GetNormalized(); }
 	Vector2 GetUp() { return up.GetNormalized(); }
 

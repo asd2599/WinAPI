@@ -185,6 +185,9 @@
     <ClInclude Include="Objects\Shooting\Bullet.h" />
     <ClInclude Include="Objects\Shooting\Plane.h" />
     <ClInclude Include="Objects\TileGame\EditTile.h" />
+    <ClInclude Include="Objects\TileGame\GameTile.h" />
+    <ClInclude Include="Objects\TileGame\Tank.h" />
+    <ClInclude Include="Objects\TileGame\TileMap.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scenes\AnimationScene.h" />
     <ClInclude Include="Scenes\CollisionScene.h" />
@@ -193,6 +196,7 @@
     <ClInclude Include="Scenes\ShootingScene.h" />
     <ClInclude Include="Scenes\TextureScene.h" />
     <ClInclude Include="Scenes\TileEditScene.h" />
+    <ClInclude Include="Scenes\TileGameScene.h" />
     <ClInclude Include="Scenes\TutorialScene.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
@@ -243,12 +247,16 @@
     <ClCompile Include="Objects\Shooting\Bullet.cpp" />
     <ClCompile Include="Objects\Shooting\Plane.cpp" />
     <ClCompile Include="Objects\TileGame\EditTile.cpp" />
+    <ClCompile Include="Objects\TileGame\GameTile.cpp" />
+    <ClCompile Include="Objects\TileGame\Tank.cpp" />
+    <ClCompile Include="Objects\TileGame\TileMap.cpp" />
     <ClCompile Include="Scenes\AnimationScene.cpp" />
     <ClCompile Include="Scenes\CollisionScene.cpp" />
     <ClCompile Include="Scenes\PixelShaderScene.cpp" />
     <ClCompile Include="Scenes\ShootingScene.cpp" />
     <ClCompile Include="Scenes\TextureScene.cpp" />
     <ClCompile Include="Scenes\TileEditScene.cpp" />
+    <ClCompile Include="Scenes\TileGameScene.cpp" />
     <ClCompile Include="Scenes\TutorialScene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>

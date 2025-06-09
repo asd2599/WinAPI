@@ -7,6 +7,7 @@
 #include "Scenes/AnimationScene.h"
 #include "Scenes/PixelShaderScene.h"
 #include "Scenes/TileEditScene.h"
+#include "Scenes/TileGameScene.h"
 
 GameManager::GameManager()
 {
@@ -18,7 +19,8 @@ GameManager::GameManager()
 	//SCENE->AddScene("Game", new TextureScene());
 	//SCENE->AddScene("Game", new AnimationScene());
 	//SCENE->AddScene("Game", new PixelShaderScene());
-	SCENE->AddScene("Game", new TileEditScene());
+	//SCENE->AddScene("Game", new TileEditScene());
+	SCENE->AddScene("Game", new TileGameScene());
 
 	SCENE->ChangeScene("Game");
 }

@@ -37,6 +37,8 @@ private:
 	int sampleButtonCols = 5;
 	int mapCols = 5;
 	int mapRows = 5;
+	Vector2 tileSize;
+	Vector2 imageSize;
 
 	EditType editType = BG;
 

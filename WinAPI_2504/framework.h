@@ -117,6 +117,9 @@ typedef function<void()> Event;
 #include "Objects/Character/Cookie.h"
 
 #include "Objects/TileGame/EditTile.h"
+#include "Objects/TileGame/GameTile.h"
+#include "Objects/TileGame/TileMap.h"
+#include "Objects/TileGame/Tank.h"
 
 #include "Scenes/Scene.h"
 #include "Framework/Manager/SceneManager.h"

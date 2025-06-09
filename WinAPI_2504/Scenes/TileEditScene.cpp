@@ -13,6 +13,8 @@ TileEditScene::~TileEditScene()
 
 void TileEditScene::Update()
 {
+	if (ImGui::GetIO().WantCaptureMouse) return;
+
 	switch (editType)
 	{
 	case TileEditScene::BG:
@@ -114,6 +116,8 @@ void TileEditScene::CreateEditTiles()
 	Vector2 size = sampleTextures[0]->GetSize();
 	Vector2 startPos = Vector2(size.x * 0.5f, SCREEN_HEIGHT - size.y * 0.5f);
 
+	imageSize = size;
+
 	for (int y = 0; y < mapRows; y++)
 	{
 		for (int x = 0; x < mapCols; x++)
@@ -126,6 +130,8 @@ void TileEditScene::CreateEditTiles()
 			bgEditTiles.push_back(tile);
 		}
 	}
+
+	tileSize = bgEditTiles.front()->Size();
 }
 
 void TileEditScene::DeleteEditTiles()
@@ -178,10 +184,25 @@ void TileEditScene::EditObjTiles()
 void TileEditScene::Save(string file)
 {
 	BinaryWriter* writer = new BinaryWriter(file);
+
+	writer->Int(mapCols);
+	writer->Int(mapRows);
+
+	writer->Vector(tileSize);
+	writer->Vector(imageSize);
+
 	for (EditTile* tile : bgEditTiles)
 	{
 		writer->WString(tile->GetImage()->GetMaterial()->GetBaseMap()->GetFile());
 	}
+
+	writer->Int(objEditTiles.size());
+	for (EditTile* tile : objEditTiles)
+	{
+		writer->Vector(tile->GetLocalPosition());
+		writer->WString(tile->GetImage()->GetMaterial()->GetBaseMap()->GetFile());
+	}
+
 	delete writer;
 }
 
@@ -195,11 +216,35 @@ void TileEditScene::Load(string file)
 		return;
 	}
 
+	mapCols = reader->Int();
+	mapRows = reader->Int();
+
+	tileSize = reader->Vector();
+	imageSize = reader->Vector();
+
+	CreateEditTiles();
+
 	for (EditTile* tile : bgEditTiles)
 	{
 		wstring file = reader->WString();
 		tile->GetImage()->GetMaterial()->SetBaseMap(file);
 	}
+
+	int objTileCount = reader->Int();
+
+	for (int i = 0; i < objTileCount; i++)
+	{
+		Vector2 pos = reader->Vector();
+		wstring file = reader->WString();
+		EditTile* objTile = new EditTile();
+		objTile->GetImage()->GetMaterial()->SetBaseMap(file);
+		objTile->SetLocalPosition(pos);
+		objTile->UpdateWorld();
+
+		objEditTiles.push_back(objTile);
+	}
+
+	delete reader;
 }
 
 void TileEditScene::SaveDialog()

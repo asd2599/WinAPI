@@ -30,6 +30,8 @@ public:
 
 	ObbDesc GetObb();
 
+	void SetSize(Vector2 size);
+
 	Vector2 Size() { return size * GetGlobalScale(); }
 	Vector2 Half() { return Size() * 0.5f; }
 

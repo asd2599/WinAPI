@@ -54,6 +54,51 @@ void Transform::Edit()
 
 		ImGui::DragFloat2("Scale", (float*)&localScale, 0.1f);
 
+		if (ImGui::Button("Save"))
+			Save();
+
+		ImGui::SameLine();
+
+		if (ImGui::Button("Load"))
+			Load();
+
 		ImGui::TreePop();
 	}
+}
+
+void Transform::Save()
+{
+	BinaryWriter* writer = new BinaryWriter("Resources/TextData/Transforms/" + tag + ".srt");
+
+	writer->Float(localPosition.x);
+	writer->Float(localPosition.y);
+
+	writer->Float(localRotation.x);
+	writer->Float(localRotation.y);
+	writer->Float(localRotation.z);
+
+	writer->Float(localScale.x);
+	writer->Float(localScale.y);
+
+	delete writer;
+}
+
+void Transform::Load()
+{
+	BinaryReader* reader = new BinaryReader("Resources/TextData/Transforms/" + tag + ".srt");
+
+	if (reader->IsFailed())
+		return;
+
+	localPosition.x = reader->Float();
+	localPosition.y = reader->Float();
+
+	localRotation.x = reader->Float();
+	localRotation.y = reader->Float();
+	localRotation.z = reader->Float();
+
+	localScale.x = reader->Float();
+	localScale.y = reader->Float();
+
+	delete reader;
 }
