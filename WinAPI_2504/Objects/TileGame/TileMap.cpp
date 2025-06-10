@@ -70,6 +70,26 @@ void TileMap::PushCollision(RectCollider* tank)
 	}
 }
 
+void TileMap::MakeNodes(vector<Node*>& nodes)
+{
+	for (Quad* tile : bgTiles)
+	{
+		//Vector2 tilePos = tile->GetGlobalPosition() + Vector2::Up() * tileSize.y * 0.25f;
+		Vector2 tilePos = tile->GetGlobalPosition();
+		Node* node = new Node(tilePos, nodes.size());
+
+		for (GameTile* obj : objTiles)
+		{
+			if (obj->IsPointCollision(tilePos))
+			{
+				node->SetState(Node::Obstacle);
+			}
+		}
+
+		nodes.push_back(node);
+	}
+}
+
 void TileMap::LoadTiles(string file)
 {
 	BinaryReader* reader = new BinaryReader(file);

@@ -12,6 +12,11 @@ public:
 
 	void PushCollision(RectCollider* tank);	
 
+	void MakeNodes(vector<Node*>& nodes);
+
+	Vector2 GetTileSize() const { return tileSize; }
+	int GetCols() const { return cols; }
+
 private:
 	void LoadTiles(string file);
 	void CreateTiles();

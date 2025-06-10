@@ -195,6 +195,27 @@
     <ClInclude Include="Objects\TileGame\Tank.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\DijkstraScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Algorithm\Dijkstra.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Algorithm\DNode.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Collider\LineCollider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\AStarScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Algorithm\Node.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Algorithm\AStar.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI_2504.cpp">
@@ -348,6 +369,27 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\TileGame\Tank.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\DijkstraScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Collider\LineCollider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Algorithm\DNode.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Algorithm\Dijkstra.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\AStarScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Algorithm\Node.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Algorithm\AStar.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

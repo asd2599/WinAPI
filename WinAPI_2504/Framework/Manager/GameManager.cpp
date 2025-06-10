@@ -8,6 +8,8 @@
 #include "Scenes/PixelShaderScene.h"
 #include "Scenes/TileEditScene.h"
 #include "Scenes/TileGameScene.h"
+#include "Scenes/DijkstraScene.h"
+#include "Scenes/AStarScene.h"
 
 GameManager::GameManager()
 {
@@ -21,6 +23,8 @@ GameManager::GameManager()
 	//SCENE->AddScene("Game", new PixelShaderScene());
 	//SCENE->AddScene("Game", new TileEditScene());
 	SCENE->AddScene("Game", new TileGameScene());
+	//SCENE->AddScene("Game", new DijkstraScene());
+	//SCENE->AddScene("Game", new AStarScene());
 
 	SCENE->ChangeScene("Game");
 }

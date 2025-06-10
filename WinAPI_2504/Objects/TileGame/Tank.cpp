@@ -16,8 +16,16 @@ Tank::~Tank()
 
 void Tank::Update()
 {
-	Control();
-	CollisionTileMap();
+	//Control();
+	//CollisionTileMap();
+
+	//if (Input::Get()->IsKeyDown(VK_LBUTTON))
+	//{
+	//	//path.push_back(mousePos);
+	//	path.insert(path.begin(), mousePos);
+	//}
+
+	MouseControl();
 
 	clips[curState]->Update();
 
@@ -60,6 +68,28 @@ void Tank::Control()
 	}
 
 	curState = isMove ? Move : Idle;
+}
+
+void Tank::MouseControl()
+{
+	if (path.empty())
+		return;	
+
+	Vector2 destPos = path.back();
+
+	velocity = destPos - localPosition;
+
+	if (velocity.Magnitude() < 1.0f)
+	{
+		path.pop_back();	
+	}
+	else
+	{
+		velocity.Normalize();
+	}
+
+	localRotation.z = atan2(velocity.y, velocity.x);
+	Translate(velocity * SPEED * DELTA);
 }
 
 void Tank::CollisionTileMap()

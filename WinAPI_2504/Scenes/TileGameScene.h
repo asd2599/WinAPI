@@ -11,6 +11,7 @@ public:
 	void GUIRender() override;
 
 private:
+	AStar* aStar = nullptr;
 	TileMap* tileMap = nullptr;
 	Tank* tank;
 };

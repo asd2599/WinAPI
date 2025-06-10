@@ -173,11 +173,16 @@
     <ClInclude Include="Libraries\ImGui\dirent\dirent.h" />
     <ClInclude Include="Libraries\ImGui\ImGuiFileDialog.h" />
     <ClInclude Include="Libraries\ImGui\ImGuiFileDialogConfig.h" />
+    <ClInclude Include="Objects\Algorithm\AStar.h" />
+    <ClInclude Include="Objects\Algorithm\Dijkstra.h" />
+    <ClInclude Include="Objects\Algorithm\DNode.h" />
+    <ClInclude Include="Objects\Algorithm\Node.h" />
     <ClInclude Include="Objects\Basic\GameObject.h" />
     <ClInclude Include="Objects\Basic\Quad.h" />
     <ClInclude Include="Objects\Character\Cookie.h" />
     <ClInclude Include="Objects\Collider\CircleCollider.h" />
     <ClInclude Include="Objects\Collider\Collider.h" />
+    <ClInclude Include="Objects\Collider\LineCollider.h" />
     <ClInclude Include="Objects\Collider\RectCollider.h" />
     <ClInclude Include="Objects\Flappy\Bird.h" />
     <ClInclude Include="Objects\Manger\DataManager.h" />
@@ -190,7 +195,9 @@
     <ClInclude Include="Objects\TileGame\TileMap.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scenes\AnimationScene.h" />
+    <ClInclude Include="Scenes\AStarScene.h" />
     <ClInclude Include="Scenes\CollisionScene.h" />
+    <ClInclude Include="Scenes\DijkstraScene.h" />
     <ClInclude Include="Scenes\PixelShaderScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\ShootingScene.h" />
@@ -235,11 +242,16 @@
     <ClCompile Include="Libraries\ImGui\ImGuiFileDialog.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Objects\Algorithm\AStar.cpp" />
+    <ClCompile Include="Objects\Algorithm\Dijkstra.cpp" />
+    <ClCompile Include="Objects\Algorithm\DNode.cpp" />
+    <ClCompile Include="Objects\Algorithm\Node.cpp" />
     <ClCompile Include="Objects\Basic\GameObject.cpp" />
     <ClCompile Include="Objects\Basic\Quad.cpp" />
     <ClCompile Include="Objects\Character\Cookie.cpp" />
     <ClCompile Include="Objects\Collider\CircleCollider.cpp" />
     <ClCompile Include="Objects\Collider\Collider.cpp" />
+    <ClCompile Include="Objects\Collider\LineCollider.cpp" />
     <ClCompile Include="Objects\Collider\RectCollider.cpp" />
     <ClCompile Include="Objects\Flappy\Bird.cpp" />
     <ClCompile Include="Objects\Manger\DataManager.cpp" />
@@ -251,7 +263,9 @@
     <ClCompile Include="Objects\TileGame\Tank.cpp" />
     <ClCompile Include="Objects\TileGame\TileMap.cpp" />
     <ClCompile Include="Scenes\AnimationScene.cpp" />
+    <ClCompile Include="Scenes\AStarScene.cpp" />
     <ClCompile Include="Scenes\CollisionScene.cpp" />
+    <ClCompile Include="Scenes\DijkstraScene.cpp" />
     <ClCompile Include="Scenes\PixelShaderScene.cpp" />
     <ClCompile Include="Scenes\ShootingScene.cpp" />
     <ClCompile Include="Scenes\TextureScene.cpp" />

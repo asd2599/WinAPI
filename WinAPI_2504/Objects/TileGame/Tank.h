@@ -19,17 +19,22 @@ public:
 
 	void SetTileMap(TileMap* tileMap) { this->tileMap = tileMap; }
 
+	void SetPath(const vector<Vector2>& path) { this->path = path; }
+
 private:
 	void Control();
+	void MouseControl();
 	void CollisionTileMap();
 
 private:
-	void CreateClips();
+	void CreateClips();	
 
 private:
 	AnimState curState = Move;
+	Vector2 velocity;
+
+	vector<Vector2> path;
 
 	vector<Clip*> clips;	
-
-	TileMap* tileMap = nullptr;
+	TileMap* tileMap = nullptr;	
 };
