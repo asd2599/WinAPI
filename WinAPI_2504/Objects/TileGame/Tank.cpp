@@ -35,6 +35,10 @@ void Tank::Update()
 void Tank::Render()
 {
 	RectCollider::Render();
+
+	worldBuffer->Set(world);
+	worldBuffer->SetVS(0);
+
 	clips[curState]->Render();
 }
 

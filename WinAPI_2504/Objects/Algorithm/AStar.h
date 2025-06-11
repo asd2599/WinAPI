@@ -28,7 +28,8 @@ private:
 
 private:
     vector<Node*> nodes;
-    vector<int> openNodes;
+    //vector<int> openNodes;
+    Heap* heap;
 
     Vector2 tileSize;
     int cols;

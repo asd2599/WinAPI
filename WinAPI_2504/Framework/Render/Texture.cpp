@@ -23,7 +23,9 @@ Texture* Texture::Add(wstring file)
         return textures[file];
 
     ScratchImage image;
-    LoadFromWICFile(file.c_str(), WIC_FLAGS_NONE, nullptr, image);
+    HRESULT hResult = LoadFromWICFile(file.c_str(), WIC_FLAGS_NONE, nullptr, image);    
+
+    assert(SUCCEEDED(hResult));
 
     ID3D11ShaderResourceView* srv;
 

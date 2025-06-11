@@ -17,4 +17,6 @@ private:
 private:
     ID3D11VertexShader* shader;
     ID3D11InputLayout* inputLayout;
+
+	ID3D11ShaderReflection* reflection = nullptr;
 };

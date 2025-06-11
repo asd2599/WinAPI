@@ -176,6 +176,7 @@
     <ClInclude Include="Objects\Algorithm\AStar.h" />
     <ClInclude Include="Objects\Algorithm\Dijkstra.h" />
     <ClInclude Include="Objects\Algorithm\DNode.h" />
+    <ClInclude Include="Objects\Algorithm\Heap.h" />
     <ClInclude Include="Objects\Algorithm\Node.h" />
     <ClInclude Include="Objects\Basic\GameObject.h" />
     <ClInclude Include="Objects\Basic\Quad.h" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Scenes\AStarScene.h" />
     <ClInclude Include="Scenes\CollisionScene.h" />
     <ClInclude Include="Scenes\DijkstraScene.h" />
+    <ClInclude Include="Scenes\InstancingScene.h" />
     <ClInclude Include="Scenes\PixelShaderScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\ShootingScene.h" />
@@ -245,6 +247,7 @@
     <ClCompile Include="Objects\Algorithm\AStar.cpp" />
     <ClCompile Include="Objects\Algorithm\Dijkstra.cpp" />
     <ClCompile Include="Objects\Algorithm\DNode.cpp" />
+    <ClCompile Include="Objects\Algorithm\Heap.cpp" />
     <ClCompile Include="Objects\Algorithm\Node.cpp" />
     <ClCompile Include="Objects\Basic\GameObject.cpp" />
     <ClCompile Include="Objects\Basic\Quad.cpp" />
@@ -266,6 +269,7 @@
     <ClCompile Include="Scenes\AStarScene.cpp" />
     <ClCompile Include="Scenes\CollisionScene.cpp" />
     <ClCompile Include="Scenes\DijkstraScene.cpp" />
+    <ClCompile Include="Scenes\InstancingScene.cpp" />
     <ClCompile Include="Scenes\PixelShaderScene.cpp" />
     <ClCompile Include="Scenes\ShootingScene.cpp" />
     <ClCompile Include="Scenes\TextureScene.cpp" />
@@ -296,6 +300,12 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
+    <FxCompile Include="Resources\Shaders\Instancing.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
     <FxCompile Include="Resources\Shaders\MultiTexture.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
@@ -309,6 +319,12 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="Resources\Shaders\ProgressBar.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\SpriteInstancing.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

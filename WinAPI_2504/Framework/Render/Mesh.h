@@ -7,6 +7,7 @@ public:
 	~Mesh();
 
 	void Draw(D3D11_PRIMITIVE_TOPOLOGY type = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	void DrawInstanced(UINT drawCount, D3D11_PRIMITIVE_TOPOLOGY type = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	void CreateMesh();
 

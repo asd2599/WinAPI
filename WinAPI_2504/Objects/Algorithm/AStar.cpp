@@ -8,12 +8,16 @@ AStar::AStar(TileMap* map)
     cols = map->GetCols();
 
     SetEdge();
+
+    heap = new Heap();
 }
 
 AStar::~AStar()
 {
     for (Node* node : nodes)
         delete node;
+
+    delete heap;
 }
 
 void AStar::Render()
@@ -57,14 +61,14 @@ void AStar::GetPath(IN const int& start, IN const int& end, OUT vector<Vector2>&
     nodes[start]->via = start;
     nodes[start]->state = Node::Open;
 
-    openNodes.push_back(start);
-    //heap->Insert(nodes[start]);
+    //openNodes.push_back(start);
+    heap->Insert(nodes[start]);
 
     while (nodes[end]->state != Node::Closed)
     {
         //경로가 막혀있을 경우
-        //if (heap->Empty())
-        //    return;
+        if (heap->Empty())
+            return;
 
         //2. 오픈노드 중에서 효율이 가장 좋은 노드 찾기
         int curIndex = GetMinNode();
@@ -100,8 +104,8 @@ vector<Vector2> AStar::GetPath(const int& start, const int& end)
     nodes[start]->via = start;
     nodes[start]->state = Node::Open;
 
-    openNodes.push_back(start);
-    //heap->Insert(nodes[start]);
+    //openNodes.push_back(start);
+    heap->Insert(nodes[start]);
 
     while (nodes[end]->state != Node::Closed)
     {
@@ -138,7 +142,8 @@ void AStar::Reset()
             node->state = Node::None;
     }
 
-    openNodes.clear();
+    heap->Clear();
+    //openNodes.clear();
 }
 
 float AStar::GetManhattanDistance(int start, int end)
@@ -188,15 +193,15 @@ void AStar::Extend(const int& center, const int& end)
             nodes[index]->via = center;
             nodes[index]->state = Node::Open;
 
-            openNodes.push_back(index);
-            //heap->Insert(nodes[index]);
+            //openNodes.push_back(index);
+            heap->Insert(nodes[index]);
         }
     }
 }
 
 int AStar::GetMinNode()
 {
-    int openIndex = 0;
+    /*int openIndex = 0;
     int nodeIndex = openNodes[openIndex];
     float minF = nodes[nodeIndex]->f;
 
@@ -214,7 +219,9 @@ int AStar::GetMinNode()
     nodeIndex = openNodes[openIndex];
     openNodes.erase(openNodes.begin() + openIndex);
 
-    return nodeIndex;
+    return nodeIndex;*/
+
+	return heap->DeleteRoot()->index;
 }
 
 void AStar::SetEdge()

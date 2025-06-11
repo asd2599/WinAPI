@@ -39,6 +39,7 @@
 
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
+#pragma comment(lib, "dxguid.lib")
 
 //ImGui
 #include <imgui.h>
@@ -113,6 +114,7 @@ typedef function<void()> Event;
 #include "Objects/Algorithm/DNode.h"
 #include "Objects/Algorithm/Dijkstra.h"
 #include "Objects/Algorithm/Node.h"
+#include "Objects/Algorithm/Heap.h"
 #include "Objects/Algorithm/AStar.h"
 
 #include "Objects/Shooting/Plane.h"

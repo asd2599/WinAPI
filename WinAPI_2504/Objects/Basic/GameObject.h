@@ -10,6 +10,7 @@ public:
 	virtual void Render();
 	
 	Material* GetMaterial() { return material; }
+	Mesh* GetMesh() { return mesh; }
 
 	void SetColor(float r, float g, float b, float a = 1.0f);
 
