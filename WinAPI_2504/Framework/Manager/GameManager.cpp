@@ -11,6 +11,7 @@
 #include "Scenes/DijkstraScene.h"
 #include "Scenes/AStarScene.h"
 #include "Scenes/InstancingScene.h"
+#include "Scenes/InstancingMapEditorScene.h"
 
 GameManager::GameManager()
 {
@@ -26,7 +27,8 @@ GameManager::GameManager()
 	//SCENE->AddScene("Game", new TileGameScene());
 	//SCENE->AddScene("Game", new DijkstraScene());
 	//SCENE->AddScene("Game", new AStarScene());
-	SCENE->AddScene("Game", new InstancingScene());
+	//SCENE->AddScene("Game", new InstancingScene());
+	SCENE->AddScene("Game", new InstancingMapEditorScene());
 
 	SCENE->ChangeScene("Game");
 }
@@ -40,6 +42,7 @@ void GameManager::Update()
 {
 	Timer::Get()->Update();
 	Input::Get()->Update();
+	Audio::Get()->Update();
 
 	Environment::Get()->Update();
 
@@ -79,6 +82,7 @@ void GameManager::Create()
 {
 	Timer::Get();
 	Input::Get();
+	Audio::Get();
 
 	Device::Get();
 
@@ -101,6 +105,7 @@ void GameManager::Release()
 	Device::Delete();
 	Shader::Delete();
 	Texture::Delete();
+	Audio::Delete();
 
 	SceneManager::Delete();
 

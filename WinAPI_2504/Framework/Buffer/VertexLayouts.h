@@ -10,3 +10,11 @@ struct Vertex//정점 : 3차원 공간에서의 한 점
     {
     }
 };
+
+struct InstanceData
+{
+	Matrix world;
+
+	Float2 curFrame;
+	Float2 maxFrame;
+};

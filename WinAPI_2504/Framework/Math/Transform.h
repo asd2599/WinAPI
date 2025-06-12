@@ -28,6 +28,14 @@ public:
 	void SetLocalPosition(float x, float y) { localPosition = { x, y }; }
 	void SetLocalPosition(Vector2 pos) { this->localPosition = pos; }
 
+	Float3 GetLocalRotation() { return localRotation; }
+	void SetLocalRotation(float x, float y, float z) { localRotation = { x, y, z }; }
+	void SetLocalRotation(Float3 rotation) { this->localRotation = rotation; }
+
+	Vector2 GetLocalScale() { return localScale; }
+	void SetLocalScale(float x, float y) { localScale = { x, y }; }
+	void SetLocalScale(Vector2 scale) { this->localScale = scale; }
+
 	void SetPivot(float x, float y) { pivot = { x, y }; }
 
 	Matrix GetWorld() { return world; }

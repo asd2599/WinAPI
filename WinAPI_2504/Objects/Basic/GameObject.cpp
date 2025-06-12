@@ -36,6 +36,12 @@ void GameObject::Render()
     mesh->Draw();
 }
 
+void GameObject::SetWorld()
+{
+    worldBuffer->Set(world);
+    worldBuffer->SetVS(0);
+}
+
 void GameObject::SetColor(float r, float g, float b, float a)
 {
 	material->SetColor(r, g, b, a);

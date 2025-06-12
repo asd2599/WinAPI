@@ -33,7 +33,9 @@ struct Output
 Output VS(Input input)
 {
     Output output;
-    output.pos = mul(input.pos, input.transform);
+    
+    matrix transform = mul(input.transform, world);
+    output.pos = mul(input.pos, transform);
     output.pos = mul(output.pos, view);
     output.pos = mul(output.pos, projection);
     

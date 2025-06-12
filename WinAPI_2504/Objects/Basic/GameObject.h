@@ -8,6 +8,8 @@ public:
 	~GameObject();	
 
 	virtual void Render();
+
+	void SetWorld();
 	
 	Material* GetMaterial() { return material; }
 	Mesh* GetMesh() { return mesh; }

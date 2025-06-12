@@ -54,6 +54,11 @@
 
 #pragma comment(lib, "DirectXTex.lib")
 
+//FMOD
+#include <FMOD/fmod.hpp>
+
+#pragma comment(lib, "fmod_vc.lib")
+
 using namespace std;
 using namespace DirectX;
 
@@ -73,6 +78,7 @@ typedef function<void()> Event;
 #include "Framework/Utilities/tinyxml2.h"
 #include "Framework/Utilities/BinaryReader.h"
 #include "Framework/Utilities/BinaryWriter.h"
+#include "Framework/Utilities/Audio.h"
 
 #include "Framework/Math/Vector2.h"
 #include "Framework/Math/Transform.h"
