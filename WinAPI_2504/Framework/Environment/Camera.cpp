@@ -43,5 +43,26 @@ void Camera::FreeMode()
 
 void Camera::FollowMode()
 {
+    Vector2 targetPos = target->GetGlobalPosition() - targetOffset;
 
+    FixPosition(targetPos);
+
+    localPosition = GameMath::Lerp<Vector2>(localPosition, targetPos, speed * DELTA);
+}
+
+void Camera::FixPosition(Vector2& pos)
+{
+    if (!isFix) return;
+
+    if (pos.x < leftBottom.x)
+        pos.x = leftBottom.x;
+
+    if (pos.x > rightTop.x - SCREEN_WIDTH)
+        pos.x = rightTop.x - SCREEN_WIDTH;
+
+    if (pos.y < leftBottom.y)
+        pos.y = leftBottom.y;
+
+    if (pos.y > rightTop.y - SCREEN_HEIGHT)
+        pos.y = rightTop.y - SCREEN_HEIGHT;
 }

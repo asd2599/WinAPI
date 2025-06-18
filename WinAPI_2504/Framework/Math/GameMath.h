@@ -8,4 +8,10 @@ public:
 
 	static int Random(const int& min, const int& max);
 	static float Random(const float& min, const float& max);
+
+	template<typename T>
+	static T Lerp(const T& start, const T& end, float factor)
+	{
+		return start + (end - start) * factor;
+	}
 };

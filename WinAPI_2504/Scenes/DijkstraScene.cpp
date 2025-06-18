@@ -6,6 +6,8 @@ DijkstraScene::DijkstraScene()
 	dijkstra = new Dijkstra();
 	tank = new Tank();
 	tank->SetLocalPosition(CENTER);
+
+	CAM->SetRightTop(SCREEN_WIDTH * 2, SCREEN_HEIGHT);
 }
 
 DijkstraScene::~DijkstraScene()
@@ -22,7 +24,7 @@ void DijkstraScene::Update()
 		int end = dijkstra->FindCloseNode(mousePos);
 
 		tank->SetPath(dijkstra->GetPath(start, end));
-	}
+	}	
 
 	dijkstra->Update();
 	tank->Update();

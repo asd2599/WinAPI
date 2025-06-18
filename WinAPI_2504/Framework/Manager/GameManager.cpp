@@ -25,10 +25,10 @@ GameManager::GameManager()
 	//SCENE->AddScene("Game", new PixelShaderScene());
 	//SCENE->AddScene("Game", new TileEditScene());
 	//SCENE->AddScene("Game", new TileGameScene());
-	//SCENE->AddScene("Game", new DijkstraScene());
+	SCENE->AddScene("Game", new DijkstraScene());
 	//SCENE->AddScene("Game", new AStarScene());
 	//SCENE->AddScene("Game", new InstancingScene());
-	SCENE->AddScene("Game", new InstancingMapEditorScene());
+	//SCENE->AddScene("Game", new InstancingMapEditorScene());
 
 	SCENE->ChangeScene("Game");
 }

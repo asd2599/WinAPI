@@ -39,6 +39,26 @@ void Dijkstra::Update()
             }
         }
     }
+
+    if (Input::Get()->IsKeyDown('1'))
+    {
+        CAM->SetTarget(nodes[0]);
+    }
+
+    if (Input::Get()->IsKeyDown('2'))
+    {
+        CAM->SetTarget(nodes[1]);
+    }
+
+    if (Input::Get()->IsKeyDown('3'))
+    {
+        CAM->SetTarget(nodes[2]);
+    }
+
+    if (Input::Get()->IsKeyDown('4'))
+    {
+        CAM->SetTarget(nullptr);
+    }
 }
 
 void Dijkstra::Render()
