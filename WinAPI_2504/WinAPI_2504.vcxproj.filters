@@ -440,5 +440,6 @@
     <FxCompile Include="Resources\Shaders\Outline.hlsl" />
     <FxCompile Include="Resources\Shaders\Instancing.hlsl" />
     <FxCompile Include="Resources\Shaders\SpriteInstancing.hlsl" />
+    <FxCompile Include="Resources\Shaders\Light.hlsl" />
   </ItemGroup>
 </Project>

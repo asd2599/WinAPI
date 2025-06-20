@@ -5,7 +5,7 @@ PixelShaderScene::PixelShaderScene()
 {
 	quad = new Quad(L"Resources/Textures/Test.jfif");
 	quad->SetLocalPosition(CENTER);	
-	quad->GetMaterial()->SetShader(L"Filter.hlsl");
+	quad->GetMaterial()->SetShader(L"Light.hlsl");
 
 	valueBuffer = new FloatValueBuffer();
 	radialBuffer = new FloatValueBuffer();
@@ -14,8 +14,8 @@ PixelShaderScene::PixelShaderScene()
 
 	secondMap = Texture::Add(L"Resources/Textures/Background.png");
 
-	valueBuffer->GetValues()[2] = quad->GetSize().x;
-	valueBuffer->GetValues()[3] = quad->GetSize().y;
+	valueBuffer->GetValues()[0] = quad->GetSize().x;
+	valueBuffer->GetValues()[1] = quad->GetSize().y;
 }
 
 PixelShaderScene::~PixelShaderScene()
@@ -46,6 +46,8 @@ void PixelShaderScene::GUIRender()
 	//ImGui::SliderFloat("Value 1", &valueBuffer->GetValues()[0], -PI, PI);
 	ImGui::DragFloat("Value 1", &valueBuffer->GetValues()[0]);
 	ImGui::DragFloat("Value 2", &valueBuffer->GetValues()[1]);
+	ImGui::DragFloat("Value 3", &valueBuffer->GetValues()[2]);
+	ImGui::DragFloat("Value 4", &valueBuffer->GetValues()[3]);
 	ImGui::ColorEdit4("Add Color", (float*)addColorBuffer->GetColor());
 
 	ImGui::DragFloat("Radial X", &radialBuffer->GetValues()[0]);
