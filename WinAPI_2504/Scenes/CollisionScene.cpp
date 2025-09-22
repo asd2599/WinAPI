@@ -27,6 +27,14 @@ CollisionScene::~CollisionScene()
 
 void CollisionScene::Update()
 {
+	if (Input::Get()->IsKeyPress(VK_RIGHT))
+	{
+		//colliders[0]->GetLocalPosition() += DELTA;
+		Vector2 pos = colliders[0]->GetLocalPosition();
+		pos.x += DELTA * 100;
+		colliders[0]->SetLocalPosition(pos);
+	}
+
 	//if (colliders[0]->IsCollision(colliders[1], &overlap))
 	if (colliders[0]->IsCollision(colliders[1]))
 	//if(colliders[0]->IsPointCollision(mousePos))
