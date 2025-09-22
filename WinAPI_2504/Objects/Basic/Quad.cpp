@@ -28,7 +28,7 @@ void Quad::MakeMesh()
 {
 	Vector2 halfSize = size * 0.5f;
 
-	vector<Vertex>& vertices = mesh->GetVertices();
+	vector<VertexUV>& vertices = mesh->GetVertices();
 
 	vertices.emplace_back(-halfSize.x, +halfSize.y, startUV.x, startUV.y);
 	vertices.emplace_back(+halfSize.x, +halfSize.y, endUV.x, startUV.y);

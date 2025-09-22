@@ -28,41 +28,32 @@ void Camera::Update()
 
 void Camera::FreeMode()
 {
+    Vector3 delta = mousePos - prevMousePos;
+    prevMousePos = mousePos;
+
     if (Input::Get()->IsKeyPress(VK_RBUTTON))
     {
         if (Input::Get()->IsKeyPress('W'))
-            Translate(Vector2::Up() * speed * DELTA);
+            Translate(Vector3::Forward() * moveSpeed * DELTA);
         if (Input::Get()->IsKeyPress('S'))
-            Translate(Vector2::Down() * speed * DELTA);
+            Translate(Vector3::Back() * moveSpeed * DELTA);
+        if (Input::Get()->IsKeyPress('Q'))
+            Translate(Vector3::Up() * moveSpeed * DELTA);
+        if (Input::Get()->IsKeyPress('E'))
+            Translate(Vector3::Down() * moveSpeed * DELTA);
         if (Input::Get()->IsKeyPress('A'))
-            Translate(Vector2::Left() * speed * DELTA);
+            Translate(Vector3::Left() * moveSpeed * DELTA);
         if (Input::Get()->IsKeyPress('D'))
-            Translate(Vector2::Right() * speed * DELTA);
+            Translate(Vector3::Right() * moveSpeed * DELTA);
+
+        Rotate(Vector3::Right(), -delta.y * rotSpeed * DELTA);
+        Rotate(Vector3::Up(), delta.x * rotSpeed * DELTA);
     }
 }
 
 void Camera::FollowMode()
 {
-    Vector2 targetPos = target->GetGlobalPosition() - targetOffset;
-
-    FixPosition(targetPos);
-
-    localPosition = GameMath::Lerp<Vector2>(localPosition, targetPos, speed * DELTA);
-}
-
-void Camera::FixPosition(Vector2& pos)
-{
-    if (!isFix) return;
-
-    if (pos.x < leftBottom.x)
-        pos.x = leftBottom.x;
-
-    if (pos.x > rightTop.x - SCREEN_WIDTH)
-        pos.x = rightTop.x - SCREEN_WIDTH;
-
-    if (pos.y < leftBottom.y)
-        pos.y = leftBottom.y;
-
-    if (pos.y > rightTop.y - SCREEN_HEIGHT)
-        pos.y = rightTop.y - SCREEN_HEIGHT;
+    //Vector2 targetPos = target->GetGlobalPosition() - targetOffset;
+    //FixPosition(targetPos);
+    //localPosition = GameMath::Lerp<Vector2>(localPosition, targetPos, speed * DELTA);
 }

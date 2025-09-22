@@ -55,8 +55,11 @@ void Environment::CreateProjection()
     projectionBuffer = new MatrixBuffer();
 
     //Orthographic : 원근감이 없는 직육면체의 절두체를 형성하는 투영변환
-    Matrix projection = XMMatrixOrthographicOffCenterLH(0.0f,
-		SCREEN_WIDTH, 0.0f, SCREEN_HEIGHT, -1.0f, 1.0f);
+    //Matrix projection = XMMatrixOrthographicOffCenterLH(0.0f,
+	//	SCREEN_WIDTH, 0.0f, SCREEN_HEIGHT, -1.0f, 1.0f);
+	//Perspective : 원근감이 있는 투영변환
+	Matrix projection = XMMatrixPerspectiveFovLH(PI * 0.25f,
+		SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 1000.f);
 
     projectionBuffer->Set(projection);
     projectionBuffer->SetVS(2);

@@ -6,9 +6,14 @@ public:
 	Transform();
 	~Transform();
 
-	void Translate(const Vector2& velocity)
+	void Translate(const Vector3& velocity)
 	{
 		localPosition += velocity;
+	}
+
+	void Rotate(const Vector3& axis, float angle)
+	{
+		localRotation += axis * angle;
 	}
 
 	void UpdateWorld();
@@ -18,25 +23,25 @@ public:
 	void Save();
 	void Load();
 
-	Vector2 GetRight() { return right.GetNormalized(); }
-	Vector2 GetUp() { return up.GetNormalized(); }
+	Vector3 GetRight() { return right.GetNormalized(); }
+	Vector3 GetUp() { return up.GetNormalized(); }
 
-	Vector2 GetGlobalPosition() { return globalPosition; }
-	Vector2 GetGlobalScale() { return globalScale; }
+	Vector3 GetGlobalPosition() { return globalPosition; }
+	Vector3 GetGlobalScale() { return globalScale; }
 
-	Vector2 GetLocalPosition() { return localPosition; }
-	void SetLocalPosition(float x, float y) { localPosition = { x, y }; }
-	void SetLocalPosition(Vector2 pos) { this->localPosition = pos; }
+	Vector3 GetLocalPosition() { return localPosition; }
+	void SetLocalPosition(float x, float y, float z) { localPosition = { x, y, z}; }
+	void SetLocalPosition(Vector3 pos) { this->localPosition = pos; }
 
-	Float3 GetLocalRotation() { return localRotation; }
+	Vector3 GetLocalRotation() { return localRotation; }
 	void SetLocalRotation(float x, float y, float z) { localRotation = { x, y, z }; }
-	void SetLocalRotation(Float3 rotation) { this->localRotation = rotation; }
+	void SetLocalRotation(Vector3 rotation) { this->localRotation = rotation; }
 
-	Vector2 GetLocalScale() { return localScale; }
-	void SetLocalScale(float x, float y) { localScale = { x, y }; }
-	void SetLocalScale(Vector2 scale) { this->localScale = scale; }
+	Vector3 GetLocalScale() { return localScale; }
+	void SetLocalScale(float x, float y, float z) { localScale = { x, y, z}; }
+	void SetLocalScale(Vector3 scale) { this->localScale = scale; }
 
-	void SetPivot(float x, float y) { pivot = { x, y }; }
+	void SetPivot(float x, float y, float z) { pivot = { x, y, z}; }
 
 	Matrix GetWorld() { return world; }
 	void SetParent(Transform* transform) { parent = transform; }	
@@ -47,13 +52,14 @@ public:
 protected:
 	string tag;
 
-	Vector2 localPosition;
-	Float3 localRotation;
-	Vector2 localScale = { 1, 1 };	
-	Vector2 pivot;
+	Vector3 localPosition;
+	Vector3 localRotation;
+	Vector3 localScale = { 1, 1, 1};	
+	Vector3 pivot;
 
-	Vector2 right = { 1, 0 };
-	Vector2 up = { 0, 1 };
+	Vector3 right = { 1, 0, 0 };
+	Vector3 up = { 0, 1, 0};
+	Vector3 forward = { 1, 0, 0 };
 
 	Matrix world;
 	Float4x4 matWorld;
@@ -62,8 +68,8 @@ private:
 	Matrix S, R, T;
 	Matrix P, IP;
 
-	Vector2 globalPosition;
-	Vector2 globalScale = { 1, 1 };
+	Vector3 globalPosition;
+	Vector3 globalScale = { 1, 1, 1};
 
 	Transform* parent = nullptr;
 };

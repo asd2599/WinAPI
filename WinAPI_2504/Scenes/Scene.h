@@ -9,10 +9,10 @@ public:
 	~Scene() = default;
 		
 	virtual void Update() = 0;
-	virtual void PreRender() {}
+	virtual void PreRender() = 0;
 	virtual void Render() = 0;
-	virtual void PostRender() {}
-	virtual void GUIRender() {}
+	virtual void PostRender() = 0;
+	virtual void GUIRender() = 0;
 
 	virtual void Start() {}
 	virtual void End() {}

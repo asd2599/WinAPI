@@ -13,7 +13,7 @@ public:
 
 	void UpdateVertices();
 
-	vector<Vertex>& GetVertices() { return vertices; }
+	vector<VertexUV>& GetVertices() { return vertices; }
 	vector<UINT>& GetIndices() { return indices; }
 
 	VertexBuffer* GetVertexBuffer() { return vertexBuffer; }
@@ -23,6 +23,6 @@ private:
 	VertexBuffer* vertexBuffer = nullptr;
 	IndexBuffer* indexBuffer = nullptr;
 
-	vector<Vertex> vertices;
+	vector<VertexUV> vertices;
 	vector<UINT> indices;
 };

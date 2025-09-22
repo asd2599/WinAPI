@@ -24,7 +24,7 @@ bool LineCollider::IsCircleCollision(CircleCollider* circle)
 
 void LineCollider::MakeMesh()
 {
-	vector<Vertex>& vertices = mesh->GetVertices();
+	vector<VertexUV>& vertices = mesh->GetVertices();
 	vertices.emplace_back(startPos.x, startPos.y);
 	vertices.emplace_back(endPos.x, endPos.y);
 }

@@ -1,34 +1,12 @@
 #include "Framework.h"
 
-//#include "Scenes/TutorialScene.h"
-#include "Scenes/ShootingScene.h"
-#include "Scenes/CollisionScene.h"
-#include "Scenes/TextureScene.h"
-#include "Scenes/AnimationScene.h"
-#include "Scenes/PixelShaderScene.h"
-#include "Scenes/TileEditScene.h"
-#include "Scenes/TileGameScene.h"
-#include "Scenes/DijkstraScene.h"
-#include "Scenes/AStarScene.h"
-#include "Scenes/InstancingScene.h"
-#include "Scenes/InstancingMapEditorScene.h"
+#include "Scenes/TutorialScene.h"
 
 GameManager::GameManager()
 {
 	Create();
 		
-	//SCENE->AddScene("Game", new TutorialScene());	
-	//SCENE->AddScene("Game", new ShootingScene());
-	SCENE->AddScene("Game", new CollisionScene());
-	//SCENE->AddScene("Game", new TextureScene());
-	//SCENE->AddScene("Game", new AnimationScene());
-	//SCENE->AddScene("Game", new PixelShaderScene());
-	//SCENE->AddScene("Game", new TileEditScene());
-	//SCENE->AddScene("Game", new TileGameScene());
-	//SCENE->AddScene("Game", new DijkstraScene());
-	//SCENE->AddScene("Game", new AStarScene());
-	//SCENE->AddScene("Game", new InstancingScene());
-	//SCENE->AddScene("Game", new InstancingMapEditorScene());
+	SCENE->AddScene("Game", new TutorialScene());	
 
 	SCENE->ChangeScene("Game");
 }

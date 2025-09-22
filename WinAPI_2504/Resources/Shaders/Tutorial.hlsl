@@ -40,12 +40,7 @@ Output VS( Input input )
 	return output;
 }
 
-cbuffer ColorBuffer : register(b0)
-{
-    float4 color;
-}
-
 float4 PS( Output output ) : SV_TARGET
 {
-    return output.color * color;
+    return output.color;
 }

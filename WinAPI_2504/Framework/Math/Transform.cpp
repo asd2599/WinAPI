@@ -11,35 +11,29 @@ Transform::~Transform()
 
 void Transform::UpdateWorld()
 {
-    S = XMMatrixScaling(localScale.x, localScale.y, 1.0f);
-    R = XMMatrixRotationRollPitchYaw(localRotation.x, localRotation.y, localRotation.z);
-    T = XMMatrixTranslation(localPosition.x, localPosition.y, 0.0f);
-
-    P = XMMatrixTranslation(pivot.x, pivot.y, 0.0f);
-    IP = XMMatrixInverse(nullptr, P);
-
-    world = IP * S * R * T * P;
+	world = XMMatrixTransformation(pivot,
+		XMQuaternionIdentity(), localScale, pivot,
+		XMQuaternionRotationRollPitchYawFromVector(localRotation),
+		localPosition);
 
     if (parent)
         world *= parent->world;
 
     XMStoreFloat4x4(&matWorld, world);
 
-    right = { matWorld._11, matWorld._12 };
-    up = { matWorld._21, matWorld._22 };
+    right = { matWorld._11, matWorld._12, matWorld._13 };
+    up = { matWorld._21, matWorld._22, matWorld._23 };
+	forward = { matWorld._31, matWorld._32, matWorld._33 };
 
     XMVECTOR outS, outR, outT;
-    XMMatrixDecompose(&outS, &outR, &outT, world);
-
-    XMStoreFloat2(&globalPosition, outT);
-    XMStoreFloat2(&globalScale, outS);
+    XMMatrixDecompose(globalScale.GetValue(), &outR, globalPosition.GetValue(), world);
 }
 
 void Transform::Edit()
 {
 	if (ImGui::TreeNode((tag + "_Transform").c_str()))
 	{
-		ImGui::DragFloat2("Pos", (float*)&localPosition, 1.0f);
+		ImGui::DragFloat3("Pos", (float*)&localPosition, 1.0f);
 
 		Float3 rot;
 		rot.x = XMConvertToDegrees(localRotation.x);
@@ -52,7 +46,7 @@ void Transform::Edit()
 		localRotation.y = XMConvertToRadians(rot.y);
 		localRotation.z = XMConvertToRadians(rot.z);
 
-		ImGui::DragFloat2("Scale", (float*)&localScale, 0.1f);
+		ImGui::DragFloat3("Scale", (float*)&localScale, 0.1f);
 
 		if (ImGui::Button("Save"))
 			Save();
@@ -72,6 +66,7 @@ void Transform::Save()
 
 	writer->Float(localPosition.x);
 	writer->Float(localPosition.y);
+	writer->Float(localPosition.z);
 
 	writer->Float(localRotation.x);
 	writer->Float(localRotation.y);
@@ -79,6 +74,7 @@ void Transform::Save()
 
 	writer->Float(localScale.x);
 	writer->Float(localScale.y);
+	writer->Float(localScale.z);
 
 	delete writer;
 }
@@ -92,6 +88,7 @@ void Transform::Load()
 
 	localPosition.x = reader->Float();
 	localPosition.y = reader->Float();
+	localPosition.z = reader->Float();
 
 	localRotation.x = reader->Float();
 	localRotation.y = reader->Float();
@@ -99,6 +96,7 @@ void Transform::Load()
 
 	localScale.x = reader->Float();
 	localScale.y = reader->Float();
+	localScale.z = reader->Float();
 
 	delete reader;
 }

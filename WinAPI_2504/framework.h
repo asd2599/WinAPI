@@ -81,6 +81,7 @@ typedef function<void()> Event;
 #include "Framework/Utilities/Audio.h"
 
 #include "Framework/Math/Vector2.h"
+#include "Framework/Math/Vector3.h"
 #include "Framework/Math/Transform.h"
 #include "Framework/Math/GameMath.h"
 
@@ -110,34 +111,14 @@ typedef function<void()> Event;
 #include "Objects/Basic/Quad.h"
 
 #include "Objects/Collider/Collider.h"
-#include "Objects/Collider/CircleCollider.h"
-#include "Objects/Collider/RectCollider.h"
 #include "Objects/Collider/LineCollider.h"
 
 #include "Objects/Manger/DataManager.h"
 #include "Objects/Manger/EventManager.h"
-
-#include "Objects/Algorithm/DNode.h"
-#include "Objects/Algorithm/Dijkstra.h"
-#include "Objects/Algorithm/Node.h"
-#include "Objects/Algorithm/Heap.h"
-#include "Objects/Algorithm/AStar.h"
-
-#include "Objects/Shooting/Plane.h"
-#include "Objects/Shooting/Bullet.h"
-
-#include "Objects/Flappy/Bird.h"
-
-#include "Objects/Character/Cookie.h"
-
-#include "Objects/TileGame/EditTile.h"
-#include "Objects/TileGame/GameTile.h"
-#include "Objects/TileGame/TileMap.h"
-#include "Objects/TileGame/Tank.h"
 
 #include "Scenes/Scene.h"
 #include "Framework/Manager/SceneManager.h"
 #include "Framework/Manager/GameManager.h"
 
 extern HWND hWnd;
-extern Vector2 mousePos;
+extern Vector3 mousePos;

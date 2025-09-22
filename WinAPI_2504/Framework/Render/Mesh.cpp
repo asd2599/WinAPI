@@ -40,7 +40,7 @@ void Mesh::DrawInstanced(UINT drawCount, D3D11_PRIMITIVE_TOPOLOGY type)
 
 void Mesh::CreateMesh()
 {
-	vertexBuffer = new VertexBuffer(vertices.data(), sizeof(Vertex), vertices.size());
+	vertexBuffer = new VertexBuffer(vertices.data(), sizeof(VertexUV), vertices.size());
 
 	if (indices.size() > 0)
 	{

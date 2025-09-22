@@ -4,27 +4,23 @@ class TutorialScene : public Scene
 {
 public:
 	TutorialScene();
-	~TutorialScene();
+	~TutorialScene();	
 
 	void Update() override;
+	void PreRender() override;
 	void Render() override;
+	void PostRender() override;
+	void GUIRender() override;
 
 private:
-	vector<VertexColor> vertices;
-	vector<UINT> indices;
-		
 	VertexShader* vertexShader;
 	PixelShader* pixelShader;
-
+	
 	VertexBuffer* vertexBuffer;
 	IndexBuffer* indexBuffer;
-
-	MatrixBuffer* worldBuffer;	
-
-	ColorBuffer* colorBuffer;
-
-	Matrix world;
-	Float4x4 matWorld;
-
-	Vector2 pos;
+	
+	MatrixBuffer* worldBuffer;
+	
+	vector<VertexColor> vertices;
+	vector<UINT> indices;
 };

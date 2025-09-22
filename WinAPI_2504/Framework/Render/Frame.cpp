@@ -46,7 +46,7 @@ void Frame::MakeMesh(Vector2 startUV, Vector2 endUV, Vector2 pos)
 	float top = pos.y + size.y * 0.5f;
 	float bottom = pos.y - size.y * 0.5f;
 
-	vector<Vertex>& vertices = mesh->GetVertices();
+	vector<VertexUV>& vertices = mesh->GetVertices();
 
 	vertices.emplace_back(left, top, startUV.x, startUV.y);
 	vertices.emplace_back(right, top, endUV.x, startUV.y);

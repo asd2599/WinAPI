@@ -2,10 +2,34 @@
 
 struct Vertex//정점 : 3차원 공간에서의 한 점
 {
+    float x, y, z;    
+
+    Vertex(float x = 0, float y = 0, float z = 0)
+        : x(x), y(y), z(z)
+    {
+    }
+};
+
+struct VertexColor//정점 : 3차원 공간에서의 한 점
+{
+    Float3 pos;
+    Float4 color;
+
+	VertexColor() : pos(0, 0, 0), color(1, 1, 1, 1)
+	{
+	}
+	VertexColor(float x, float y, float z, float r, float g, float b, float a = 1.0f)
+		: pos(x, y, z), color(r, g, b, a)
+	{
+	}
+};
+
+struct VertexUV//정점 : 3차원 공간에서의 한 점
+{
     float x, y, z;
 	float u, v; // Texture coordinates
 
-    Vertex(float x = 0, float y = 0, float u = 0, float v = 0)
+    VertexUV(float x = 0, float y = 0, float u = 0, float v = 0)
 		: x(x), y(y), z(0), u(u), v(v)
     {
     }
