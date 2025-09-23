@@ -4,18 +4,24 @@
 Environment::Environment()
 {
 	mainCamera = new Camera();
+	mainCamera->Load();
 	uiViewBuffer = new MatrixBuffer();
 
 	CreateProjection();
     CreateSamplerState();
 	CreateBlendState();
+	CreateStats();
 }
 
 Environment::~Environment()
 {
+	mainCamera->Save();
 	delete mainCamera;
 	delete projectionBuffer;
 	delete uiViewBuffer;
+
+	delete rasterizerState[0];
+	delete rasterizerState[1];
 
     samplerState->Release();
 	alphaBlendState->Release();
@@ -28,7 +34,17 @@ void Environment::Update()
 		Collider::SwitchDraw();
 	}
 
+	if (Input::Get()->IsKeyDown(VK_F2))
+	{
+		isWireFrame = !isWireFrame;		
+	}
+
 	mainCamera->Update();
+}
+
+void Environment::Edit()
+{
+	mainCamera->Edit();
 }
 
 void Environment::SetViewport(UINT width, UINT height)
@@ -43,6 +59,8 @@ void Environment::SetViewport(UINT width, UINT height)
 	viewport.TopLeftY = 0.0f;
 
 	DC->RSSetViewports(1, &viewport);
+
+	rasterizerState[isWireFrame]->SetState();
 }
 
 void Environment::SetUIViewBuffer()
@@ -100,4 +118,11 @@ void Environment::CreateBlendState()
 
 	float blendFactor[4] = {};
 	DC->OMSetBlendState(alphaBlendState, blendFactor, 0xffffffff);
+}
+
+void Environment::CreateStats()
+{
+	rasterizerState[0] = new RasterizerState();
+	rasterizerState[1] = new RasterizerState();
+	rasterizerState[1]->FillMode(D3D11_FILL_WIREFRAME);
 }

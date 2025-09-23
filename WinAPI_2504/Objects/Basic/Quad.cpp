@@ -2,7 +2,11 @@
 
 Quad::Quad(Vector2 size) : size(size)
 {
-	Init();	
+	tag = "Quad";
+
+	mesh = new Mesh<VertexType>();
+	MakeMesh();
+	mesh->CreateMesh();
 }
 
 Quad::Quad(wstring textureFile, Vector2 startUV, Vector2 endUV)
@@ -12,28 +16,34 @@ Quad::Quad(wstring textureFile, Vector2 startUV, Vector2 endUV)
 
 	size = material->GetBaseMap()->GetSize() * (endUV - startUV);
 
-	Init();
+	mesh = new Mesh<VertexType>();
+	MakeMesh();
+	mesh->CreateMesh();
 }
 
 Quad::~Quad()
 {
+	delete mesh;
 }
 
 void Quad::Render()
 {
-	GameObject::Render();
+	if (!isActive) return;
+
+	SetRender();
+	mesh->Draw();
 }
 
 void Quad::MakeMesh()
 {
 	Vector2 halfSize = size * 0.5f;
 
-	vector<VertexUV>& vertices = mesh->GetVertices();
+	vector<VertexType>& vertices = mesh->GetVertices();
 
-	vertices.emplace_back(-halfSize.x, +halfSize.y, startUV.x, startUV.y);
-	vertices.emplace_back(+halfSize.x, +halfSize.y, endUV.x, startUV.y);
-	vertices.emplace_back(-halfSize.x, -halfSize.y, startUV.x, endUV.y);
-	vertices.emplace_back(+halfSize.x, -halfSize.y, endUV.x, endUV.y);
+	vertices.emplace_back(-halfSize.x, +halfSize.y, 0.0f, startUV.x, startUV.y);
+	vertices.emplace_back(+halfSize.x, +halfSize.y, 0.0f, endUV.x, startUV.y);
+	vertices.emplace_back(-halfSize.x, -halfSize.y, 0.0f, startUV.x, endUV.y);
+	vertices.emplace_back(+halfSize.x, -halfSize.y, 0.0f, endUV.x, endUV.y);
 
 	vector<UINT>& indices = mesh->GetIndices();
 

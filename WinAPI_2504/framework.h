@@ -97,11 +97,11 @@ typedef function<void()> Event;
 #include "Framework/Buffer/ConstBuffer.h"
 #include "Framework/Buffer/GlobalBffer.h"
 
+#include "Framework/Stats/RasterizerState.h"
+
 #include "Framework/Render/Texture.h"
 #include "Framework/Render/Mesh.h"
 #include "Framework/Render/Material.h"
-#include "Framework/Render/Frame.h"
-#include "Framework/Render/Clip.h"
 #include "Framework/Render/RenderTarget.h"
 
 #include "Framework/Environment/Camera.h"
@@ -109,9 +109,12 @@ typedef function<void()> Event;
 
 #include "Objects/Basic/GameObject.h"
 #include "Objects/Basic/Quad.h"
+#include "Objects/Basic/Cube.h"
 
 #include "Objects/Collider/Collider.h"
-#include "Objects/Collider/LineCollider.h"
+#include "Objects/Collider/BoxCollider.h"
+#include "Objects/Collider/SphereCollider.h"
+#include "Objects/Collider/CapsuleCollider.h"
 
 #include "Objects/Manger/DataManager.h"
 #include "Objects/Manger/EventManager.h"

@@ -1,12 +1,16 @@
 #include "Framework.h"
 
 #include "Scenes/TutorialScene.h"
+#include "Scenes/CubeScene.h"
+#include "Scenes/CollisionScene.h"
 
 GameManager::GameManager()
 {
 	Create();
 		
-	SCENE->AddScene("Game", new TutorialScene());	
+	//SCENE->AddScene("Game", new TutorialScene());	
+	SCENE->AddScene("Game", new CubeScene());
+	//SCENE->AddScene("Game", new CollisionScene());
 
 	SCENE->ChangeScene("Game");
 }
@@ -47,6 +51,8 @@ void GameManager::Render()
 
 	string fps = "FPS : " + to_string(Timer::Get()->GetFPS());
 	ImGui::Text(fps.c_str());
+
+	Environment::Get()->Edit();
 
 	SCENE->GUIRender();	
 

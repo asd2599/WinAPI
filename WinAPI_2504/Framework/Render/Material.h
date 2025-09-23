@@ -3,7 +3,7 @@
 class Material
 {
 public:
-	Material(wstring shaderFile = L"Texture.hlsl");
+	Material(wstring shaderFile = L"Basic/Texture.hlsl");
 	~Material();	
 
 	void SetColor(float r, float g, float b, float a = 1.0f);

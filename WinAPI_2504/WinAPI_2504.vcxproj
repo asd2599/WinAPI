@@ -155,8 +155,6 @@
     <ClInclude Include="Framework\Math\Transform.h" />
     <ClInclude Include="Framework\Math\Vector2.h" />
     <ClInclude Include="Framework\Math\Vector3.h" />
-    <ClInclude Include="Framework\Render\Clip.h" />
-    <ClInclude Include="Framework\Render\Frame.h" />
     <ClInclude Include="Framework\Render\Material.h" />
     <ClInclude Include="Framework\Render\Mesh.h" />
     <ClInclude Include="Framework\Render\RenderTarget.h" />
@@ -164,6 +162,7 @@
     <ClInclude Include="Framework\Shader\PixelShader.h" />
     <ClInclude Include="Framework\Shader\Shader.h" />
     <ClInclude Include="Framework\Shader\VertexShader.h" />
+    <ClInclude Include="Framework\Stats\RasterizerState.h" />
     <ClInclude Include="Framework\Utilities\Audio.h" />
     <ClInclude Include="Framework\Utilities\BinaryReader.h" />
     <ClInclude Include="Framework\Utilities\BinaryWriter.h" />
@@ -184,13 +183,18 @@
     <ClInclude Include="Objects\Algorithm\Node.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Objects\Basic\Cube.h" />
     <ClInclude Include="Objects\Basic\GameObject.h" />
     <ClInclude Include="Objects\Basic\Quad.h" />
+    <ClInclude Include="Objects\Collider\BoxCollider.h" />
+    <ClInclude Include="Objects\Collider\CapsuleCollider.h" />
     <ClInclude Include="Objects\Collider\Collider.h" />
-    <ClInclude Include="Objects\Collider\LineCollider.h" />
+    <ClInclude Include="Objects\Collider\SphereCollider.h" />
     <ClInclude Include="Objects\Manger\DataManager.h" />
     <ClInclude Include="Objects\Manger\EventManager.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Scenes\CollisionScene.h" />
+    <ClInclude Include="Scenes\CubeScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\TutorialScene.h" />
     <ClInclude Include="targetver.h" />
@@ -210,15 +214,13 @@
     <ClCompile Include="Framework\Manager\SceneManager.cpp" />
     <ClCompile Include="Framework\Math\GameMath.cpp" />
     <ClCompile Include="Framework\Math\Transform.cpp" />
-    <ClCompile Include="Framework\Render\Clip.cpp" />
-    <ClCompile Include="Framework\Render\Frame.cpp" />
     <ClCompile Include="Framework\Render\Material.cpp" />
-    <ClCompile Include="Framework\Render\Mesh.cpp" />
     <ClCompile Include="Framework\Render\RenderTarget.cpp" />
     <ClCompile Include="Framework\Render\Texture.cpp" />
     <ClCompile Include="Framework\Shader\PixelShader.cpp" />
     <ClCompile Include="Framework\Shader\Shader.cpp" />
     <ClCompile Include="Framework\Shader\VertexShader.cpp" />
+    <ClCompile Include="Framework\Stats\RasterizerState.cpp" />
     <ClCompile Include="Framework\Utilities\Audio.cpp" />
     <ClCompile Include="Framework\Utilities\BinaryReader.cpp" />
     <ClCompile Include="Framework\Utilities\BinaryWriter.cpp" />
@@ -238,12 +240,15 @@
     <ClCompile Include="Objects\Algorithm\Node.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Objects\Basic\Cube.cpp" />
     <ClCompile Include="Objects\Basic\GameObject.cpp" />
     <ClCompile Include="Objects\Basic\Quad.cpp" />
+    <ClCompile Include="Objects\Collider\BoxCollider.cpp" />
     <ClCompile Include="Objects\Collider\Collider.cpp" />
-    <ClCompile Include="Objects\Collider\LineCollider.cpp" />
     <ClCompile Include="Objects\Manger\DataManager.cpp" />
     <ClCompile Include="Objects\Manger\EventManager.cpp" />
+    <ClCompile Include="Scenes\CollisionScene.cpp" />
+    <ClCompile Include="Scenes\CubeScene.cpp" />
     <ClCompile Include="Scenes\TutorialScene.cpp" />
     <ClCompile Include="WinAPI_2504.cpp" />
   </ItemGroup>
@@ -255,7 +260,7 @@
     <Image Include="WinAPI_2504.ico" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Resources\Shaders\Collider.hlsl">
+    <FxCompile Include="Resources\Shaders\Basic\Collider.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
@@ -303,7 +308,7 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
-    <FxCompile Include="Resources\Shaders\Texture.hlsl">
+    <FxCompile Include="Resources\Shaders\Basic\Texture.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

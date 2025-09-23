@@ -2,8 +2,10 @@
 
 bool Collider::isDraw = true;
 
-Collider::Collider() : GameObject(L"Collider.hlsl")
+Collider::Collider() : GameObject(L"Basic/Collider.hlsl")
 {    
+	mesh = new Mesh<Vertex>();
+
     SetColor(0, 1, 0);
 }
 
@@ -14,10 +16,12 @@ bool Collider::IsCollision(Collider* collider, Vector2* overlap)
 
     switch (collider->type)
     {
-    case Collider::Type::Rect:
-        return IsRectCollision((RectCollider*)collider, overlap);
-    case Collider::Type::Circle:
-        return IsCircleCollision((CircleCollider*)collider);    
+	case Type::Box:
+		return IsBoxCollision((BoxCollider*)collider);
+	case Type::Sphere:
+		return IsSphereCollision((SphereCollider*)collider);
+	case Type::Capsule:
+		return IsCapsuleCollision((CapsuleCollider*)collider);
     }
 
     return false;
@@ -33,9 +37,5 @@ void Collider::Render()
 
     material->Set();
 
-    mesh->Draw(D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);
-}
-
-void Collider::MakeMesh()
-{
+    mesh->Draw(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
 }

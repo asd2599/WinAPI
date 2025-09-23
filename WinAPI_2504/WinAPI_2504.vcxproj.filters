@@ -111,12 +111,6 @@
     <ClInclude Include="Framework\Render\Mesh.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Render\Frame.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Render\Clip.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Utilities\tinyxml2.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -141,9 +135,6 @@
     <ClInclude Include="Libraries\ImGui\dirent\dirent.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Collider\LineCollider.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\Algorithm\Node.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -160,6 +151,27 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Math\Vector3.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\CubeScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Basic\Cube.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\CollisionScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Collider\BoxCollider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Collider\SphereCollider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Collider\CapsuleCollider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Stats\RasterizerState.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -236,15 +248,6 @@
     <ClCompile Include="Framework\Render\Texture.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Render\Mesh.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Render\Frame.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Render\Clip.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Utilities\tinyxml2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -263,9 +266,6 @@
     <ClCompile Include="Libraries\ImGui\ImGuiFileDialog.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Collider\LineCollider.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\Algorithm\Node.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -279,6 +279,21 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Scenes\TutorialScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\CubeScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Basic\Cube.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\CollisionScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Collider\BoxCollider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Stats\RasterizerState.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -297,8 +312,8 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\Shaders\Tutorial.hlsl" />
-    <FxCompile Include="Resources\Shaders\Collider.hlsl" />
-    <FxCompile Include="Resources\Shaders\Texture.hlsl" />
+    <FxCompile Include="Resources\Shaders\Basic\Collider.hlsl" />
+    <FxCompile Include="Resources\Shaders\Basic\Texture.hlsl" />
     <FxCompile Include="Resources\Shaders\ProgressBar.hlsl" />
     <FxCompile Include="Resources\Shaders\MultiTexture.hlsl" />
     <FxCompile Include="Resources\Shaders\Filter.hlsl" />
