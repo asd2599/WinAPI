@@ -99,6 +99,17 @@ public:
 
     Vector4* GetValue() { return &value; }
 
+
+public:
+	static float Dot(const Vector3& v1, const Vector3& v2)
+	{
+		return XMVectorGetX(XMVector3Dot(v1.value, v2.value));
+	}
+    static Vector3 Cross(const Vector3& v1, const Vector3& v2)
+    {
+        return XMVector3Cross(v1.value, v2.value);
+    }
+
     static Vector3 Zero() { return Vector3(); }
     static Vector3 One() { return Vector3(1, 1, 1); }
     static Vector3 Right() { return Vector3(1, 0, 0); }

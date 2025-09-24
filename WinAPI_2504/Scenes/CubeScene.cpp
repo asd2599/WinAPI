@@ -12,12 +12,20 @@ CubeScene::CubeScene()
 	cube->GetMaterial()->SetBaseMap(L"Resources/Textures/Landscape/Box.png");
 
 	quad->SetParent(cube);
+
+	plane = new Plane();
+	plane->GetMaterial()->SetBaseMap(L"Resources/Textures/Test.jfif");
+
+	sphere = new Sphere();
+	sphere->GetMaterial()->SetBaseMap(L"Resources/Textures/Test.jfif");
 }
 
 CubeScene::~CubeScene()
 {
 	delete quad;
 	delete cube;
+	delete plane;
+	delete sphere;
 }
 
 void CubeScene::Update()
@@ -26,6 +34,8 @@ void CubeScene::Update()
 
 	quad->UpdateWorld();
 	cube->UpdateWorld();
+	plane->UpdateWorld();
+	sphere->UpdateWorld();
 }
 
 void CubeScene::PreRender()
@@ -36,6 +46,8 @@ void CubeScene::Render()
 {
 	quad->Render();
 	cube->Render();
+	plane->Render();
+	sphere->Render();
 }
 
 void CubeScene::PostRender()
@@ -46,4 +58,6 @@ void CubeScene::GUIRender()
 {
 	quad->Edit();
 	cube->Edit();
+	plane->Edit();
+	sphere->Edit();
 }

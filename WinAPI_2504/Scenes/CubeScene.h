@@ -15,4 +15,6 @@ public:
 private:
 	Quad* quad;
 	Cube* cube;
+	Plane* plane;
+	Sphere* sphere;
 };

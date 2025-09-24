@@ -16,6 +16,8 @@ public:
 	void SetUIViewBuffer();
 
 	Camera* GetMainCamera() { return mainCamera; }
+	Matrix GetPerspective() { return perspective; }
+
 private:
 	void CreateProjection();
 	void CreateSamplerState();
@@ -24,6 +26,8 @@ private:
 
 private:
 	bool isWireFrame = false;
+
+	Matrix perspective;
 
 	Camera* mainCamera;
 	MatrixBuffer* projectionBuffer;

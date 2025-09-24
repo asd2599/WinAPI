@@ -76,10 +76,10 @@ void Environment::CreateProjection()
     //Matrix projection = XMMatrixOrthographicOffCenterLH(0.0f,
 	//	SCREEN_WIDTH, 0.0f, SCREEN_HEIGHT, -1.0f, 1.0f);
 	//Perspective : 원근감이 있는 투영변환
-	Matrix projection = XMMatrixPerspectiveFovLH(PI * 0.25f,
+	perspective = XMMatrixPerspectiveFovLH(PI * 0.25f,
 		SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 1000.f);
 
-    projectionBuffer->Set(projection);
+    projectionBuffer->Set(perspective);
     projectionBuffer->SetVS(2);
 }
 

@@ -3,8 +3,14 @@
 
 CollisionScene::CollisionScene()
 {
-	colliders.push_back(new BoxCollider());
-	colliders.back()->SetTag("BoxCollider1");
+	//colliders.push_back(new BoxCollider());
+	//colliders.back()->SetTag("BoxCollider1");
+
+	colliders.push_back(new SphereCollider());
+	colliders.back()->SetTag("SphereCollider1");
+
+	colliders.push_back(new SphereCollider());
+	colliders.back()->SetTag("SphereCollider2");
 }
 
 CollisionScene::~CollisionScene()
@@ -15,6 +21,21 @@ CollisionScene::~CollisionScene()
 
 void CollisionScene::Update()
 {
+	Ray ray = CAM->ScreenPointToRay(mousePos);
+	RayHit hitInfo;
+
+
+	if (colliders[0]->IsRayCollision(ray, &hitInfo))
+	{
+		colliders[0]->SetColor(1, 0, 0);
+
+		colliders[1]->SetLocalPosition(hitInfo.position);
+	}
+	else
+	{
+		colliders[0]->SetColor(0, 1, 0);
+	}
+
 	for (Collider* collider : colliders)
 		collider->UpdateWorld();	
 }

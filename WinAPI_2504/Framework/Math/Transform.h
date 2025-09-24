@@ -25,6 +25,7 @@ public:
 
 	Vector3 GetRight() { return right.GetNormalized(); }
 	Vector3 GetUp() { return up.GetNormalized(); }
+	Vector3 GetForward() { return forward.GetNormalized(); }
 
 	Vector3 GetGlobalPosition() { return globalPosition; }
 	Vector3 GetGlobalScale() { return globalScale; }

@@ -14,6 +14,8 @@ Camera::~Camera()
 
 void Camera::Update()
 {
+	projection = Environment::Get()->GetPerspective();
+
     if (target)
         FollowMode();
     else
@@ -26,6 +28,31 @@ void Camera::Update()
 	viewBuffer->SetVS(1);
 }
 
+Ray Camera::ScreenPointToRay(Vector3 screenPos)
+{
+    Vector3 screenSize(SCREEN_WIDTH, SCREEN_HEIGHT, 1.0f);    
+
+    Vector2 point;
+	point.x = (screenPos.x / screenSize.x) * 2.0f - 1.0f;
+	point.y = (screenPos.y / screenSize.y) * 2.0f - 1.0f;
+	//-> 0~screen -> -1~1
+
+    Float4x4 temp;
+    XMStoreFloat4x4(&temp, projection);
+
+	screenPos.x = point.x / temp._11;
+	screenPos.y = point.y / temp._22;
+    screenPos.z = 1.0f;
+
+    screenPos = XMVector3TransformNormal(screenPos, world);
+
+    Ray ray;
+	ray.origin = localPosition;
+	ray.direction = screenPos.GetNormalized();
+
+    return ray;
+}
+
 void Camera::FreeMode()
 {
     Vector3 delta = mousePos - prevMousePos;
@@ -34,17 +61,17 @@ void Camera::FreeMode()
     if (Input::Get()->IsKeyPress(VK_RBUTTON))
     {
         if (Input::Get()->IsKeyPress('W'))
-            Translate(Vector3::Forward() * moveSpeed * DELTA);
+            Translate(forward * moveSpeed * DELTA);
         if (Input::Get()->IsKeyPress('S'))
-            Translate(Vector3::Back() * moveSpeed * DELTA);
+            Translate(-forward * moveSpeed * DELTA);
         if (Input::Get()->IsKeyPress('Q'))
-            Translate(Vector3::Up() * moveSpeed * DELTA);
+            Translate(up * moveSpeed * DELTA);
         if (Input::Get()->IsKeyPress('E'))
-            Translate(Vector3::Down() * moveSpeed * DELTA);
+            Translate(-up * moveSpeed * DELTA);
         if (Input::Get()->IsKeyPress('A'))
-            Translate(Vector3::Left() * moveSpeed * DELTA);
+            Translate(-right * moveSpeed * DELTA);
         if (Input::Get()->IsKeyPress('D'))
-            Translate(Vector3::Right() * moveSpeed * DELTA);
+            Translate(right * moveSpeed * DELTA);
 
         Rotate(Vector3::Right(), -delta.y * rotSpeed * DELTA);
         Rotate(Vector3::Up(), delta.x * rotSpeed * DELTA);

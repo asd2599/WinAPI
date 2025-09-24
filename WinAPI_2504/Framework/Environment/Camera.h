@@ -10,6 +10,8 @@ public:
 
 	void SetTarget(Transform* target) { this->target = target; }
 
+	class Ray ScreenPointToRay(Vector3 screenPos);
+
 private:
 	void FreeMode();
 	void FollowMode();
@@ -20,6 +22,7 @@ private:
 	Vector3 prevMousePos;
 
 	Matrix view;
+	Matrix projection;
 	MatrixBuffer* viewBuffer;	
 
 	Transform* target = nullptr;	

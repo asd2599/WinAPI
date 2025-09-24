@@ -109,7 +109,9 @@ typedef function<void()> Event;
 
 #include "Objects/Basic/GameObject.h"
 #include "Objects/Basic/Quad.h"
+#include "Objects/Basic/Plane.h"
 #include "Objects/Basic/Cube.h"
+#include "Objects/Basic/Sphere.h"
 
 #include "Objects/Collider/Collider.h"
 #include "Objects/Collider/BoxCollider.h"
