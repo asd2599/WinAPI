@@ -13,7 +13,8 @@ public:
 	void Edit();
 
 	void SetViewport(UINT width = SCREEN_WIDTH, UINT height = SCREEN_HEIGHT);
-	void SetUIViewBuffer();
+	void SetRender();
+	void SetPostRender();
 
 	Camera* GetMainCamera() { return mainCamera; }
 	Matrix GetPerspective() { return perspective; }
@@ -28,7 +29,9 @@ private:
 	bool isWireFrame = false;
 
 	Matrix perspective;
+	Matrix orthographic;
 
+	class Grid* grid;
 	Camera* mainCamera;
 	MatrixBuffer* projectionBuffer;
 	MatrixBuffer* uiViewBuffer;
@@ -36,5 +39,5 @@ private:
 	ID3D11SamplerState* samplerState;
 	ID3D11BlendState* alphaBlendState;	
 
-	RasterizerState* rasterizerState[2];
+	RasterizerState* rasterizerState[2];	
 };

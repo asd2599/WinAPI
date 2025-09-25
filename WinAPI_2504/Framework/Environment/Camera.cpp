@@ -64,9 +64,9 @@ void Camera::FreeMode()
             Translate(forward * moveSpeed * DELTA);
         if (Input::Get()->IsKeyPress('S'))
             Translate(-forward * moveSpeed * DELTA);
-        if (Input::Get()->IsKeyPress('Q'))
-            Translate(up * moveSpeed * DELTA);
         if (Input::Get()->IsKeyPress('E'))
+            Translate(up * moveSpeed * DELTA);
+        if (Input::Get()->IsKeyPress('Q'))
             Translate(-up * moveSpeed * DELTA);
         if (Input::Get()->IsKeyPress('A'))
             Translate(-right * moveSpeed * DELTA);

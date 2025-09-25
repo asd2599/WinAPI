@@ -112,6 +112,7 @@ typedef function<void()> Event;
 #include "Objects/Basic/Plane.h"
 #include "Objects/Basic/Cube.h"
 #include "Objects/Basic/Sphere.h"
+#include "Objects/Basic/Grid.h"
 
 #include "Objects/Collider/Collider.h"
 #include "Objects/Collider/BoxCollider.h"
@@ -120,6 +121,8 @@ typedef function<void()> Event;
 
 #include "Objects/Manger/DataManager.h"
 #include "Objects/Manger/EventManager.h"
+
+#include "Objects/Game/GameBall.h"
 
 #include "Scenes/Scene.h"
 #include "Framework/Manager/SceneManager.h"

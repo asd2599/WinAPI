@@ -3,6 +3,7 @@
 
 Environment::Environment()
 {
+	grid = new Grid();
 	mainCamera = new Camera();
 	mainCamera->Load();
 	uiViewBuffer = new MatrixBuffer();
@@ -15,6 +16,7 @@ Environment::Environment()
 
 Environment::~Environment()
 {
+	delete grid;
 	mainCamera->Save();
 	delete mainCamera;
 	delete projectionBuffer;
@@ -49,7 +51,6 @@ void Environment::Edit()
 
 void Environment::SetViewport(UINT width, UINT height)
 {
-	////////////////////////////////////////////////////////////
 	D3D11_VIEWPORT viewport;
 	viewport.Width = width;
 	viewport.Height = height;
@@ -58,14 +59,27 @@ void Environment::SetViewport(UINT width, UINT height)
 	viewport.TopLeftX = 0.0f;
 	viewport.TopLeftY = 0.0f;
 
-	DC->RSSetViewports(1, &viewport);
-
-	rasterizerState[isWireFrame]->SetState();
+	DC->RSSetViewports(1, &viewport);	
 }
 
-void Environment::SetUIViewBuffer()
+void Environment::SetRender()
 {
-	uiViewBuffer->SetVS(1);
+	SetViewport();
+
+	projectionBuffer->Set(perspective);
+	projectionBuffer->SetVS(2);
+
+	rasterizerState[isWireFrame]->SetState();
+
+	grid->Render();
+}
+
+void Environment::SetPostRender()
+{
+	uiViewBuffer->SetVS(1);	
+
+	projectionBuffer->Set(orthographic);
+	projectionBuffer->SetVS(2);
 }
 
 void Environment::CreateProjection()
@@ -73,13 +87,12 @@ void Environment::CreateProjection()
     projectionBuffer = new MatrixBuffer();
 
     //Orthographic : 원근감이 없는 직육면체의 절두체를 형성하는 투영변환
-    //Matrix projection = XMMatrixOrthographicOffCenterLH(0.0f,
-	//	SCREEN_WIDTH, 0.0f, SCREEN_HEIGHT, -1.0f, 1.0f);
+    orthographic = XMMatrixOrthographicOffCenterLH(0.0f,
+		SCREEN_WIDTH, 0.0f, SCREEN_HEIGHT, -1.0f, 1.0f);
 	//Perspective : 원근감이 있는 투영변환
 	perspective = XMMatrixPerspectiveFovLH(PI * 0.25f,
 		SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 1000.f);
-
-    projectionBuffer->Set(perspective);
+    
     projectionBuffer->SetVS(2);
 }
 

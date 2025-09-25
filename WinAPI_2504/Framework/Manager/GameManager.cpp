@@ -3,6 +3,7 @@
 #include "Scenes/TutorialScene.h"
 #include "Scenes/CubeScene.h"
 #include "Scenes/CollisionScene.h"
+#include "Scenes/SphereScene.h"
 
 GameManager::GameManager()
 {
@@ -11,6 +12,7 @@ GameManager::GameManager()
 	//SCENE->AddScene("Game", new TutorialScene());	
 	//SCENE->AddScene("Game", new CubeScene());
 	SCENE->AddScene("Game", new CollisionScene());
+	//SCENE->AddScene("Game", new SphereScene());
 
 	SCENE->ChangeScene("Game");
 }
@@ -37,12 +39,13 @@ void GameManager::Render()
 {
 	SCENE->PreRender();
 	
-	Environment::Get()->SetViewport();
+	
 	Device::Get()->Clear();	
 
+	Environment::Get()->SetRender();
 	SCENE->Render();
 
-	Environment::Get()->SetUIViewBuffer();
+	Environment::Get()->SetPostRender();
 	SCENE->PostRender();
 
 	ImGui_ImplDX11_NewFrame();
