@@ -4,6 +4,7 @@
 #include "Scenes/CubeScene.h"
 #include "Scenes/CollisionScene.h"
 #include "Scenes/SphereScene.h"
+#include "Scenes/BlockScene.h"
 
 GameManager::GameManager()
 {
@@ -13,6 +14,7 @@ GameManager::GameManager()
 	//SCENE->AddScene("Game", new CubeScene());
 	SCENE->AddScene("Game", new CollisionScene());
 	//SCENE->AddScene("Game", new SphereScene());
+	//SCENE->AddScene("Game", new BlockScene());
 
 	SCENE->ChangeScene("Game");
 }

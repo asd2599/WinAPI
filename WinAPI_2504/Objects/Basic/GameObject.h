@@ -14,14 +14,9 @@ public:
 	
 	Material* GetMaterial() { return material; }
 
-	void SetColor(float r, float g, float b, float a = 1.0f);
-
-	void SetActive(bool isActive) { this->isActive = isActive; }
-	bool IsActive() { return isActive; }
+	void SetColor(float r, float g, float b, float a = 1.0f);	
 
 protected:
-	bool isActive = true;
-
 	Material* material;
 	MatrixBuffer* worldBuffer;	
 };

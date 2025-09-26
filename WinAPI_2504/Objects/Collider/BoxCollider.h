@@ -22,6 +22,9 @@ public:
 	void GetOBB(ObbDesc& desc);
 
 private:
+	bool IsSeperateAxis(Vector3 D, Vector3 axis, ObbDesc box1, ObbDesc box2);
+
+private:
 	void MakeMesh() override;
 
 private:

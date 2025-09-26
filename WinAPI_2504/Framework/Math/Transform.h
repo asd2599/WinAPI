@@ -23,6 +23,10 @@ public:
 	void Save();
 	void Load();
 
+	void SetActive(bool isActive) { this->isActive = isActive; }
+	bool IsActive();
+	bool IsActiveSelf() { return isActive; }
+
 	Vector3 GetRight() { return right.GetNormalized(); }
 	Vector3 GetUp() { return up.GetNormalized(); }
 	Vector3 GetForward() { return forward.GetNormalized(); }
@@ -53,6 +57,8 @@ public:
 protected:
 	string tag;
 
+	bool isActive = true;
+
 	Vector3 localPosition;
 	Vector3 localRotation;
 	Vector3 localScale = { 1, 1, 1};	
@@ -70,7 +76,7 @@ private:
 	Matrix P, IP;
 
 	Vector3 globalPosition;
-	Vector3 globalScale = { 1, 1, 1};
+	Vector3 globalScale = { 1, 1, 1};	
 
 	Transform* parent = nullptr;
 };

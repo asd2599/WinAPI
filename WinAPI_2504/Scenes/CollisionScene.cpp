@@ -6,8 +6,11 @@ CollisionScene::CollisionScene()
 	colliders.push_back(new BoxCollider());
 	colliders.back()->SetTag("BoxCollider1");
 
-	colliders.push_back(new SphereCollider());
-	colliders.back()->SetTag("SphereCollider1");
+	//colliders.push_back(new SphereCollider());
+	//colliders.back()->SetTag("SphereCollider1");
+
+	colliders.push_back(new BoxCollider());
+	colliders.back()->SetTag("BoxCollider2");
 
 	//colliders.push_back(new SphereCollider());
 	//colliders.back()->SetTag("SphereCollider2");
@@ -25,15 +28,26 @@ void CollisionScene::Update()
 	RayHit hitInfo;
 
 
-	if (colliders[0]->IsRayCollision(ray, &hitInfo))
+	//if (colliders[0]->IsRayCollision(ray, &hitInfo))
+	//{
+	//	colliders[0]->SetColor(1, 0, 0);
+	//
+	//	colliders[1]->SetLocalPosition(hitInfo.position + hitInfo.normal);
+	//}
+	//else
+	//{
+	//	colliders[0]->SetColor(0, 1, 0);
+	//}
+
+	if (colliders[0]->IsCollision(colliders[1]))
 	{
 		colliders[0]->SetColor(1, 0, 0);
-
-		colliders[1]->SetLocalPosition(hitInfo.position);
+		colliders[1]->SetColor(1, 0, 0);
 	}
 	else
 	{
 		colliders[0]->SetColor(0, 1, 0);
+		colliders[1]->SetColor(0, 1, 0);
 	}
 
 	for (Collider* collider : colliders)

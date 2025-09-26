@@ -15,6 +15,8 @@ BoxCollider::~BoxCollider()
 
 bool BoxCollider::IsRayCollision(const Ray& ray, RayHit* hitInfo)
 {
+	if (!IsActive()) return false;
+
 	UpdateWorld();
 
 	ObbDesc box;
@@ -29,6 +31,7 @@ bool BoxCollider::IsRayCollision(const Ray& ray, RayHit* hitInfo)
 
 	float tMin = 0.0f;
 	float tMax = FLT_MAX;
+	int axisIndex = 0;
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -52,7 +55,10 @@ bool BoxCollider::IsRayCollision(const Ray& ray, RayHit* hitInfo)
 			if (t2 < tMax)
 				tMax = t2;
 			if (t1 > tMin)
+			{
 				tMin = t1;
+				axisIndex = i;
+			}
 
 			if (tMax < tMin)
 				return false;
@@ -64,7 +70,9 @@ bool BoxCollider::IsRayCollision(const Ray& ray, RayHit* hitInfo)
 		hitInfo->isHit = true;
 		hitInfo->distance = tMin;
 		hitInfo->position = ray.origin + D * hitInfo->distance;
-		hitInfo->normal = (hitInfo->position - box.center).GetNormalized();
+		//hitInfo->normal = (hitInfo->position - box.center).GetNormalized();
+		hitInfo->normal = (Vector3::Dot(D, box.axis[axisIndex]) < 0) ?
+			box.axis[axisIndex] : box.axis[axisIndex] * -1.0f;
 	}
 
     return true;
@@ -72,7 +80,36 @@ bool BoxCollider::IsRayCollision(const Ray& ray, RayHit* hitInfo)
 
 bool BoxCollider::IsBoxCollision(BoxCollider* collider)
 {
-    return false;
+	ObbDesc box1, box2;
+	GetOBB(box1);
+	collider->GetOBB(box2);
+
+	Vector3 D = box2.center - box1.center;
+
+	for (UINT i = 0; i < 3; i++)
+	{
+		if (IsSeperateAxis(D, box1.axis[i], box1, box2)) return false;
+		if (IsSeperateAxis(D, box2.axis[i], box1, box2)) return false;
+	}
+
+	for (UINT i = 0; i < 3; i++)
+	{
+		for (UINT j = 0; j < 3; j++)
+		{
+			if (box1.axis[i] == box2.axis[j]) return true;
+		}
+	}
+
+	for (UINT i = 0; i < 3; i++)
+	{
+		for (UINT j = 0; j < 3; j++)
+		{
+			Vector3 cross = Vector3::Cross(box1.axis[i], box2.axis[j]);
+			if (IsSeperateAxis(D, cross, box1, box2)) return false;
+		}
+	}
+
+	return true;
 }
 
 bool BoxCollider::IsSphereCollision(SphereCollider* collider)
@@ -92,6 +129,24 @@ void BoxCollider::GetOBB(ObbDesc& desc)
 	desc.axis[1] = GetUp();
 	desc.axis[2] = GetForward();
 	desc.halfSize = size * 0.5f * GetGlobalScale();
+}
+
+bool BoxCollider::IsSeperateAxis(Vector3 D, Vector3 axis, ObbDesc box1, ObbDesc box2)
+{
+	float distance = abs(Vector3::Dot(D, axis));
+
+	float a = 0.0f;
+	float b = 0.0f;
+
+	for (UINT i = 0; i < 3; i++)
+	{
+		Vector3 temp = box1.axis[i] * box1.halfSize[i];
+		a += abs(Vector3::Dot(temp, axis));
+		temp = box2.axis[i] * box2.halfSize[i];
+		b += abs(Vector3::Dot(temp, axis));
+	}
+
+	return distance > a + b;
 }
 
 void BoxCollider::MakeMesh()

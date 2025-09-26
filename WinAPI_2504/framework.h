@@ -32,6 +32,7 @@
 #include <fstream>
 #include <assert.h>
 #include <algorithm>
+#include <queue>
 
 #include <d3d11.h>
 #include <d3dcompiler.h>
@@ -123,6 +124,7 @@ typedef function<void()> Event;
 #include "Objects/Manger/EventManager.h"
 
 #include "Objects/Game/GameBall.h"
+#include "Objects/Game/Block.h"
 
 #include "Scenes/Scene.h"
 #include "Framework/Manager/SceneManager.h"
