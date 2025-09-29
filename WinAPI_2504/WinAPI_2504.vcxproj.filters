@@ -195,6 +195,12 @@
     <ClInclude Include="Objects\Game\Block.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\Game\Steve.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\LightScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI_2504.cpp">
@@ -341,6 +347,12 @@
     <ClCompile Include="Objects\Game\Block.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Game\Steve.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\LightScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI_2504.rc">
@@ -359,12 +371,17 @@
     <FxCompile Include="Resources\Shaders\Basic\Grid.hlsl" />
     <FxCompile Include="Resources\Shaders\Basic\Collider.hlsl" />
     <FxCompile Include="Resources\Shaders\Basic\Texture.hlsl" />
-    <FxCompile Include="Resources\Shaders\ProgressBar.hlsl" />
-    <FxCompile Include="Resources\Shaders\MultiTexture.hlsl" />
-    <FxCompile Include="Resources\Shaders\Filter.hlsl" />
-    <FxCompile Include="Resources\Shaders\Outline.hlsl" />
-    <FxCompile Include="Resources\Shaders\Instancing.hlsl" />
-    <FxCompile Include="Resources\Shaders\SpriteInstancing.hlsl" />
-    <FxCompile Include="Resources\Shaders\Light.hlsl" />
+    <FxCompile Include="Resources\Shaders\2D\ProgressBar.hlsl" />
+    <FxCompile Include="Resources\Shaders\2D\MultiTexture.hlsl" />
+    <FxCompile Include="Resources\Shaders\2D\Filter.hlsl" />
+    <FxCompile Include="Resources\Shaders\2D\Outline.hlsl" />
+    <FxCompile Include="Resources\Shaders\2D\Instancing.hlsl" />
+    <FxCompile Include="Resources\Shaders\2D\SpriteInstancing.hlsl" />
+    <FxCompile Include="Resources\Shaders\2D\Light.hlsl" />
+    <FxCompile Include="Resources\Shaders\Light\DiffuseLight.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shaders\VertexHeader.hlsli" />
+    <None Include="Resources\Shaders\PixelHeader.hlsli" />
   </ItemGroup>
 </Project>

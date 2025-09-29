@@ -35,6 +35,7 @@ private:
 	Camera* mainCamera;
 	MatrixBuffer* projectionBuffer;
 	MatrixBuffer* uiViewBuffer;
+	LightBuffer* lightBuffer;
 
 	ID3D11SamplerState* samplerState;
 	ID3D11BlendState* alphaBlendState;	

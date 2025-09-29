@@ -41,12 +41,14 @@ void Sphere::MakeMesh()
 
 			VertexType vertex;
 
-			vertex.x = cos(theta) * sin(phi) * radius;
-			vertex.y = cos(phi) * radius;
-			vertex.z = sin(theta) * sin(phi) * radius;
+			vertex.normal.x = cos(theta) * sin(phi);
+			vertex.normal.y = cos(phi);
+			vertex.normal.z = sin(theta) * sin(phi);
 
-			vertex.u = (float)j / sliceCount;
-			vertex.v = (float)i / stackCount;
+			vertex.pos = Vector3(vertex.normal) * radius;
+
+			vertex.uv.x = (float)j / sliceCount;
+			vertex.uv.y = (float)i / stackCount;
 
 			vertices.emplace_back(vertex);
 		}

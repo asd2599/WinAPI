@@ -7,10 +7,11 @@ Environment::Environment()
 	mainCamera = new Camera();
 	mainCamera->Load();
 	uiViewBuffer = new MatrixBuffer();
+	lightBuffer = new LightBuffer();
 
 	CreateProjection();
     CreateSamplerState();
-	CreateBlendState();
+	//CreateBlendState();
 	CreateStats();
 }
 
@@ -21,12 +22,13 @@ Environment::~Environment()
 	delete mainCamera;
 	delete projectionBuffer;
 	delete uiViewBuffer;
+	delete lightBuffer;
 
 	delete rasterizerState[0];
 	delete rasterizerState[1];
 
     samplerState->Release();
-	alphaBlendState->Release();
+	//alphaBlendState->Release();
 }
 
 void Environment::Update()
@@ -47,6 +49,8 @@ void Environment::Update()
 void Environment::Edit()
 {
 	mainCamera->Edit();
+
+	ImGui::SliderFloat3("Light Direction", (float*)&lightBuffer->GetData()->direction, -1, 1);
 }
 
 void Environment::SetViewport(UINT width, UINT height)
@@ -72,6 +76,8 @@ void Environment::SetRender()
 	rasterizerState[isWireFrame]->SetState();
 
 	grid->Render();
+
+	lightBuffer->SetPS(1);
 }
 
 void Environment::SetPostRender()

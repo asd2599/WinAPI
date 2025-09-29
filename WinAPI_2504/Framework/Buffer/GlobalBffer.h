@@ -62,3 +62,24 @@ public:
 private:
     int values[4] = {};
 };
+
+class LightBuffer : public ConstBuffer
+{
+public:
+    struct Data
+    {
+        Float3 direction = { 0, -1, 0 };
+
+        float padding;
+    };
+
+public:
+    LightBuffer() : ConstBuffer(&data, sizeof(Data))
+    {
+    }
+
+	Data* GetData() { return &data; }
+
+private:
+    Data data;
+};

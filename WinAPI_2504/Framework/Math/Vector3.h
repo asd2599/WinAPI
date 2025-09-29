@@ -109,6 +109,10 @@ public:
     {
         return XMVector3Cross(v1.value, v2.value);
     }
+	static float Distance(const Vector3& v1, const Vector3& v2)
+	{
+		return (v2 - v1).Length();
+	}
 
     static Vector3 Zero() { return Vector3(); }
     static Vector3 One() { return Vector3(1, 1, 1); }

@@ -4,7 +4,7 @@ PixelShader::PixelShader(wstring file)
 {
     UINT flags = D3DCOMPILE_ENABLE_STRICTNESS | D3DCOMPILE_DEBUG;
 
-    HRESULT result = D3DCompileFromFile(file.c_str(), nullptr, nullptr,
+    HRESULT result = D3DCompileFromFile(file.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE,
         "PS", "ps_5_0", flags, 0, &blob, nullptr);
 
     assert(SUCCEEDED(result));

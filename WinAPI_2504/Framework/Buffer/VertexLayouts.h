@@ -35,6 +35,17 @@ struct VertexUV//정점 : 3차원 공간에서의 한 점
     }
 };
 
+struct VertexUVNormal
+{
+    Float3 pos = {};
+    Float2 uv = {};
+    Float3 normal = {};
+
+    VertexUVNormal()		
+    {
+    }
+};
+
 struct InstanceData
 {
 	Matrix world;

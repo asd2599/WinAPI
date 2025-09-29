@@ -125,6 +125,7 @@ typedef function<void()> Event;
 
 #include "Objects/Game/GameBall.h"
 #include "Objects/Game/Block.h"
+#include "Objects/Game/Steve.h"
 
 #include "Scenes/Scene.h"
 #include "Framework/Manager/SceneManager.h"

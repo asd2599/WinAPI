@@ -26,4 +26,6 @@ private:
 	vector<Block*> blocks;
 
 	queue<Block*> mineBlocks;
+
+	Steve* steve;
 };

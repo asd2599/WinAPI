@@ -5,12 +5,16 @@ BlockScene::BlockScene()
 {
 	LoadTextures();
 	CreateBlocks();	
+
+	steve = new Steve();
 }
 
 BlockScene::~BlockScene()
 {
 	for (Block* block : blocks)
 		delete block;
+
+	delete steve;
 }
 
 void BlockScene::Update()
@@ -20,6 +24,8 @@ void BlockScene::Update()
 
 	if (Input::Get()->IsKeyDown(VK_RBUTTON))
 		Build();
+
+	steve->Update();
 }
 
 void BlockScene::PreRender()
@@ -30,6 +36,8 @@ void BlockScene::Render()
 {
 	for (Block* block : blocks)
 		block->Render();
+
+	steve->Render();
 }
 
 void BlockScene::PostRender()
