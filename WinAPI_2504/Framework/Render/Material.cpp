@@ -5,17 +5,25 @@ Material::Material(wstring shaderFile)
     vertexShader = Shader::AddVS(shaderFile);
     pixelShader = Shader::AddPS(shaderFile);
 
-    colorBuffer = new ColorBuffer();
+    materialBuffer = new MaterialBuffer();
 }
 
 Material::~Material()
 {
-	delete colorBuffer;
+	delete materialBuffer;
+}
+
+void Material::Edit()
+{
+	ImGui::ColorEdit4("mDiffuse", (float*)&materialBuffer->GetData()->diffuse);
+	ImGui::ColorEdit4("mSpecular", (float*)&materialBuffer->GetData()->specular);
+	ImGui::ColorEdit4("mAmbient", (float*)&materialBuffer->GetData()->ambient);
+	ImGui::SliderFloat("Shininess", &materialBuffer->GetData()->shininess, 1, 30);
 }
 
 void Material::SetColor(float r, float g, float b, float a)
 {
-	colorBuffer->Set(r, g, b, a);
+	materialBuffer->GetData()->diffuse = { r, g, b, a };
 }
 
 void Material::SetShader(wstring file)
@@ -36,16 +44,32 @@ void Material::SetPixelShader(wstring file)
 
 void Material::Set()
 {
-	if (baseMap)
-		baseMap->PSSet(0);
+	if (diffuseMap)
+		diffuseMap->PSSet(0);
 
-	colorBuffer->SetPS(0);
+	if (specularMap)
+		specularMap->PSSet(1);
+
+	if (normalMap)
+		normalMap->PSSet(2);
+
+	materialBuffer->SetPS(0);
 
 	vertexShader->Set();
 	pixelShader->Set();
 }
 
-void Material::SetBaseMap(wstring file)
+void Material::SetDiffuseMap(wstring file)
 {
-	baseMap = Texture::Add(file);
+	diffuseMap = Texture::Add(file);
+}
+
+void Material::SetSpecularMap(wstring file)
+{
+	specularMap = Texture::Add(file);
+}
+
+void Material::SetNormalMap(wstring file)
+{
+	normalMap = Texture::Add(file);
 }

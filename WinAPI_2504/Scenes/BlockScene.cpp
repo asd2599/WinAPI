@@ -71,7 +71,7 @@ void BlockScene::CreateBlocks()
 				block->SetLocalPosition(x, y, z);
 
 				int index = GameMath::Random(0, textures.size());
-				block->GetCube()->GetMaterial()->SetBaseMap(textures[index]);
+				block->GetCube()->GetMaterial()->SetDiffuseMap(textures[index]);
 
 				block->Update();
 

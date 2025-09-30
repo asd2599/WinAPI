@@ -6,6 +6,8 @@ public:
 	Material(wstring shaderFile = L"Basic/Texture.hlsl");
 	~Material();	
 
+	void Edit();
+
 	void SetColor(float r, float g, float b, float a = 1.0f);
 
 	void SetShader(wstring file);
@@ -14,17 +16,28 @@ public:
 
 	void Set();
 	
-	void SetBaseMap(wstring file);
-	void SetBaseMap(Texture* texture) { baseMap = texture; }
-	Texture* GetBaseMap() { return baseMap; }
+	void SetDiffuseMap(wstring file);
+	void SetDiffuseMap(Texture* texture) { diffuseMap = texture; }
 
-	ColorBuffer* GetColorBuffer() { return colorBuffer; }
+	void SetSpecularMap(wstring file);
+	void SetSpecularMap(Texture* texture) { specularMap = texture; }
+
+	void SetNormalMap(wstring file);
+	void SetNormalMap(Texture* texture) { normalMap = texture; }
+
+	Texture* GetDiffuseMap() { return diffuseMap; }
+
+	MaterialBuffer* GetColorBuffer() { return materialBuffer; }
 
 private:
+	string name;
+
 	VertexShader* vertexShader;
 	PixelShader* pixelShader;
 
-	ColorBuffer* colorBuffer;
+	MaterialBuffer* materialBuffer;
 
-	Texture* baseMap = nullptr;
+	Texture* diffuseMap = nullptr;
+	Texture* specularMap = nullptr;
+	Texture* normalMap = nullptr;
 };

@@ -44,6 +44,11 @@ struct VertexUVNormal
     VertexUVNormal()		
     {
     }
+
+    VertexUVNormal(float x, float y, float z, float u, float v)
+        : pos(x, y, z), uv(u, v)
+    {
+    }
 };
 
 struct InstanceData

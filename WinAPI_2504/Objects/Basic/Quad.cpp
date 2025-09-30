@@ -12,9 +12,9 @@ Quad::Quad(Vector2 size) : size(size)
 Quad::Quad(wstring textureFile, Vector2 startUV, Vector2 endUV)
 	: startUV(startUV), endUV(endUV)
 {
-	material->SetBaseMap(textureFile);
+	material->SetDiffuseMap(textureFile);
 
-	size = material->GetBaseMap()->GetSize() * (endUV - startUV);
+	size = material->GetDiffuseMap()->GetSize() * (endUV - startUV);
 
 	mesh = new Mesh<VertexType>();
 	MakeMesh();

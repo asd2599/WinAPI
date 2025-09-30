@@ -3,7 +3,7 @@
 class Cube : public GameObject
 {
 private:
-	typedef VertexUV VertexType;
+	typedef VertexUVNormal VertexType;
 
 public:
 	Cube(Vector3 size = Vector3(1, 1, 1));	

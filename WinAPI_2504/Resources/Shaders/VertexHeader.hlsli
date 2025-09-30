@@ -5,6 +5,7 @@ cbuffer WorldBuffer : register(b0)
 cbuffer ViewBuffer : register(b1)
 {
     matrix view;
+    matrix invView;
 }
 cbuffer ProjectionBuffer : register(b2)
 {

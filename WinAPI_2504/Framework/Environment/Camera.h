@@ -23,7 +23,7 @@ private:
 
 	Matrix view;
 	Matrix projection;
-	MatrixBuffer* viewBuffer;	
+	ViewBuffer* viewBuffer;	
 
 	Transform* target = nullptr;	
 };

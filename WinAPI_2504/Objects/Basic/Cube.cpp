@@ -6,6 +6,7 @@ Cube::Cube(Vector3 size) : size(size)
 
 	mesh = new Mesh<VertexType>();
 	MakeMesh();
+	MakeNormal(mesh);
 	mesh->CreateMesh();
 }
 

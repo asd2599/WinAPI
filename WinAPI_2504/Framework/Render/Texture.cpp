@@ -22,10 +22,19 @@ Texture* Texture::Add(wstring file)
     if (textures.count(file) > 0)
         return textures[file];
 
-    ScratchImage image;
-    HRESULT hResult = LoadFromWICFile(file.c_str(), WIC_FLAGS_NONE, nullptr, image);    
+    wstring extension = Utility::GetExtension(file);
 
-    assert(SUCCEEDED(hResult));
+    ScratchImage image;
+    HRESULT hResult;
+    
+    if (extension.compare(L"tga") == 0)
+        hResult = LoadFromTGAFile(file.c_str(), nullptr, image);
+    else if (extension.compare(L"dds") == 0)
+        hResult = LoadFromDDSFile(file.c_str(), DDS_FLAGS_NONE, nullptr, image);
+    else
+        hResult = LoadFromWICFile(file.c_str(), WIC_FLAGS_NONE, nullptr, image);
+
+    assert(SUCCEEDED(hResult));	
 
     ID3D11ShaderResourceView* srv;
 

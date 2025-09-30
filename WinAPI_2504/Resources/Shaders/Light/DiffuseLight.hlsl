@@ -29,7 +29,10 @@ float4 PS(Output output) : SV_TARGET
     float3 normal = normalize(output.normal);
     float3 light = normalize(-lightDirection);
     
-    float diffuse = dot(normal, light);
+    float diffuse = saturate(dot(normal, light));
     
-    return baseColor * color * diffuse;
+    float4 diffuseColor = baseColor * diffuse;
+    float4 ambientColor = baseColor * ambient;
+    
+    return diffuseColor + ambientColor;
 }

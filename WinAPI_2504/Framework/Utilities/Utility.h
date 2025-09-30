@@ -7,4 +7,6 @@ public:
 	static wstring ToWString(string str);
 
 	static vector<string> SplitString(string origin, string tok);
+
+	static wstring GetExtension(wstring file);
 };

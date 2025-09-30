@@ -17,6 +17,32 @@ private:
     Matrix matrix;
 };
 
+class ViewBuffer : public ConstBuffer
+{
+private:
+    struct Data
+    {
+        Matrix view;
+        Matrix invView;
+    };
+
+public:
+    ViewBuffer() : ConstBuffer(&data, sizeof(Data))
+    {
+        data.view = XMMatrixIdentity();
+        data.invView = XMMatrixIdentity();
+    }
+
+    void Set(Matrix view, Matrix invView)
+    {
+        data.view = XMMatrixTranspose(view);
+        data.invView = XMMatrixTranspose(invView);
+    }
+
+private:
+    Data data;
+};
+
 class ColorBuffer : public ConstBuffer
 {
 public:
@@ -36,6 +62,8 @@ public:
 private:
     Float4 color;
 };
+
+
 
 class FloatValueBuffer : public ConstBuffer
 {
@@ -68,9 +96,11 @@ class LightBuffer : public ConstBuffer
 public:
     struct Data
     {
+		Float4 ambient = { 0.1f, 0.1f, 0.1f, 1.0f };
+
         Float3 direction = { 0, -1, 0 };
 
-        float padding;
+        float padding = 0;
     };
 
 public:
@@ -79,6 +109,31 @@ public:
     }
 
 	Data* GetData() { return &data; }
+
+private:
+    Data data;
+};
+
+class MaterialBuffer : public ConstBuffer
+{
+public:
+    struct Data
+    {
+		Float4 diffuse = { 1, 1, 1, 1 };
+		Float4 specular = { 1, 1, 1, 1 };
+		Float4 ambient = { 1, 1, 1, 1 };
+		Float4 emissive = { 0, 0, 0, 1 };
+
+		float shininess = 16;
+		float padding[3];
+    };
+
+public:
+    MaterialBuffer() : ConstBuffer(&data, sizeof(Data))
+    {
+    }
+
+    Data* GetData() { return &data; }
 
 private:
     Data data;

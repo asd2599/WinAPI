@@ -50,7 +50,8 @@ void Environment::Edit()
 {
 	mainCamera->Edit();
 
-	ImGui::SliderFloat3("Light Direction", (float*)&lightBuffer->GetData()->direction, -1, 1);
+	ImGui::ColorEdit3("Ambient", (float*)&lightBuffer->GetData()->ambient);
+	ImGui::SliderFloat3("Light Direction", (float*)&lightBuffer->GetData()->direction, -1, 1);	
 }
 
 void Environment::SetViewport(UINT width, UINT height)

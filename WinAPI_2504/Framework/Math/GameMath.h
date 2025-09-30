@@ -9,6 +9,8 @@ public:
 	static int Random(const int& min, const int& max);
 	static float Random(const float& min, const float& max);
 
+	static float Clamp(const float& value, const float& min, const float& max);
+
 	static bool NearlyEqual(const float& s1, const float& s2);
 
 	template<typename T>

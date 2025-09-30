@@ -25,6 +25,14 @@ float GameMath::Random(const float& min, const float& max)
 	return min + (max - min) * normal;
 }
 
+float GameMath::Clamp(const float& value, const float& min, const float& max)
+{
+	if (value < min) return min;
+	if (value > max) return max;
+
+	return value;
+}
+
 bool GameMath::NearlyEqual(const float& s1, const float& s2)
 {
 	return abs(s1 - s2) < FLT_EPSILON;

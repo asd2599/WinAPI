@@ -5,19 +5,22 @@ CubeScene::CubeScene()
 {
 	quad = new Quad();
 	quad->Load();
-	quad->GetMaterial()->SetBaseMap(L"Resources/Textures/Test.jfif");
+	quad->GetMaterial()->SetDiffuseMap(L"Resources/Textures/Test.jfif");
 	//quad->GetMaterial()->SetShader(L"Tutorial.hlsl");
 
 	cube = new Cube();
-	cube->GetMaterial()->SetBaseMap(L"Resources/Textures/Landscape/Box.png");
+	cube->GetMaterial()->SetDiffuseMap(L"Resources/Textures/Landscape/Box.png");
+	cube->GetMaterial()->SetShader(L"Light/DiffuseLight.hlsl");
 
 	quad->SetParent(cube);
 
 	plane = new Plane();
-	plane->GetMaterial()->SetBaseMap(L"Resources/Textures/Test.jfif");
+	plane->GetMaterial()->SetDiffuseMap(L"Resources/Textures/Test.jfif");
+	plane->GetMaterial()->SetShader(L"Light/DiffuseLight.hlsl");
 
 	sphere = new Sphere();
-	sphere->GetMaterial()->SetBaseMap(L"Resources/Textures/Test.jfif");
+	sphere->GetMaterial()->SetDiffuseMap(L"Resources/Textures/Test.jfif");
+	sphere->GetMaterial()->SetShader(L"Light/DiffuseLight.hlsl");
 }
 
 CubeScene::~CubeScene()

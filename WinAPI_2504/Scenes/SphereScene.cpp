@@ -70,7 +70,7 @@ void SphereScene::Spawn()
 
 				ball->SetLocalPosition(x, 0.0f, z);
 				int index = GameMath::Random(0, ballTextures.size());
-				ball->GetSphere()->GetMaterial()->SetBaseMap(ballTextures[index]);
+				ball->GetSphere()->GetMaterial()->SetDiffuseMap(ballTextures[index]);
 
 				float scale = GameMath::Random(0.5f, 2.0f);
 				ball->SetLocalScale(scale, scale, scale);				

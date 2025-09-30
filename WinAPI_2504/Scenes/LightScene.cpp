@@ -4,8 +4,10 @@
 LightScene::LightScene()
 {
 	sphere = new Sphere();
-	sphere->GetMaterial()->SetBaseMap(L"Resources/Textures/Landscape/Box.png");
-	sphere->GetMaterial()->SetShader(L"Light/DiffuseLight.hlsl");
+	//sphere->GetMaterial()->SetBaseMap(L"Resources/Textures/Landscape/Box.png");
+	sphere->GetMaterial()->SetDiffuseMap(L"Resources/Textures/Landscape/Fieldstone_DM.tga");
+	sphere->GetMaterial()->SetSpecularMap(L"Resources/Textures/Landscape/Fieldstone_SM.tga");
+	sphere->GetMaterial()->SetShader(L"Light/SpecularLight.hlsl");
 	sphere->SetLocalScale(5, 5, 5);
 	sphere->UpdateWorld();
 }
@@ -36,4 +38,5 @@ void LightScene::PostRender()
 void LightScene::GUIRender()
 {
 	sphere->Edit();
+	sphere->GetMaterial()->Edit();
 }

@@ -4,7 +4,7 @@ Camera::Camera()
 {
 	tag = "Camera";
 
-	viewBuffer = new MatrixBuffer();
+	viewBuffer = new ViewBuffer();
 }
 
 Camera::~Camera()
@@ -24,7 +24,7 @@ void Camera::Update()
 	UpdateWorld();	
 
 	view = XMMatrixInverse(nullptr, world);
-	viewBuffer->Set(view);
+	viewBuffer->Set(view, world);
 	viewBuffer->SetVS(1);
 }
 

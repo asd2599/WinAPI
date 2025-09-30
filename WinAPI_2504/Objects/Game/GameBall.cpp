@@ -3,7 +3,7 @@
 GameBall::GameBall()
 {
 	sphere = new Sphere();
-	sphere->GetMaterial()->SetBaseMap(L"Resources/Textures/Test.jfif");
+	sphere->GetMaterial()->SetDiffuseMap(L"Resources/Textures/Test.jfif");
 	sphere->SetParent(this);
 }
 

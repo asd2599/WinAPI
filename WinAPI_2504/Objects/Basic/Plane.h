@@ -3,7 +3,7 @@
 class Plane : public GameObject
 {
 private:
-	typedef VertexUV VertexType;
+	typedef VertexUVNormal VertexType;
 
 public:
 	Plane(Vector2 size = Vector2(10, 10));
