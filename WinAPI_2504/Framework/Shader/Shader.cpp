@@ -12,6 +12,7 @@ VertexShader* Shader::AddVS(wstring file)
     wstring path = L"Resources/Shaders/" + file;
 
     shaders[key] = new VertexShader(path);
+    shaders[key]->file = file;
 
     return (VertexShader*)shaders[key];
 }
@@ -26,6 +27,7 @@ PixelShader* Shader::AddPS(wstring file)
     wstring path = L"Resources/Shaders/" + file;
 
     shaders[key] = new PixelShader(path);
+    shaders[key]->file = file;
 
     return (PixelShader*)shaders[key];
 }

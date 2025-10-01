@@ -97,10 +97,11 @@ public:
     struct Data
     {
 		Float4 ambient = { 0.1f, 0.1f, 0.1f, 1.0f };
-
+		Float4 color = { 1, 1, 1, 1 };
         Float3 direction = { 0, -1, 0 };
-
         float padding = 0;
+		Float3 position = { 0, 0, 0 };
+		float range = 100.0f;
     };
 
 public:
@@ -125,7 +126,8 @@ public:
 		Float4 emissive = { 0, 0, 0, 1 };
 
 		float shininess = 16;
-		float padding[3];
+		int hasNormalMap = 0;
+		float padding[2];
     };
 
 public:

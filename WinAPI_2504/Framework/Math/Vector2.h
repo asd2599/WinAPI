@@ -6,6 +6,9 @@ struct Vector2 : public Float2
 	{}
 	Vector2(float x, float y) : Float2(x, y)
 	{}
+	Vector2(Float2 value) : Float2(value)
+	{
+	}
 
 	Vector2 operator+(const Vector2& other) const
 	{

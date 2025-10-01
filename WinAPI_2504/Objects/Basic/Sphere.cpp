@@ -7,6 +7,7 @@ Sphere::Sphere(float radius, UINT stackCount, UINT sliceCount)
 
 	mesh = new Mesh<VertexType>();
 	MakeMesh();
+	MakeTangent(mesh);
 	mesh->CreateMesh();
 }
 

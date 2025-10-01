@@ -380,6 +380,7 @@
     <FxCompile Include="Resources\Shaders\2D\Light.hlsl" />
     <FxCompile Include="Resources\Shaders\Light\DiffuseLight.hlsl" />
     <FxCompile Include="Resources\Shaders\Light\SpecularLight.hlsl" />
+    <FxCompile Include="Resources\Shaders\Light\NormalMapping.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\VertexHeader.hlsli" />

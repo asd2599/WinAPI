@@ -6,11 +6,13 @@ cbuffer MateiralBuffer : register(b0)
     float4 mEmissive;
     
     float shininess;
+    int hasNormalMap;
 }
 
 cbuffer LightBuffer : register(b1)
 {
     float4 ambient;
+    float4 lightColor;
     float3 lightDirection;
 }
 

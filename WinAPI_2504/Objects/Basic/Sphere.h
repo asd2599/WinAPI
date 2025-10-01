@@ -3,7 +3,7 @@
 class Sphere : public GameObject
 {
 private:
-	typedef VertexUVNormal VertexType;
+	typedef VertexUVNormalTangent VertexType;
 
 public:
 	Sphere(float radius = 1.0f, UINT stackCount = 8, UINT sliceCount = 16);

@@ -18,6 +18,8 @@ public:
 
 protected:
 	void MakeNormal(Mesh<VertexUVNormal>* mesh);
+	void MakeNormal(Mesh<VertexUVNormalTangent>* mesh);
+	void MakeTangent(Mesh<VertexUVNormalTangent>* mesh);
 
 protected:
 	Material* material;

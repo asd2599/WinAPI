@@ -14,7 +14,11 @@ public:
 
     virtual void Set() = 0;
 
+    wstring GetFile() { return file; }
+
 protected:
+    wstring file;
+
     ID3DBlob* blob;
 
     static unordered_map<wstring, Shader*> shaders;

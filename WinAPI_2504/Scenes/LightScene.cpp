@@ -7,7 +7,8 @@ LightScene::LightScene()
 	//sphere->GetMaterial()->SetBaseMap(L"Resources/Textures/Landscape/Box.png");
 	sphere->GetMaterial()->SetDiffuseMap(L"Resources/Textures/Landscape/Fieldstone_DM.tga");
 	sphere->GetMaterial()->SetSpecularMap(L"Resources/Textures/Landscape/Fieldstone_SM.tga");
-	sphere->GetMaterial()->SetShader(L"Light/SpecularLight.hlsl");
+	sphere->GetMaterial()->SetNormalMap(L"Resources/Textures/Landscape/Fieldstone_NM.tga");
+	sphere->GetMaterial()->SetShader(L"Light/NormalMapping.hlsl");
 	sphere->SetLocalScale(5, 5, 5);
 	sphere->UpdateWorld();
 }

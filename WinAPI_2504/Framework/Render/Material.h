@@ -2,11 +2,20 @@
 
 class Material
 {
+private:
+	enum MapType
+	{
+		Diffuse, Specular, Normal
+	};
+
 public:
 	Material(wstring shaderFile = L"Basic/Texture.hlsl");
 	~Material();	
 
 	void Edit();
+
+	void Save(string path);
+	void Load(string path);
 
 	void SetColor(float r, float g, float b, float a = 1.0f);
 
@@ -30,7 +39,17 @@ public:
 	MaterialBuffer* GetColorBuffer() { return materialBuffer; }
 
 private:
+	void SelectMap(string name, MapType mapType);	
+	void UnselectMap(MapType mapType);
+
+	void SaveDialog();
+	void LoadDialog();
+
+private:
 	string name;
+	string editName;
+	string file;
+	string projectPath;
 
 	VertexShader* vertexShader;
 	PixelShader* pixelShader;
