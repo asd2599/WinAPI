@@ -7,6 +7,7 @@ Plane::Plane(Vector2 size) : size(size)
 	mesh = new Mesh<VertexType>();
 	MakeMesh();
 	MakeNormal(mesh);
+	MakeTangent(mesh);
 	mesh->CreateMesh();
 }
 

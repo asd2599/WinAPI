@@ -9,7 +9,7 @@ private:
 	};
 
 public:
-	Material(wstring shaderFile = L"Basic/Texture.hlsl");
+	Material(wstring shaderFile = L"Light/Light.hlsl");
 	~Material();	
 
 	void Edit();

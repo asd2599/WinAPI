@@ -50,8 +50,15 @@ void Environment::Edit()
 {
 	mainCamera->Edit();
 
-	ImGui::ColorEdit3("Ambient", (float*)&lightBuffer->GetData()->ambient);
-	ImGui::SliderFloat3("Light Direction", (float*)&lightBuffer->GetData()->direction, -1, 1);	
+	ImGui::ColorEdit3("AmbientLight", (float*)&lightBuffer->GetData()->ambientLight);
+	ImGui::ColorEdit3("AmbientCeil", (float*)&lightBuffer->GetData()->ambientCeil);
+
+	ImGui::ColorEdit3("Light Color", (float*)&lightBuffer->GetData()->light.color);
+	ImGui::SliderFloat3("Light Direction", (float*)&lightBuffer->GetData()->light.direction, -1, 1);	
+	ImGui::DragFloat3("Light Position", (float*)&lightBuffer->GetData()->light.position);
+	ImGui::SliderFloat("Light Range", &lightBuffer->GetData()->light.range, 0, 500);	
+	ImGui::SliderFloat("Light Inner", &lightBuffer->GetData()->light.inner, 0, 180);
+	ImGui::SliderFloat("Light Outer", &lightBuffer->GetData()->light.outer, 0, 180);
 }
 
 void Environment::SetViewport(UINT width, UINT height)

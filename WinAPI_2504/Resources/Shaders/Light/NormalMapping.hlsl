@@ -38,13 +38,18 @@ float4 PS(Output output) : SV_TARGET
     float3 B = normalize(output.binormal);
     float3 N = normalize(output.normal);
     
+    float3 normal = N;
+    
     float3 light = normalize(lightDirection);
     float3 viewDir = normalize(output.viewDir);
     
-    float3 normalMapColor = normalMap.Sample(samplerState, output.uv).rgb;
-    float3 normal = normalMapColor * 2.0f - 1.0f; //0~1 -> -1~1
-    float3x3 TBN = float3x3(T, B, N);
-    normal = normalize(mul(normal, TBN));
+    if(hasNormalMap)
+    {
+        float3 normalMapColor = normalMap.Sample(samplerState, output.uv).rgb;
+        normal = normalMapColor * 2.0f - 1.0f; //0~1 -> -1~1
+        float3x3 TBN = float3x3(T, B, N);
+        normal = normalize(mul(normal, TBN));
+    }    
     
     float diffuseIntensity = saturate(dot(normal, -light));
     
@@ -56,10 +61,10 @@ float4 PS(Output output) : SV_TARGET
         specularColor = saturate(dot(viewDir, -reflectDir));
         float specularIntencity = specularMap.Sample(samplerState, output.uv);
         
-        specularColor = specularIntencity * pow(specularColor, shininess) * mSpecular;
+        specularColor = specularIntencity * pow(specularColor, shininess) * mSpecular * lightColor;
     }
     
-    float4 diffuseColor = baseColor * diffuseIntensity * mDiffuse;
+    float4 diffuseColor = baseColor * diffuseIntensity * mDiffuse * lightColor;
     float4 ambientColor = baseColor * ambient * mAmbient;
     
     return diffuseColor + specularColor + ambientColor;

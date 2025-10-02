@@ -14,4 +14,5 @@ public:
 
 private:
 	Sphere* sphere;
+	Plane* plane;
 };
