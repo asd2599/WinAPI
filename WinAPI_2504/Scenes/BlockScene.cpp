@@ -7,6 +7,13 @@ BlockScene::BlockScene()
 	CreateBlocks();	
 
 	steve = new Steve();
+
+	light = Environment::Get()->GetLight(0);
+	light->type = 2;
+
+	LightBuffer::Light* pointLight = Environment::Get()->AddLight();
+	pointLight->type = 1;
+	pointLight->position = Vector3(0, 5, 0);
 }
 
 BlockScene::~BlockScene()
@@ -24,6 +31,9 @@ void BlockScene::Update()
 
 	if (Input::Get()->IsKeyDown(VK_RBUTTON))
 		Build();
+
+	light->position = CAM->GetGlobalPosition();
+	light->direction = CAM->GetForward();
 
 	steve->Update();
 }

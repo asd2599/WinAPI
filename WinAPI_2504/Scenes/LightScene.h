@@ -15,4 +15,5 @@ public:
 private:
 	Sphere* sphere;
 	Plane* plane;
+	Cube* cube;
 };

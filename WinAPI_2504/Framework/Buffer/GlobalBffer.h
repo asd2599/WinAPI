@@ -111,10 +111,12 @@ public:
 
     struct Data
     {
-		Float4 ambientLight = { 0.1f, 0.1f, 0.1f, 1.0f };
-        Float4 ambientCeil = { 0.1f, 0.1f, 0.1f, 1.0f };
+        Light lights[MAX_LIGHT];
 
-        Light light;
+		UINT lightCount = 1;
+        Float3 ambientLight = { 0.1f, 0.1f, 0.1f};
+        Float3 ambientCeil = { 0.1f, 0.1f, 0.1f};
+        float padding;
     };
 
 public:

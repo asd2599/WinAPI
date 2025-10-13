@@ -25,10 +25,27 @@ float4 PS(LightPixelInput input) : SV_TARGET
 {
     Material material = GetMaterial(input);
     
-    float4 ambient = CalcAmbient(material);
-    //float4 color = CalcDirectional(material, light);
-    float4 color = CalcCapsule(material, light);    
+    float4 ambient = CalcAmbient(material);    
     float4 emissive = CalcFresnel(material);
+    float4 color = float4(0, 0, 0, 0);
+    
+    [unroll(MAX_LIGHT)]
+    for (int i = 0; i < lightCount; i++)
+    {
+        [flatten]
+        if(!lights[i].active)
+            continue;
+        
+        [flatten]
+        if(lights[i].type == 0)
+            color += CalcDirectional(material, lights[i]);
+        else if (lights[i].type == 1)
+            color += CalcPoint(material, lights[i]);
+        else if (lights[i].type == 2)
+            color += CalcSpot(material, lights[i]);
+        //else if (lights[i].type == 3)
+        //    color += CalcCapsule(material, lights[i]);
+    }
     
     return ambient + color + emissive;
 }

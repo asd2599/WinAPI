@@ -12,6 +12,7 @@
 #define CENTER Vector2(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f)
 
 #define PI 3.141592f
+#define MAX_LIGHT 16
 
 #define DELTA Timer::Get()->GetElapsedTime()
 #define SCENE SceneManager::Get()

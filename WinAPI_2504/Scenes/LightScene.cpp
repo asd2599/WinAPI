@@ -16,18 +16,24 @@ LightScene::LightScene()
 	plane = new Plane();
 	plane->Load();
 	//plane->GetMaterial()->Load("Resources/Materials/Wall.mat");
+
+	cube = new Cube();
+	cube->Load();
+	cube->GetMaterial()->Load("Resources/Materials/Stone.mat");
 }
 
 LightScene::~LightScene()
 {
 	delete sphere;
 	delete plane;
+	delete cube;
 }
 
 void LightScene::Update()
 {
 	sphere->UpdateWorld();
 	plane->UpdateWorld();
+	cube->UpdateWorld();
 }
 
 void LightScene::PreRender()
@@ -38,6 +44,7 @@ void LightScene::Render()
 {
 	sphere->Render();
 	plane->Render();
+	cube->Render();
 }
 
 void LightScene::PostRender()
@@ -47,7 +54,10 @@ void LightScene::PostRender()
 void LightScene::GUIRender()
 {
 	sphere->Edit();
-	sphere->GetMaterial()->Edit();
+	//sphere->GetMaterial()->Edit();
 	plane->Edit();
 	//plane->GetMaterial()->Edit();
+
+	cube->Edit();
+	cube->GetMaterial()->Edit();
 }

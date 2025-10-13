@@ -16,6 +16,10 @@ public:
 	void SetRender();
 	void SetPostRender();
 
+	LightBuffer::Light* AddLight();
+
+	LightBuffer::Light* GetLight(UINT index) { return &lightBuffer->GetData()->lights[index]; }
+
 	Camera* GetMainCamera() { return mainCamera; }
 	Matrix GetPerspective() { return perspective; }
 
@@ -24,6 +28,8 @@ private:
 	void CreateSamplerState();
 	void CreateBlendState();
 	void CreateStats();
+
+	void EditLight(LightBuffer::Light& light);
 
 private:
 	bool isWireFrame = false;

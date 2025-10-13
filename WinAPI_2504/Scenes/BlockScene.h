@@ -28,4 +28,5 @@ private:
 	queue<Block*> mineBlocks;
 
 	Steve* steve;
+	LightBuffer::Light* light;
 };
