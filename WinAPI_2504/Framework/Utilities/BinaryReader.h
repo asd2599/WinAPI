@@ -15,7 +15,7 @@ public:
 
     class Vector2 Vector();
 
-    void Byte(void** data, UINT dataSize);
+    void Byte(void* data, UINT dataSize);
 
     bool IsFailed() { return file == INVALID_HANDLE_VALUE; }
 

@@ -36,7 +36,10 @@ public:
 
 	Texture* GetDiffuseMap() { return diffuseMap; }
 
-	MaterialBuffer* GetColorBuffer() { return materialBuffer; }
+	MaterialBuffer* GetBuffer() { return materialBuffer; }
+
+	string GetName() { return name; }
+	void SetName(string name) { this->name = name; }
 
 private:
 	void SelectMap(string name, MapType mapType);	

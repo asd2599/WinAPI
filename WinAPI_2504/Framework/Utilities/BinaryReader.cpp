@@ -71,7 +71,7 @@ Vector2 BinaryReader::Vector()
     return temp;
 }
 
-void BinaryReader::Byte(void** data, UINT dataSize)
+void BinaryReader::Byte(void* data, UINT dataSize)
 {
-    ReadFile(file, *data, dataSize, &size, nullptr);
+    ReadFile(file, data, dataSize, &size, nullptr);
 }

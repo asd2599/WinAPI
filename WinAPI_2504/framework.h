@@ -61,6 +61,13 @@
 
 #pragma comment(lib, "fmod_vc.lib")
 
+//Assimp
+#include <Assimp/Importer.hpp>
+#include <Assimp/scene.h>
+#include <Assimp/postprocess.h>
+
+#pragma comment(lib, "assimp-vc143-mtd.lib")
+
 using namespace std;
 using namespace DirectX;
 
@@ -109,6 +116,9 @@ typedef function<void()> Event;
 #include "Framework/Environment/Camera.h"
 #include "Framework/Environment/Environment.h"
 
+#include "Framework/Model/ModelData.h"
+#include "Framework/Model/ModelExporter.h"
+
 #include "Objects/Basic/GameObject.h"
 #include "Objects/Basic/Quad.h"
 #include "Objects/Basic/Plane.h"
@@ -120,6 +130,8 @@ typedef function<void()> Event;
 #include "Objects/Collider/BoxCollider.h"
 #include "Objects/Collider/SphereCollider.h"
 #include "Objects/Collider/CapsuleCollider.h"
+
+#include "Objects/Model/Model.h"
 
 #include "Objects/Manger/DataManager.h"
 #include "Objects/Manger/EventManager.h"

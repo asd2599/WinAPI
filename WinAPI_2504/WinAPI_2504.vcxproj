@@ -155,6 +155,8 @@
     <ClInclude Include="Framework\Math\Transform.h" />
     <ClInclude Include="Framework\Math\Vector2.h" />
     <ClInclude Include="Framework\Math\Vector3.h" />
+    <ClInclude Include="Framework\Model\ModelData.h" />
+    <ClInclude Include="Framework\Model\ModelExporter.h" />
     <ClInclude Include="Framework\Render\Material.h" />
     <ClInclude Include="Framework\Render\Mesh.h" />
     <ClInclude Include="Framework\Render\RenderTarget.h" />
@@ -198,11 +200,14 @@
     <ClInclude Include="Objects\Game\Steve.h" />
     <ClInclude Include="Objects\Manger\DataManager.h" />
     <ClInclude Include="Objects\Manger\EventManager.h" />
+    <ClInclude Include="Objects\Model\Model.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scenes\BlockScene.h" />
     <ClInclude Include="Scenes\CollisionScene.h" />
     <ClInclude Include="Scenes\CubeScene.h" />
     <ClInclude Include="Scenes\LightScene.h" />
+    <ClInclude Include="Scenes\ModelExportScene.h" />
+    <ClInclude Include="Scenes\ModelRenderScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\SphereScene.h" />
     <ClInclude Include="Scenes\TutorialScene.h" />
@@ -223,6 +228,7 @@
     <ClCompile Include="Framework\Manager\SceneManager.cpp" />
     <ClCompile Include="Framework\Math\GameMath.cpp" />
     <ClCompile Include="Framework\Math\Transform.cpp" />
+    <ClCompile Include="Framework\Model\ModelExporter.cpp" />
     <ClCompile Include="Framework\Render\Material.cpp" />
     <ClCompile Include="Framework\Render\RenderTarget.cpp" />
     <ClCompile Include="Framework\Render\Texture.cpp" />
@@ -263,10 +269,13 @@
     <ClCompile Include="Objects\Game\Steve.cpp" />
     <ClCompile Include="Objects\Manger\DataManager.cpp" />
     <ClCompile Include="Objects\Manger\EventManager.cpp" />
+    <ClCompile Include="Objects\Model\Model.cpp" />
     <ClCompile Include="Scenes\BlockScene.cpp" />
     <ClCompile Include="Scenes\CollisionScene.cpp" />
     <ClCompile Include="Scenes\CubeScene.cpp" />
     <ClCompile Include="Scenes\LightScene.cpp" />
+    <ClCompile Include="Scenes\ModelExportScene.cpp" />
+    <ClCompile Include="Scenes\ModelRenderScene.cpp" />
     <ClCompile Include="Scenes\SphereScene.cpp" />
     <ClCompile Include="Scenes\TutorialScene.cpp" />
     <ClCompile Include="WinAPI_2504.cpp" />

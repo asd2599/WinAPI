@@ -6,6 +6,8 @@
 #include "Scenes/SphereScene.h"
 #include "Scenes/BlockScene.h"
 #include "Scenes/LightScene.h"
+#include "Scenes/ModelExportScene.h"
+#include "Scenes/ModelRenderScene.h"
 
 GameManager::GameManager()
 {
@@ -15,8 +17,10 @@ GameManager::GameManager()
 	//SCENE->AddScene("Game", new CubeScene());
 	//SCENE->AddScene("Game", new CollisionScene());
 	//SCENE->AddScene("Game", new SphereScene());
-	SCENE->AddScene("Game", new BlockScene());
+	//SCENE->AddScene("Game", new BlockScene());
 	//SCENE->AddScene("Game", new LightScene());
+	//SCENE->AddScene("Game", new ModelExportScene());
+	SCENE->AddScene("Game", new ModelRenderScene());
 
 	SCENE->ChangeScene("Game");
 }
