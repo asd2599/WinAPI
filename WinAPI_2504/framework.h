@@ -12,7 +12,12 @@
 #define CENTER Vector2(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f)
 
 #define PI 3.141592f
+
 #define MAX_LIGHT 16
+#define MAX_FRAME 256
+#define MAX_BONE 256
+
+#define FOR(n) for(int i = 0 ; i < n ; i++)
 
 #define DELTA Timer::Get()->GetElapsedTime()
 #define SCENE SceneManager::Get()
@@ -118,6 +123,8 @@ typedef function<void()> Event;
 
 #include "Framework/Model/ModelData.h"
 #include "Framework/Model/ModelExporter.h"
+#include "Framework/Model/ModelMesh.h"
+#include "Framework/Model/ModelClip.h"
 
 #include "Objects/Basic/GameObject.h"
 #include "Objects/Basic/Quad.h"
@@ -132,6 +139,7 @@ typedef function<void()> Event;
 #include "Objects/Collider/CapsuleCollider.h"
 
 #include "Objects/Model/Model.h"
+#include "Objects/Model/ModelAnimator.h"
 
 #include "Objects/Manger/DataManager.h"
 #include "Objects/Manger/EventManager.h"

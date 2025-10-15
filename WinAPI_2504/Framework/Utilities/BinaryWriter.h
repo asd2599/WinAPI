@@ -7,6 +7,9 @@ public:
     BinaryWriter(wstring filePath);
     ~BinaryWriter();
 
+    template <typename T>
+    void Data(T data);
+
     void Int(int data);
     void UInt(UINT data);
     void Float(float data);
@@ -21,3 +24,9 @@ private:
     HANDLE file;
     DWORD size = 0;
 };
+
+template<typename T>
+inline void BinaryWriter::Data(T data)
+{
+    WriteFile(file, (void*)&data, sizeof(T), &size, nullptr);
+}

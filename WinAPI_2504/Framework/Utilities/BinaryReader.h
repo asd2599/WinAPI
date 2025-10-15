@@ -7,6 +7,9 @@ public:
     BinaryReader(wstring filePath);
     ~BinaryReader();
 
+    template <typename T>
+    T Data();
+
     int Int();
     UINT UInt();
     float Float();
@@ -23,3 +26,12 @@ private:
     HANDLE file;
     DWORD size = 0;
 };
+
+template<typename T>
+inline T BinaryReader::Data()
+{
+    T temp;
+    ReadFile(file, &temp, sizeof(T), &size, nullptr);
+
+    return temp;
+}

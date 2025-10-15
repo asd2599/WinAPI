@@ -8,6 +8,7 @@ public:
 
 	void ExportMaterial();
 	void ExportMesh();
+	void ExportClip(string clipName);
 
 private:
 	//Material
@@ -17,9 +18,19 @@ private:
 
 	//Mesh
 	void ReadMesh(aiNode* node);
-	//void ReadNode(aiNode* node, int index, int parent);
-	//void ReadBone(aiMesh* mesh, vector<VertexWeights>& vertexWeights);
+	void ReadNode(aiNode* node, int index, int parent);
+	void ReadBone(aiMesh* mesh, vector<VertexWeights>& vertexWeights);
 	void WriteMesh();
+
+	//Animation
+	Clip* ReadClip(aiAnimation* animation);
+	void WriteClip(Clip* clip, string clipName, UINT index);
+
+private:
+	void ReadKeyFrame(Clip* clip, aiNode* node, vector<ClipNode>& clipNodes);
+	void SetClipNode(const KeyData& keyData, const UINT& frameCount, ClipNode& clipNode);
+	Float3 CalcInterpolationVector(const vector<KeyVector>& keyData, UINT& count, int curFrame);
+	Float4 CalcInterpolationQuat(const vector<KeyQuat>& keyData, UINT& count, int curFrame);
 
 private:
 	Assimp::Importer* importer;
@@ -29,4 +40,9 @@ private:
 
 	vector<Material*> materials;
 	vector<MeshData*> meshes;
+	vector<NodeData*> nodes;
+	vector<BoneData*> bones;
+
+	map<string, UINT> boneMap;
+	UINT boneCount = 0;
 };

@@ -13,6 +13,7 @@ ModelRenderScene::~ModelRenderScene()
 
 void ModelRenderScene::Update()
 {
+	model->UpdateWorld();
 }
 
 void ModelRenderScene::PreRender()
@@ -21,6 +22,7 @@ void ModelRenderScene::PreRender()
 
 void ModelRenderScene::Render()
 {
+	model->Render();
 }
 
 void ModelRenderScene::PostRender()
@@ -29,4 +31,5 @@ void ModelRenderScene::PostRender()
 
 void ModelRenderScene::GUIRender()
 {
+	model->Edit();
 }
