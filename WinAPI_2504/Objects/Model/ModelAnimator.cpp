@@ -22,6 +22,7 @@ ModelAnimator::~ModelAnimator()
 
 void ModelAnimator::Update()
 {
+    UpdateFrame();
     UpdateWorld();
 }
 
@@ -37,10 +38,10 @@ void ModelAnimator::Edit()
 {
     Model::Edit();
 
-    ImGui::SliderInt("Clip", &frameBuffer->GetData()->clip, 0,
+    ImGui::SliderInt("Clip", &frameBuffer->GetData()->cur.clip, 0,
         clips.size() - 1);
-    ImGui::SliderInt("Frame", &frameBuffer->GetData()->curFrame, 0,
-        clips[frameBuffer->GetData()->clip]->frameCount - 1);
+    ImGui::SliderInt("Frame", &frameBuffer->GetData()->cur.curFrame, 0,
+        clips[frameBuffer->GetData()->cur.clip]->frameCount - 1);
 }
 
 void ModelAnimator::ReadClip(string clipName, UINT clipNum)
@@ -73,6 +74,15 @@ void ModelAnimator::ReadClip(string clipName, UINT clipNum)
     clips.push_back(clip);
 
     delete reader;
+}
+
+void ModelAnimator::PlayClip(int clip, float scale, float duration)
+{
+    isPlay = true;
+
+    frameBuffer->GetData()->next.clip = clip;
+    frameBuffer->GetData()->next.scale = scale;
+	frameBuffer->GetData()->duration = duration;
 }
 
 void ModelAnimator::CreateTexture()
@@ -189,6 +199,57 @@ void ModelAnimator::CreateClipTransform(UINT index)
             }
 
             nodeIndex++;
+        }
+    }
+}
+
+void ModelAnimator::UpdateFrame()
+{
+    if (!isPlay) return;
+
+    Motion* motion = frameBuffer->GetData();
+
+    {        
+        Frame* frame = &motion->cur;
+        ModelClip* clip = clips[frame->clip];
+
+        frame->time += DELTA * clip->tickPerSecond * frame->scale;
+        motion->runningTime += frame->scale * DELTA;
+        clip->playTime += frame->scale * DELTA;
+
+        if (frame->time >= 1.0f)
+        {
+            ++frame->curFrame %= clip->frameCount - 1;
+            frame->time -= 1.0f;
+        }
+    }
+
+    {
+        Frame* frame = &motion->next;
+
+        if (frame->clip < 0) return;
+
+        ModelClip* clip = clips[frame->clip];
+
+        motion->tweenTime += DELTA / motion->duration;
+
+        if (motion->tweenTime >= 1.0f)
+        {
+            motion->cur = motion->next;
+            motion->tweenTime = 0.0f;
+
+            motion->next.clip = -1;
+            motion->next.curFrame = 0;
+			motion->next.time = 0.0f;
+            return;
+        }
+
+        frame->time += DELTA * clip->tickPerSecond * frame->scale;        
+
+        if (frame->time >= 1.0f)
+        {
+            ++frame->curFrame %= clip->frameCount - 1;
+            frame->time -= 1.0f;
         }
     }
 }

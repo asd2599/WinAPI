@@ -7,6 +7,7 @@ public:
 	~Camera();
 
 	void Update();
+	void Edit();
 
 	void SetTarget(Transform* target) { this->target = target; }
 

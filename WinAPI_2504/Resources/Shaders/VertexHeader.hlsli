@@ -12,12 +12,27 @@ cbuffer ProjectionBuffer : register(b2)
     matrix projection;
 }
 
-cbuffer FrameBuffer : register(b3)
+struct Frame
 {
     int clip;
     int curFrame;
     float time;
     float scale;
+};
+
+struct Motion
+{
+    float duration;
+    float tweenTime;
+    float runningTime;
+    float playTime;
+    
+    Frame cur, next;
+};
+
+cbuffer FrameBuffer : register(b3)
+{
+    Motion motion;
 }
 
 Texture2DArray transformMap : register(t0);
@@ -37,6 +52,7 @@ matrix LoadTransform(int index, int frame, int clip)
 matrix SkinWorld(float4 indices, float4 weights)
 {
     matrix transform = 0;
+    matrix curAnim, nextAnim;
     
     [unroll(4)]
     for (int i = 0; i < 4; i++)
@@ -44,7 +60,27 @@ matrix SkinWorld(float4 indices, float4 weights)
         if(weights[i] == 0.0f)
             continue;
         
-        transform += weights[i] * LoadTransform(indices[i], curFrame, clip);
+        int clip = motion.cur.clip;
+        int curFrame = motion.cur.curFrame;
+        
+        matrix cur = LoadTransform(indices[i], curFrame, clip);
+        matrix next = LoadTransform(indices[i], curFrame + 1, clip);
+        
+        curAnim = lerp(cur, next, motion.cur.time);
+        
+        if(motion.next.clip > -1)
+        {
+            clip = motion.next.clip;
+            curFrame = motion.next.curFrame;
+            
+            matrix cur = LoadTransform(indices[i], curFrame, clip);
+            matrix next = LoadTransform(indices[i], curFrame + 1, clip);
+        
+            nextAnim = lerp(cur, next, motion.next.time);
+            curAnim = lerp(curAnim, nextAnim, motion.tweenTime);
+        }
+        
+        transform += weights[i] * curAnim;
     }
 
     return transform;

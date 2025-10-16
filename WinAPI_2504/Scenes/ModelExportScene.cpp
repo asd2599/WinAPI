@@ -3,30 +3,32 @@
 
 ModelExportScene::ModelExportScene()
 {
-	string name = "Test";
+	string name = "Naruto";
 	string file = "Resources/Models/FBX/" + name + ".fbx";
 	ModelExporter* exporter;
 
 	//exporter = new ModelExporter(name, file);
 	//exporter->ExportMaterial();
 	//exporter->ExportMesh();
+	//delete exporter;
 
-	string clipName = "Idle";
-	//file = "Resources/Models/Animations/" + name + "/" + clipName + ".fbx";
-	//
-	//exporter = new ModelExporter(name, file);
-	//exporter->ExportClip(clipName);	
-
-	clipName = "Run";
+	string clipName = "Attack";
 	file = "Resources/Models/Animations/" + name + "/" + clipName + ".fbx";
-
+	
 	exporter = new ModelExporter(name, file);
 	exporter->ExportClip(clipName);
 	delete exporter;
-
-	clipName = "Throwing";
+	
+	clipName = "Run";
 	file = "Resources/Models/Animations/" + name + "/" + clipName + ".fbx";
-
+	
+	exporter = new ModelExporter(name, file);
+	exporter->ExportClip(clipName);
+	delete exporter;
+	
+	clipName = "Idle";
+	file = "Resources/Models/Animations/" + name + "/" + clipName + ".fbx";
+	
 	exporter = new ModelExporter(name, file);
 	exporter->ExportClip(clipName);
 	delete exporter;

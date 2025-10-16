@@ -27,17 +27,32 @@ protected:
         float scale = 1.0f;
     };
 
+    struct Motion
+    {
+        float duration = 0.2f;
+        float tweenTime = 0.0f;
+        float runningTime = 0.0f;
+        float playTime = 0.0f;
+
+        Frame cur, next;
+
+        Motion()
+        {
+            next.clip = -1.0f;
+        }
+    };
+
     class FrameBuffer : public ConstBuffer
     {
     public:
-        FrameBuffer() : ConstBuffer(&motion, sizeof(Frame))
+        FrameBuffer() : ConstBuffer(&motion, sizeof(Motion))
         {
         }
 
-        Frame* GetData() { return &motion; }
+        Motion* GetData() { return &motion; }
 
     private:
-        Frame motion;
+        Motion motion;
     };
 
 public:
@@ -50,11 +65,13 @@ public:
     void Edit();
 
     void ReadClip(string clipName, UINT clipNum = 0);
+    void PlayClip(int clip, float scale = 1.0f, float duration = 0.2f);
 
     void CreateTexture();
 
 protected:
     void CreateClipTransform(UINT index);
+    void UpdateFrame();
 
     UINT GetMaxFrameNum();
 

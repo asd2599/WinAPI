@@ -28,6 +28,14 @@ void Camera::Update()
 	viewBuffer->SetVS(1);
 }
 
+void Camera::Edit()
+{
+	ImGui::DragFloat("MoveSpeed", &moveSpeed, 0.1f, 0.1f, 100.0f);
+	ImGui::DragFloat("RotSpeed", &rotSpeed, 0.1f, 0.1f, 100.0f);
+
+    Transform::Edit();
+}
+
 Ray Camera::ScreenPointToRay(Vector3 screenPos)
 {
     Vector3 screenSize(SCREEN_WIDTH, SCREEN_HEIGHT, 1.0f);    

@@ -20,7 +20,7 @@ GameManager::GameManager()
 	//SCENE->AddScene("Game", new SphereScene());
 	//SCENE->AddScene("Game", new BlockScene());
 	//SCENE->AddScene("Game", new LightScene());
-	SCENE->AddScene("Export", new ModelExportScene());
+	//SCENE->AddScene("Export", new ModelExportScene());
 	//SCENE->AddScene("Game", new ModelRenderScene());
 	SCENE->AddScene("Game", new ModelAnimationScene());
 
