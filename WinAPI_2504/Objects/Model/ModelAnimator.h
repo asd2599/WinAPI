@@ -69,6 +69,10 @@ public:
 
     void CreateTexture();
 
+    Matrix GetTransformByNode(int nodeIndex);
+
+    ModelClip* GetClip(UINT clip) { return clips[clip]; }
+
 protected:
     void CreateClipTransform(UINT index);
     void UpdateFrame();

@@ -9,6 +9,7 @@
 #include "Scenes/ModelExportScene.h"
 #include "Scenes/ModelRenderScene.h"
 #include "Scenes/ModelAnimaionScene.h"
+#include "Scenes/CharacterScene.h"
 
 GameManager::GameManager()
 {
@@ -22,7 +23,8 @@ GameManager::GameManager()
 	//SCENE->AddScene("Game", new LightScene());
 	//SCENE->AddScene("Export", new ModelExportScene());
 	//SCENE->AddScene("Game", new ModelRenderScene());
-	SCENE->AddScene("Game", new ModelAnimationScene());
+	//SCENE->AddScene("Game", new ModelAnimationScene());
+	SCENE->AddScene("Game", new CharacterScene());
 
 	SCENE->ChangeScene("Game");
 }

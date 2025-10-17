@@ -2,6 +2,8 @@
 
 Model::Model(string name) : name(name)
 {
+	tag = name;
+
 	ReadMaterial();
 	ReadMesh();
 

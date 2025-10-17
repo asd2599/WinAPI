@@ -3,6 +3,7 @@
 ModelAnimator::ModelAnimator(string name)
 	: Model(name)
 {
+    SetVertexShader(L"Model/Model.hlsl");
 	frameBuffer = new FrameBuffer();
 }
 
@@ -83,6 +84,8 @@ void ModelAnimator::PlayClip(int clip, float scale, float duration)
     frameBuffer->GetData()->next.clip = clip;
     frameBuffer->GetData()->next.scale = scale;
 	frameBuffer->GetData()->duration = duration;
+    	
+	clips[clip]->Init();
 }
 
 void ModelAnimator::CreateTexture()
@@ -150,6 +153,34 @@ void ModelAnimator::CreateTexture()
     srvDesc.Texture2DArray.ArraySize = clipCount;
 
     DEVICE->CreateShaderResourceView(texture, &srvDesc, &srv);
+}
+
+Matrix ModelAnimator::GetTransformByNode(int nodeIndex)
+{
+    Matrix curAnim;
+
+    {
+        Frame& frame = frameBuffer->GetData()->cur;
+
+        Matrix cur = nodeTransforms[frame.clip].transform[frame.curFrame][nodeIndex];
+        Matrix next = nodeTransforms[frame.clip].transform[frame.curFrame + 1][nodeIndex];
+
+        curAnim = GameMath::Lerp(cur, next, frame.time) * world;
+    }
+
+    {
+        Frame& frame = frameBuffer->GetData()->next;
+
+        if (frame.clip < 0)
+            return curAnim;
+
+        Matrix cur = nodeTransforms[frame.clip].transform[frame.curFrame][nodeIndex];
+        Matrix next = nodeTransforms[frame.clip].transform[frame.curFrame + 1][nodeIndex];
+
+        Matrix nextAnim = GameMath::Lerp(cur, next, frame.time) * world;
+
+        return GameMath::Lerp(curAnim, nextAnim, frameBuffer->GetData()->tweenTime);
+    }
 }
 
 void ModelAnimator::CreateClipTransform(UINT index)
@@ -222,6 +253,8 @@ void ModelAnimator::UpdateFrame()
             ++frame->curFrame %= clip->frameCount - 1;
             frame->time -= 1.0f;
         }
+
+        clip->Excute();
     }
 
     {
@@ -251,7 +284,7 @@ void ModelAnimator::UpdateFrame()
             ++frame->curFrame %= clip->frameCount - 1;
             frame->time -= 1.0f;
         }
-    }
+    }    
 }
 
 UINT ModelAnimator::GetMaxFrameNum()

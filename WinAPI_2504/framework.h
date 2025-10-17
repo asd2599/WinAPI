@@ -147,6 +147,9 @@ typedef function<void()> Event;
 #include "Objects/Game/GameBall.h"
 #include "Objects/Game/Block.h"
 #include "Objects/Game/Steve.h"
+#include "Objects/Game/Sword.h"
+
+#include "Objects/Character/Naruto.h"
 
 #include "Scenes/Scene.h"
 #include "Framework/Manager/SceneManager.h"

@@ -13,6 +13,15 @@ BoxCollider::~BoxCollider()
 	delete mesh;
 }
 
+void BoxCollider::Edit()
+{
+	Transform::Edit();
+	if (ImGui::DragFloat3("Size", (float*)&size, 0.1f, 0.1f, 100.0f))
+	{
+		UpdateMesh();
+	}
+}
+
 bool BoxCollider::IsRayCollision(const Ray& ray, RayHit* hitInfo)
 {
 	if (!IsActive()) return false;
@@ -163,6 +172,25 @@ bool BoxCollider::IsSeperateAxis(Vector3 D, Vector3 axis, ObbDesc box1, ObbDesc 
 	}
 
 	return distance > a + b;
+}
+
+void BoxCollider::UpdateMesh()
+{
+	Vector3 halfSize = size * 0.5f;
+	vector<Vertex>& vertices = mesh->GetVertices();
+	vertices.clear();
+
+	vertices.emplace_back(-halfSize.x, +halfSize.y, -halfSize.z);
+	vertices.emplace_back(+halfSize.x, +halfSize.y, -halfSize.z);
+	vertices.emplace_back(+halfSize.x, -halfSize.y, -halfSize.z);
+	vertices.emplace_back(-halfSize.x, -halfSize.y, -halfSize.z);
+
+	vertices.emplace_back(-halfSize.x, +halfSize.y, +halfSize.z);
+	vertices.emplace_back(+halfSize.x, +halfSize.y, +halfSize.z);
+	vertices.emplace_back(+halfSize.x, -halfSize.y, +halfSize.z);
+	vertices.emplace_back(-halfSize.x, -halfSize.y, +halfSize.z);
+
+	mesh->UpdateVertices();
 }
 
 void BoxCollider::MakeMesh()

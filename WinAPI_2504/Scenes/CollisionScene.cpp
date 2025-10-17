@@ -3,8 +3,11 @@
 
 CollisionScene::CollisionScene()
 {
-	colliders.push_back(new BoxCollider());
-	colliders.back()->SetTag("BoxCollider1");
+	colliders.push_back(new CapsuleCollider());
+	colliders.back()->SetTag("CapsuelCollider1");
+
+	//colliders.push_back(new BoxCollider());
+	//colliders.back()->SetTag("BoxCollider1");
 
 	colliders.push_back(new SphereCollider());
 	colliders.back()->SetTag("SphereCollider1");

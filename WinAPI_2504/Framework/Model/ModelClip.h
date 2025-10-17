@@ -15,7 +15,7 @@ private:
     KeyFrame* GetKeyFrame(string boneName) { return keyFrames[boneName]; }
 
 public:
-    //void SetEvent(Event event, float timeRatio) { events[timeRatio] = event; }
+    void SetEvent(Event event, float timeRatio) { events[timeRatio] = event; }
 
 private:
     string name;
@@ -26,6 +26,6 @@ private:
     
     unordered_map<string, KeyFrame*> keyFrames;
     
-    //map<float, Event> events;
-    //map<float, Event>::iterator eventIter;
+    map<float, Event> events;
+    map<float, Event>::iterator eventIter;
 };

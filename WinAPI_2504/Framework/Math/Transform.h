@@ -49,6 +49,8 @@ public:
 	void SetPivot(float x, float y, float z) { pivot = { x, y, z}; }
 
 	Matrix GetWorld() { return world; }
+	void SetWorld(const Matrix& matrix) { world = matrix; }
+
 	void SetParent(Transform* transform) { parent = transform; }	
 
 	string GetTag() { return tag; }
