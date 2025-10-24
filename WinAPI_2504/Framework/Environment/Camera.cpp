@@ -33,6 +33,30 @@ void Camera::Edit()
 	ImGui::DragFloat("MoveSpeed", &moveSpeed, 0.1f, 0.1f, 100.0f);
 	ImGui::DragFloat("RotSpeed", &rotSpeed, 0.1f, 0.1f, 100.0f);
 
+    if (target)
+    {
+        ImGui::DragFloat("Distance", &distance);
+        ImGui::DragFloat("Height", &height);
+
+        ImGui::DragFloat("MoveDamping", &moveDamping, 0.1f);
+        ImGui::DragFloat("RotDamping", &rotDamping, 0.1f);
+
+        ImGui::DragFloat3("FocusOffset", (float*)&focusOffset, 0.1f);
+
+        ImGui::Checkbox("LookAtTargetX", &isLookAtTargetX);
+        ImGui::Checkbox("LookAtTargetY", &isLookAtTargetY);
+
+        //ImGui::InputText("File", file, 128);
+        //
+        //if (ImGui::Button("Save"))
+        //    TargetOptionSave(file);
+        //
+        //ImGui::SameLine();
+        //
+        //if (ImGui::Button("Load"))
+        //    TargetOptionLoad(file);
+    }
+
     Transform::Edit();
 }
 
@@ -59,6 +83,21 @@ Ray Camera::ScreenPointToRay(Vector3 screenPos)
 	ray.direction = screenPos.GetNormalized();
 
     return ray;
+}
+
+Vector3 Camera::WorldToScreenPoint(Vector3 worldPos)
+{
+    Vector3 screenPos;
+
+    screenPos = worldPos * view;
+	screenPos = screenPos * projection;
+
+	screenPos = (screenPos + Vector3(1.0f, 1.0f, 1.0f)) * 0.5f;//-1~1 -> 0~1
+
+	screenPos.x *= SCREEN_WIDTH;
+	screenPos.y *= SCREEN_HEIGHT;
+
+    return screenPos;
 }
 
 void Camera::FreeMode()
@@ -88,7 +127,32 @@ void Camera::FreeMode()
 
 void Camera::FollowMode()
 {
-    //Vector2 targetPos = target->GetGlobalPosition() - targetOffset;
-    //FixPosition(targetPos);
-    //localPosition = GameMath::Lerp<Vector2>(localPosition, targetPos, speed * DELTA);
+    destRot = GameMath::Lerp<float>(destRot, target->GetLocalRotation().y, rotDamping * DELTA);
+    rotMatrix = XMMatrixRotationY(destRot);
+
+    Vector3 foraward = Vector3::Forward() * rotMatrix;
+
+	destPos = target->GetGlobalPosition() - foraward * distance;
+	destPos.y += height;
+
+	localPosition = GameMath::Lerp<Vector3>(localPosition, destPos, moveDamping * DELTA);
+
+    Vector3 offset = focusOffset * rotMatrix;
+	Vector3 targetPos = target->GetGlobalPosition() + offset;
+
+    Vector3 dir = targetPos - localPosition;
+    dir.Normalize();
+    Vector3 dirXZ = Vector3(dir.x, 0.0f, dir.z);
+    dirXZ.Normalize();
+
+	float dot = Vector3::Dot(dir, dirXZ);
+
+    if(isLookAtTargetX)
+		localRotation.x = acos(dot);
+    if(isLookAtTargetY)
+        localRotation.y = atan2(foraward.x, foraward.z);
+
+    //float destRotY = atan2(foraward.x, foraward.z);
+	//localRotation.y = GameMath::Lerp<float>(localRotation.y, destRotY, rotDamping * DELTA);
+	
 }

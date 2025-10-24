@@ -14,4 +14,5 @@ public:
 
 private:
 	Naruto* naruto;
+	ImFont* koreanFont;
 };

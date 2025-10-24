@@ -11,7 +11,8 @@ public:
 
 	void SetTarget(Transform* target) { this->target = target; }
 
-	class Ray ScreenPointToRay(Vector3 screenPos);
+	class Ray ScreenPointToRay(Vector3 screenPos);	
+	Vector3 WorldToScreenPoint(Vector3 worldPos);
 
 private:
 	void FreeMode();
@@ -27,4 +28,18 @@ private:
 	ViewBuffer* viewBuffer;	
 
 	Transform* target = nullptr;	
+
+	float distance = 20.0f;
+	float height = 20.0f;
+	float moveDamping = 5.0f;
+	float rotDamping = 1.0f;
+	float destRot = 0.0f;
+
+	Vector3 destPos;
+	Vector3 focusOffset;
+
+	Matrix rotMatrix;
+
+	bool isLookAtTargetX = true;
+	bool isLookAtTargetY = true;
 };
