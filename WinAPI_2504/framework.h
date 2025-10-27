@@ -16,6 +16,7 @@
 #define MAX_LIGHT 16
 #define MAX_FRAME 256
 #define MAX_BONE 256
+#define MAX_INSTANCE 128
 
 #define FOR(n) for(int i = 0 ; i < n ; i++)
 
@@ -140,6 +141,8 @@ typedef function<void()> Event;
 
 #include "Objects/Model/Model.h"
 #include "Objects/Model/ModelAnimator.h"
+#include "Objects/Model/ModelInstancing.h"
+#include "Objects/Model/ModelAnimatorInstancing.h"
 
 #include "Objects/Manger/DataManager.h"
 #include "Objects/Manger/EventManager.h"

@@ -90,7 +90,5 @@ struct VertexUVNormalTangentBlend
 struct InstanceData
 {
 	Matrix world;
-
-	Float2 curFrame;
-	Float2 maxFrame;
+    int index = 0;
 };

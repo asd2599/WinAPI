@@ -206,6 +206,8 @@
     <ClInclude Include="Objects\Manger\EventManager.h" />
     <ClInclude Include="Objects\Model\Model.h" />
     <ClInclude Include="Objects\Model\ModelAnimator.h" />
+    <ClInclude Include="Objects\Model\ModelAnimatorInstancing.h" />
+    <ClInclude Include="Objects\Model\ModelInstancing.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scenes\BlockScene.h" />
     <ClInclude Include="Scenes\CharacterScene.h" />
@@ -214,6 +216,7 @@
     <ClInclude Include="Scenes\LightScene.h" />
     <ClInclude Include="Scenes\ModelAnimaionScene.h" />
     <ClInclude Include="Scenes\ModelExportScene.h" />
+    <ClInclude Include="Scenes\ModelInstancingScene.h" />
     <ClInclude Include="Scenes\ModelRenderScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\SphereScene.h" />
@@ -283,6 +286,8 @@
     <ClCompile Include="Objects\Manger\EventManager.cpp" />
     <ClCompile Include="Objects\Model\Model.cpp" />
     <ClCompile Include="Objects\Model\ModelAnimator.cpp" />
+    <ClCompile Include="Objects\Model\ModelAnimatorInstancing.cpp" />
+    <ClCompile Include="Objects\Model\ModelInstancing.cpp" />
     <ClCompile Include="Scenes\BlockScene.cpp" />
     <ClCompile Include="Scenes\CharacterScene.cpp" />
     <ClCompile Include="Scenes\CollisionScene.cpp" />
@@ -290,6 +295,7 @@
     <ClCompile Include="Scenes\LightScene.cpp" />
     <ClCompile Include="Scenes\ModelAnimaionScene.cpp" />
     <ClCompile Include="Scenes\ModelExportScene.cpp" />
+    <ClCompile Include="Scenes\ModelInstancingScene.cpp" />
     <ClCompile Include="Scenes\ModelRenderScene.cpp" />
     <ClCompile Include="Scenes\SphereScene.cpp" />
     <ClCompile Include="Scenes\TutorialScene.cpp" />
@@ -322,6 +328,18 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="Resources\Shaders\2D\Light.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Instancing\ModelAnimationInstancing.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Instancing\ModelInstancing.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

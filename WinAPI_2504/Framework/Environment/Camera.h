@@ -14,9 +14,14 @@ public:
 	class Ray ScreenPointToRay(Vector3 screenPos);	
 	Vector3 WorldToScreenPoint(Vector3 worldPos);
 
+	bool ContainPoint(Vector3 point);
+	bool ContainSphere(Vector3 center, float radius);
+
 private:
 	void FreeMode();
 	void FollowMode();
+
+	void FrusutmUpdate();
 
 private:
 	float moveSpeed = 10.0f;
@@ -42,4 +47,7 @@ private:
 
 	bool isLookAtTargetX = true;
 	bool isLookAtTargetY = true;
+
+	Vector3 planes[6];
+	float a, b, c, d;
 };

@@ -237,6 +237,15 @@
     <ClInclude Include="Objects\Game\Sword.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\ModelInstancingScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Model\ModelInstancing.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Model\ModelAnimatorInstancing.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI_2504.cpp">
@@ -425,6 +434,15 @@
     <ClCompile Include="Objects\Game\Sword.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\ModelInstancingScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Model\ModelInstancing.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Model\ModelAnimatorInstancing.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI_2504.rc">
@@ -455,6 +473,8 @@
     <FxCompile Include="Resources\Shaders\Light\NormalMapping.hlsl" />
     <FxCompile Include="Resources\Shaders\Light\Light.hlsl" />
     <FxCompile Include="Resources\Shaders\Model\Model.hlsl" />
+    <FxCompile Include="Resources\Shaders\Instancing\ModelInstancing.hlsl" />
+    <FxCompile Include="Resources\Shaders\Instancing\ModelAnimationInstancing.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\VertexHeader.hlsli" />

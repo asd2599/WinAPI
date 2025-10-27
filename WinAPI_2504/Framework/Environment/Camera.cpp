@@ -16,6 +16,8 @@ void Camera::Update()
 {
 	projection = Environment::Get()->GetPerspective();
 
+	FrusutmUpdate();
+
     if (target)
         FollowMode();
     else
@@ -100,6 +102,24 @@ Vector3 Camera::WorldToScreenPoint(Vector3 worldPos)
     return screenPos;
 }
 
+bool Camera::ContainPoint(Vector3 point)
+{
+    FOR(6)
+    {
+        Vector3 dot = XMPlaneDotCoord(planes[i], point);
+
+        if (dot.x < 0.0f)
+            return false;
+    }
+
+    return true;
+}
+
+bool Camera::ContainSphere(Vector3 center, float radius)
+{
+    return false;
+}
+
 void Camera::FreeMode()
 {
     Vector3 delta = mousePos - prevMousePos;
@@ -155,4 +175,55 @@ void Camera::FollowMode()
     //float destRotY = atan2(foraward.x, foraward.z);
 	//localRotation.y = GameMath::Lerp<float>(localRotation.y, destRotY, rotDamping * DELTA);
 	
+}
+
+void Camera::FrusutmUpdate()
+{
+    Float4x4 VP;
+    XMStoreFloat4x4(&VP, view * projection);
+
+    //Left
+    a = VP._14 + VP._11;
+    b = VP._24 + VP._21;
+    c = VP._34 + VP._31;
+    d = VP._44 + VP._41;
+    planes[0] = XMVectorSet(a, b, c, d);
+
+    //Right
+    a = VP._14 - VP._11;
+    b = VP._24 - VP._21;
+    c = VP._34 - VP._31;
+    d = VP._44 - VP._41;
+    planes[1] = XMVectorSet(a, b, c, d);
+
+    //Bottom
+    a = VP._14 + VP._12;
+    b = VP._24 + VP._22;
+    c = VP._34 + VP._32;
+    d = VP._44 + VP._42;
+    planes[2] = XMVectorSet(a, b, c, d);
+
+    //Top
+    a = VP._14 - VP._12;
+    b = VP._24 - VP._22;
+    c = VP._34 - VP._32;
+    d = VP._44 - VP._42;
+    planes[3] = XMVectorSet(a, b, c, d);
+
+    //Near
+    a = VP._14 + VP._13;
+    b = VP._24 + VP._23;
+    c = VP._34 + VP._33;
+    d = VP._44 + VP._43;
+    planes[4] = XMVectorSet(a, b, c, d);
+
+    //Far
+    a = VP._14 - VP._13;
+    b = VP._24 - VP._23;
+    c = VP._34 - VP._33;
+    d = VP._44 - VP._43;
+    planes[5] = XMVectorSet(a, b, c, d);
+
+    FOR(6)
+        planes[i] = XMPlaneNormalize(planes[i]);
 }
