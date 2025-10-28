@@ -144,6 +144,7 @@
     <ClInclude Include="Framework\Buffer\ConstBuffer.h" />
     <ClInclude Include="Framework\Buffer\GlobalBffer.h" />
     <ClInclude Include="Framework\Buffer\IndexBuffer.h" />
+    <ClInclude Include="Framework\Buffer\StructuredBuffer.h" />
     <ClInclude Include="Framework\Buffer\VertexBuffer.h" />
     <ClInclude Include="Framework\Buffer\VertexLayouts.h" />
     <ClInclude Include="Framework\Device\Device.h" />
@@ -163,10 +164,14 @@
     <ClInclude Include="Framework\Render\Mesh.h" />
     <ClInclude Include="Framework\Render\RenderTarget.h" />
     <ClInclude Include="Framework\Render\Texture.h" />
+    <ClInclude Include="Framework\Shader\ComputeShader.h" />
     <ClInclude Include="Framework\Shader\PixelShader.h" />
     <ClInclude Include="Framework\Shader\Shader.h" />
     <ClInclude Include="Framework\Shader\VertexShader.h" />
+    <ClInclude Include="Framework\Stats\BlendState.h" />
+    <ClInclude Include="Framework\Stats\DepthStencilState.h" />
     <ClInclude Include="Framework\Stats\RasterizerState.h" />
+    <ClInclude Include="Framework\Stats\SamplerState.h" />
     <ClInclude Include="Framework\Utilities\Audio.h" />
     <ClInclude Include="Framework\Utilities\BinaryReader.h" />
     <ClInclude Include="Framework\Utilities\BinaryWriter.h" />
@@ -202,6 +207,9 @@
     <ClInclude Include="Objects\Game\GameBall.h" />
     <ClInclude Include="Objects\Game\Steve.h" />
     <ClInclude Include="Objects\Game\Sword.h" />
+    <ClInclude Include="Objects\Landscape\Skybox.h" />
+    <ClInclude Include="Objects\Landscape\Terrain.h" />
+    <ClInclude Include="Objects\Landscape\TerrainEditor.h" />
     <ClInclude Include="Objects\Manger\DataManager.h" />
     <ClInclude Include="Objects\Manger\EventManager.h" />
     <ClInclude Include="Objects\Model\Model.h" />
@@ -220,6 +228,8 @@
     <ClInclude Include="Scenes\ModelRenderScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\SphereScene.h" />
+    <ClInclude Include="Scenes\TerrainEditorScene.h" />
+    <ClInclude Include="Scenes\TerrainScene.h" />
     <ClInclude Include="Scenes\TutorialScene.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="WinAPI_2504.h" />
@@ -230,6 +240,7 @@
     </ClCompile>
     <ClCompile Include="Framework\Buffer\ConstBuffer.cpp" />
     <ClCompile Include="Framework\Buffer\IndexBuffer.cpp" />
+    <ClCompile Include="Framework\Buffer\StructuredBuffer.cpp" />
     <ClCompile Include="Framework\Buffer\VertexBuffer.cpp" />
     <ClCompile Include="Framework\Device\Device.cpp" />
     <ClCompile Include="Framework\Environment\Camera.cpp" />
@@ -244,10 +255,14 @@
     <ClCompile Include="Framework\Render\Material.cpp" />
     <ClCompile Include="Framework\Render\RenderTarget.cpp" />
     <ClCompile Include="Framework\Render\Texture.cpp" />
+    <ClCompile Include="Framework\Shader\ComputeShader.cpp" />
     <ClCompile Include="Framework\Shader\PixelShader.cpp" />
     <ClCompile Include="Framework\Shader\Shader.cpp" />
     <ClCompile Include="Framework\Shader\VertexShader.cpp" />
+    <ClCompile Include="Framework\Stats\BlendState.cpp" />
+    <ClCompile Include="Framework\Stats\DepthStencilState.cpp" />
     <ClCompile Include="Framework\Stats\RasterizerState.cpp" />
+    <ClCompile Include="Framework\Stats\SamplerState.cpp" />
     <ClCompile Include="Framework\Utilities\Audio.cpp" />
     <ClCompile Include="Framework\Utilities\BinaryReader.cpp" />
     <ClCompile Include="Framework\Utilities\BinaryWriter.cpp" />
@@ -282,6 +297,9 @@
     <ClCompile Include="Objects\Game\GameBall.cpp" />
     <ClCompile Include="Objects\Game\Steve.cpp" />
     <ClCompile Include="Objects\Game\Sword.cpp" />
+    <ClCompile Include="Objects\Landscape\Skybox.cpp" />
+    <ClCompile Include="Objects\Landscape\Terrain.cpp" />
+    <ClCompile Include="Objects\Landscape\TerrainEditor.cpp" />
     <ClCompile Include="Objects\Manger\DataManager.cpp" />
     <ClCompile Include="Objects\Manger\EventManager.cpp" />
     <ClCompile Include="Objects\Model\Model.cpp" />
@@ -298,6 +316,8 @@
     <ClCompile Include="Scenes\ModelInstancingScene.cpp" />
     <ClCompile Include="Scenes\ModelRenderScene.cpp" />
     <ClCompile Include="Scenes\SphereScene.cpp" />
+    <ClCompile Include="Scenes\TerrainEditorScene.cpp" />
+    <ClCompile Include="Scenes\TerrainScene.cpp" />
     <ClCompile Include="Scenes\TutorialScene.cpp" />
     <ClCompile Include="WinAPI_2504.cpp" />
   </ItemGroup>
@@ -333,6 +353,17 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
+    <FxCompile Include="Resources\Shaders\Compute\ComputePicking.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CS</EntryPointName>
+    </FxCompile>
     <FxCompile Include="Resources\Shaders\Instancing\ModelAnimationInstancing.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
@@ -340,6 +371,24 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="Resources\Shaders\Instancing\ModelInstancing.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Landscape\Skybox.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Landscape\Terrain.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Landscape\TerrainEditor.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

@@ -155,3 +155,49 @@ public:
 private:
     Data data;
 };
+
+class BrushBuffer : public ConstBuffer
+{
+private:
+    struct Data
+    {
+        int type = 0;
+        Float3 pickingPos = {};
+
+        float range = 5.0f;
+        Float3 color = { 0, 1, 0 };
+    };
+
+public:
+    BrushBuffer() : ConstBuffer(&data, sizeof(Data))
+    {
+    }
+
+    Data& Get() { return data; }
+
+private:
+    Data data;
+};
+
+class RayBuffer : public ConstBuffer
+{
+private:
+    struct Data
+    {
+        Float3 pos;
+        UINT triangleSize;
+
+        Float3 dir;
+        float padding;
+    };
+
+public:
+    RayBuffer() : ConstBuffer(&data, sizeof(Data))
+    {
+    }
+
+    Data& Get() { return data; }
+
+private:
+    Data data;
+};

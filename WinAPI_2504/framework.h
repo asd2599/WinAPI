@@ -44,6 +44,7 @@
 #include <d3d11.h>
 #include <d3dcompiler.h>
 #include <DirectXMath.h>
+#include <DirectXCollision.h>
 
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
@@ -76,6 +77,7 @@
 
 using namespace std;
 using namespace DirectX;
+using namespace DirectX::TriangleTests;
 
 typedef XMFLOAT4 Float4;
 typedef XMFLOAT3 Float3;
@@ -105,14 +107,19 @@ typedef function<void()> Event;
 #include "Framework/Shader/Shader.h"
 #include "Framework/Shader/VertexShader.h"
 #include "Framework/Shader/PixelShader.h"
+#include "Framework/Shader/ComputeShader.h"
 
 #include "Framework/Buffer/VertexLayouts.h"
 #include "Framework/Buffer/VertexBuffer.h"
 #include "Framework/Buffer/IndexBuffer.h"
 #include "Framework/Buffer/ConstBuffer.h"
+#include "Framework/Buffer/StructuredBuffer.h"
 #include "Framework/Buffer/GlobalBffer.h"
 
 #include "Framework/Stats/RasterizerState.h"
+#include "Framework/Stats/DepthStencilState.h"
+#include "Framework/Stats/BlendState.h"
+#include "Framework/Stats/SamplerState.h"
 
 #include "Framework/Render/Texture.h"
 #include "Framework/Render/Mesh.h"
@@ -146,6 +153,10 @@ typedef function<void()> Event;
 
 #include "Objects/Manger/DataManager.h"
 #include "Objects/Manger/EventManager.h"
+
+#include "Objects/Landscape/Skybox.h"
+#include "Objects/Landscape/Terrain.h"
+#include "Objects/Landscape/TerrainEditor.h"
 
 #include "Objects/Game/GameBall.h"
 #include "Objects/Game/Block.h"
