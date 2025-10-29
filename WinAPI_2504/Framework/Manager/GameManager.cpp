@@ -29,8 +29,8 @@ GameManager::GameManager()
 	//SCENE->AddScene("Game", new ModelAnimationScene());
 	//SCENE->AddScene("Game", new CharacterScene());
 	//SCENE->AddScene("Game", new ModelInstancingScene());
-	//SCENE->AddScene("Game", new TerrainScene());
-	SCENE->AddScene("Game", new TerrainEditorScene());
+	SCENE->AddScene("Game", new TerrainScene());
+	//SCENE->AddScene("Game", new TerrainEditorScene());
 
 	SCENE->ChangeScene("Game");
 }

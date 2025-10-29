@@ -3,7 +3,7 @@
 class TerrainEditor : public GameObject
 {
 private:
-	typedef VertexUVNormal VertexType;
+	typedef VertexUVNormalTangent VertexType;
 
 	const UINT MAX_SIZE = 256;
 	const UINT MAX_HEIGHT = 20.0f;
@@ -39,13 +39,25 @@ private:
 	void MakeMesh();
 	void MakeComputeData();
 
+	void AdjustHeight();
+	void AdjustAlpha();
+
+	void Resize();
+	void UpdateHeight();
+
 private:
 	UINT width, height, triangleSize;
 	Vector3 pickingPos;
+	float adjustValue = 20.0f;
+	string projectPath;
+	EditType editType = HEIGHT;
+	int selectMap = 0;
 
 	Mesh<VertexType>* mesh;
 
 	BrushBuffer* brushBuffer;
+
+	Texture* secondMap;
 
 	//Compute
 	RayBuffer* rayBuffer;

@@ -2,7 +2,7 @@
 
 class Plane : public GameObject
 {
-private:
+protected:
 	typedef VertexUVNormalTangent VertexType;
 
 public:

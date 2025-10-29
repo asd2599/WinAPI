@@ -13,6 +13,8 @@ TerrainEditor::TerrainEditor() : width(100), height(100)
 
     brushBuffer = new BrushBuffer();
 
+    secondMap = Texture::Add(L"Resources/Textures/Landscape/Stones.png");
+
     //Compute
     computeShader = Shader::AddCS(L"Compute/ComputePicking.hlsl");
     structuredBuffer = new StructuredBuffer(
@@ -35,11 +37,30 @@ void TerrainEditor::Update()
     //brushBuffer->Get().pickingPos = pickingPos;
 	if (ComputePicking(pickingPos))
 		brushBuffer->Get().pickingPos = pickingPos;
+
+    if (Input::Get()->IsKeyPress(VK_LBUTTON) && !ImGui::GetIO().WantCaptureMouse)
+    {
+        switch (editType)
+        {
+        case TerrainEditor::HEIGHT:
+            AdjustHeight();
+            break;
+        case TerrainEditor::ALPHA:
+            AdjustAlpha();
+            break;
+        }
+    }
+
+    if (Input::Get()->IsKeyUp(VK_LBUTTON))
+    {
+        UpdateHeight();
+    }
 }
 
 void TerrainEditor::Render()
 {
 	brushBuffer->SetPS(10);
+    secondMap->PSSet(11);
 
 	SetRender();
 	mesh->Draw();
@@ -51,6 +72,12 @@ void TerrainEditor::GUIRender()
 
     ImGui::DragFloat("BrushRange", &brushBuffer->Get().range);
     ImGui::ColorEdit3("BrushColor", (float*)&brushBuffer->Get().color);
+
+    const char* editList[] = { "Height", "Alpha" };
+    ImGui::Combo("EditType", (int*)&editType, editList, 2);
+
+    ImGui::DragFloat("AdjustValue", &adjustValue, 1.0f, -50.0f, 50.0f);
+    ImGui::DragInt("SelectMap", (int*)&selectMap, 1.0f, 0, 2);
 }
 
 void TerrainEditor::Picking()
@@ -198,4 +225,65 @@ void TerrainEditor::MakeComputeData()
         inputs[i].v1 = vertices[index1].pos;
         inputs[i].v2 = vertices[index2].pos;
     }
+}
+
+void TerrainEditor::AdjustHeight()
+{
+    vector<VertexType>& vertices = mesh->GetVertices();
+
+    for (VertexType& vertex : vertices)
+    {
+        Vector3 pos = Vector3(vertex.pos.x, 0, vertex.pos.z);
+        pickingPos.y = 0.0f;
+
+        float distance = Vector3::Distance(pos, pickingPos);
+
+        if (distance <= brushBuffer->Get().range)
+        {
+            vertex.pos.y += adjustValue * DELTA;
+            vertex.pos.y = GameMath::Clamp(vertex.pos.y, 0.0f, MAX_HEIGHT);
+        }
+    }
+
+    mesh->UpdateVertices();
+}
+
+void TerrainEditor::AdjustAlpha()
+{
+    vector<VertexType>& vertices = mesh->GetVertices();
+
+    for (VertexType& vertex : vertices)
+    {
+        Vector3 pos = Vector3(vertex.pos.x, 0, vertex.pos.z);
+        pickingPos.y = 0.0f;
+
+        float distance = Vector3::Distance(pos, pickingPos);
+
+        if (distance <= brushBuffer->Get().range)
+        {
+            vertex.tangent.x += adjustValue * DELTA;
+            vertex.tangent.x = GameMath::Clamp(vertex.tangent.x, 0.0f, 1.0f);
+        }
+    }
+
+    mesh->UpdateVertices();
+}
+
+void TerrainEditor::Resize()
+{
+}
+
+void TerrainEditor::UpdateHeight()
+{
+    vector<VertexType>& vertices = mesh->GetVertices();
+    for (VertexType& vertex : vertices)
+    {
+        vertex.normal = {};
+    }
+
+    MakeNormal(mesh);
+    MakeComputeData();
+
+    mesh->UpdateVertices();
+    structuredBuffer->UpdateInput(inputs.data());
 }

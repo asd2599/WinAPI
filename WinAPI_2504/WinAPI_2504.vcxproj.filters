@@ -276,6 +276,9 @@
     <ClInclude Include="Framework\Shader\ComputeShader.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Shader\GeometryShader.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI_2504.cpp">
@@ -503,6 +506,9 @@
     <ClCompile Include="Framework\Shader\ComputeShader.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Shader\GeometryShader.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI_2504.rc">
@@ -539,6 +545,7 @@
     <FxCompile Include="Resources\Shaders\Landscape\Terrain.hlsl" />
     <FxCompile Include="Resources\Shaders\Landscape\TerrainEditor.hlsl" />
     <FxCompile Include="Resources\Shaders\Compute\ComputePicking.hlsl" />
+    <FxCompile Include="Resources\Shaders\Geometry\Billboard.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\VertexHeader.hlsli" />

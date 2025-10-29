@@ -48,10 +48,9 @@ float4 PS(LightPixelInput input) : SV_TARGET
 {
     Material material = GetMaterial(input);
     
-    //float4 alpha = alphaMap.Sample(samplerState, input.uv);
-    //float4 second = secondMap.Sample(samplerState, input.uv);
-    //
-    //material.diffuseColor = lerp(material.diffuseColor, second, alpha.r);
+    float4 second = secondMap.Sample(samplerState, input.uv);
+    
+    material.diffuseColor = lerp(material.diffuseColor, second, input.tangent.x);
     
     float4 ambient = CalcAmbient(material);
     float4 emissive = CalcFresnel(material);

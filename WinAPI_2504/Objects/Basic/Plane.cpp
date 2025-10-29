@@ -80,6 +80,9 @@ void Plane::MakeMesh(Texture* heightMap)
 	UINT width = (UINT)heightMap->GetSize().x;
 	UINT height = (UINT)heightMap->GetSize().y;
 
+	size.x = width;
+	size.y = height;
+
 	vector<Float4> pixels;
 	heightMap->ReadPixels(pixels);
 
