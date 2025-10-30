@@ -13,6 +13,8 @@
 #include "Scenes/ModelInstancingScene.h"
 #include "Scenes/TerrainScene.h"
 #include "Scenes/TerrainEditorScene.h"
+#include "Scenes/WeatherScene.h"
+#include "Scenes/ParticleEditorScene.h"
 
 GameManager::GameManager()
 {
@@ -29,8 +31,10 @@ GameManager::GameManager()
 	//SCENE->AddScene("Game", new ModelAnimationScene());
 	//SCENE->AddScene("Game", new CharacterScene());
 	//SCENE->AddScene("Game", new ModelInstancingScene());
-	SCENE->AddScene("Game", new TerrainScene());
+	//SCENE->AddScene("Game", new TerrainScene());
 	//SCENE->AddScene("Game", new TerrainEditorScene());
+	SCENE->AddScene("Game", new WeatherScene());
+	//SCENE->AddScene("Game", new ParticleEditorScene());
 
 	SCENE->ChangeScene("Game");
 }

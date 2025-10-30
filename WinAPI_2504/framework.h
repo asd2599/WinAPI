@@ -159,6 +159,13 @@ typedef function<void()> Event;
 #include "Objects/Landscape/Terrain.h"
 #include "Objects/Landscape/TerrainEditor.h"
 
+#include "Objects/Particle/Particle.h"
+#include "Objects/Particle/Sprite.h"
+#include "Objects/Particle/Rain.h"
+#include "Objects/Particle/Snow.h"
+#include "Objects/Particle/Spark.h"
+#include "Objects/Particle/ParticleSystem.h"
+
 #include "Objects/Game/GameBall.h"
 #include "Objects/Game/Block.h"
 #include "Objects/Game/Steve.h"
