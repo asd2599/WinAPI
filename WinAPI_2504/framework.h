@@ -125,10 +125,14 @@ typedef function<void()> Event;
 #include "Framework/Render/Texture.h"
 #include "Framework/Render/Mesh.h"
 #include "Framework/Render/Material.h"
+#include "Framework/Render/DepthStencil.h"
 #include "Framework/Render/RenderTarget.h"
 
 #include "Framework/Environment/Camera.h"
 #include "Framework/Environment/Environment.h"
+#include "Framework/Environment/Reflection.h"
+#include "Framework/Environment/Refraction.h"
+#include "Framework/Environment/Shadow.h"
 
 #include "Framework/Model/ModelData.h"
 #include "Framework/Model/ModelExporter.h"
@@ -158,6 +162,7 @@ typedef function<void()> Event;
 #include "Objects/Landscape/Skybox.h"
 #include "Objects/Landscape/Terrain.h"
 #include "Objects/Landscape/TerrainEditor.h"
+#include "Objects/Landscape/Water.h"
 
 #include "Objects/Particle/Particle.h"
 #include "Objects/Particle/Sprite.h"

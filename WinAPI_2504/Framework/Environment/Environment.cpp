@@ -85,6 +85,8 @@ void Environment::SetViewport(UINT width, UINT height)
 
 void Environment::SetRender()
 {
+	mainCamera->SetView();
+
 	SetViewport();
 
 	projectionBuffer->Set(perspective);
@@ -94,7 +96,7 @@ void Environment::SetRender()
 	blendState[0]->SetState();
 	depthStencilState[0]->SetState();
 
-	grid->Render();
+	//grid->Render();
 
 	lightBuffer->SetPS(1);
 }
