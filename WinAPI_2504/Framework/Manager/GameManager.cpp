@@ -16,6 +16,8 @@
 #include "Scenes/WeatherScene.h"
 #include "Scenes/ParticleEditorScene.h"
 #include "Scenes/WaterScene.h"
+#include "Scenes/TessellationScene.h"
+#include "Scenes/TerrainLODScene.h"
 
 GameManager::GameManager()
 {
@@ -36,7 +38,9 @@ GameManager::GameManager()
 	//SCENE->AddScene("Game", new TerrainEditorScene());
 	//SCENE->AddScene("Game", new WeatherScene());
 	//SCENE->AddScene("Game", new ParticleEditorScene());
-	SCENE->AddScene("Game", new WaterScene());
+	//SCENE->AddScene("Game", new WaterScene());
+	//SCENE->AddScene("Game", new TessellationScene());
+	SCENE->AddScene("Game", new TerrainLODScene());
 
 	SCENE->ChangeScene("Game");
 }

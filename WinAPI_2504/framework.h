@@ -109,6 +109,8 @@ typedef function<void()> Event;
 #include "Framework/Shader/PixelShader.h"
 #include "Framework/Shader/ComputeShader.h"
 #include "Framework/Shader/GeometryShader.h"
+#include "Framework/Shader/HullShader.h"
+#include "Framework/Shader/DomainShader.h"
 
 #include "Framework/Buffer/VertexLayouts.h"
 #include "Framework/Buffer/VertexBuffer.h"
@@ -163,6 +165,7 @@ typedef function<void()> Event;
 #include "Objects/Landscape/Terrain.h"
 #include "Objects/Landscape/TerrainEditor.h"
 #include "Objects/Landscape/Water.h"
+#include "Objects/Landscape/TerrainLOD.h"
 
 #include "Objects/Particle/Particle.h"
 #include "Objects/Particle/Sprite.h"

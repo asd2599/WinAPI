@@ -91,6 +91,7 @@ void Environment::SetRender()
 
 	projectionBuffer->Set(perspective);
 	projectionBuffer->SetVS(2);
+	projectionBuffer->SetDS(2);
 
 	rasterizerState[isWireFrame]->SetState();
 	blendState[0]->SetState();
@@ -156,7 +157,7 @@ void Environment::CreateProjection()
 void Environment::CreateSamplerState()
 {
 	D3D11_SAMPLER_DESC desc = {};
-	desc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
+	desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
 	desc.AddressU = D3D11_TEXTURE_ADDRESS_MIRROR;
 	desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 	desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;

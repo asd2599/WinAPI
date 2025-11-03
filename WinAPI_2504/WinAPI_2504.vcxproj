@@ -169,7 +169,9 @@
     <ClInclude Include="Framework\Render\RenderTarget.h" />
     <ClInclude Include="Framework\Render\Texture.h" />
     <ClInclude Include="Framework\Shader\ComputeShader.h" />
+    <ClInclude Include="Framework\Shader\DomainShader.h" />
     <ClInclude Include="Framework\Shader\GeometryShader.h" />
+    <ClInclude Include="Framework\Shader\HullShader.h" />
     <ClInclude Include="Framework\Shader\PixelShader.h" />
     <ClInclude Include="Framework\Shader\Shader.h" />
     <ClInclude Include="Framework\Shader\VertexShader.h" />
@@ -215,6 +217,7 @@
     <ClInclude Include="Objects\Landscape\Skybox.h" />
     <ClInclude Include="Objects\Landscape\Terrain.h" />
     <ClInclude Include="Objects\Landscape\TerrainEditor.h" />
+    <ClInclude Include="Objects\Landscape\TerrainLOD.h" />
     <ClInclude Include="Objects\Landscape\Water.h" />
     <ClInclude Include="Objects\Manger\DataManager.h" />
     <ClInclude Include="Objects\Manger\EventManager.h" />
@@ -242,7 +245,9 @@
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\SphereScene.h" />
     <ClInclude Include="Scenes\TerrainEditorScene.h" />
+    <ClInclude Include="Scenes\TerrainLODScene.h" />
     <ClInclude Include="Scenes\TerrainScene.h" />
+    <ClInclude Include="Scenes\TessellationScene.h" />
     <ClInclude Include="Scenes\TutorialScene.h" />
     <ClInclude Include="Scenes\WaterScene.h" />
     <ClInclude Include="Scenes\WeatherScene.h" />
@@ -275,7 +280,9 @@
     <ClCompile Include="Framework\Render\RenderTarget.cpp" />
     <ClCompile Include="Framework\Render\Texture.cpp" />
     <ClCompile Include="Framework\Shader\ComputeShader.cpp" />
+    <ClCompile Include="Framework\Shader\DomainShader.cpp" />
     <ClCompile Include="Framework\Shader\GeometryShader.cpp" />
+    <ClCompile Include="Framework\Shader\HullShader.cpp" />
     <ClCompile Include="Framework\Shader\PixelShader.cpp" />
     <ClCompile Include="Framework\Shader\Shader.cpp" />
     <ClCompile Include="Framework\Shader\VertexShader.cpp" />
@@ -320,6 +327,7 @@
     <ClCompile Include="Objects\Landscape\Skybox.cpp" />
     <ClCompile Include="Objects\Landscape\Terrain.cpp" />
     <ClCompile Include="Objects\Landscape\TerrainEditor.cpp" />
+    <ClCompile Include="Objects\Landscape\TerrainLOD.cpp" />
     <ClCompile Include="Objects\Landscape\Water.cpp" />
     <ClCompile Include="Objects\Manger\DataManager.cpp" />
     <ClCompile Include="Objects\Manger\EventManager.cpp" />
@@ -345,7 +353,9 @@
     <ClCompile Include="Scenes\ParticleEditorScene.cpp" />
     <ClCompile Include="Scenes\SphereScene.cpp" />
     <ClCompile Include="Scenes\TerrainEditorScene.cpp" />
+    <ClCompile Include="Scenes\TerrainLODScene.cpp" />
     <ClCompile Include="Scenes\TerrainScene.cpp" />
+    <ClCompile Include="Scenes\TessellationScene.cpp" />
     <ClCompile Include="Scenes\TutorialScene.cpp" />
     <ClCompile Include="Scenes\WaterScene.cpp" />
     <ClCompile Include="Scenes\WeatherScene.cpp" />
@@ -560,6 +570,24 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="Resources\Shaders\Model\Model.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\TS\Rectangle.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\TS\TerrainLOD.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\TS\Triangle.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
